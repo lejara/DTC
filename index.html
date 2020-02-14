@@ -7,6 +7,7 @@
     <link href="Untitled1.css" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
     <script src="https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js"></script>
+    <script src="TCharadesGame.js"></script>
 </head>
 
 <body>
@@ -20,52 +21,6 @@
         <div id="wb_Text2" style="position:absolute;left:361px;top:127px;width:305px;height:15px;z-index:4;">
             <span id="output" style="color:#000000;font-family:Arial;font-size:13px;">Ouput</span></div>
     </div>
-
-    <script>
-        const token = "gwam71i51a99gtupxqssfrzlg4o0qd";
-        const username = "darkll";
-        var isConnected = false;
-        var connectedChannel = ""
-        const {
-            chat,
-            api
-        } = new TwitchJs({
-            token,
-            username
-        });
-
-        function startGame() {
-            const channel = document.getElementById("Editbox1").value;
-
-            if (isConnected) {
-                chat.reconnect().then(() => {
-                    chat.part(connectedChannel);
-                    chat.join(channel);
-                    connectedChannel = channel;
-                })
-            } else {
-
-                const handleMessage = message => {
-                    //console.log(message);
-                    document.getElementById("output").innerHTML = message.message;
-                };
-
-                // Listen for all events.
-                chat.on(TwitchJs.Chat.Events.ALL, handleMessage);
-
-                // Connect ...
-                chat.connect().then(() => {
-                    chat.join(channel);
-                    isConnected = true;
-                    connectedChannel = channel;
-                });
-
-            }
-
-
-        };
-    </script>
-
 
 </body>
 
