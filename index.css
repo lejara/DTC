@@ -1,0 +1,77 @@
+div#container {
+    width: 970px;
+    position: relative;
+    margin: 0 auto 0 auto;
+    text-align: left;
+}
+
+body {
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: Arial;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 1.1875;
+    margin: 0;
+    text-align: center;
+}
+
+#wb_Text1 {
+    background-color: transparent;
+    background-image: none;
+    border: 0px solid #000000;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+#wb_Text1 div {
+    text-align: center;
+}
+
+#Editbox1 {
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    background-image: none;
+    color: #000000;
+    font-family: Arial;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 4px 4px 4px 4px;
+    margin: 0;
+    text-align: left;
+}
+
+#Editbox1:focus {
+    border-color: #66AFE9;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 8px rgba(102, 175, 233, 0.60);
+    outline: 0;
+}
+
+#Button1 {
+    border: 1px solid #2E6DA4;
+    border-radius: 4px;
+    background-color: #800010;
+    background-image: none;
+    color: #FFFFFF;
+    font-family: Arial;
+    font-weight: normal;
+    font-size: 13px;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#wb_Text2 {
+    background-color: transparent;
+    background-image: none;
+    border: 0px solid #000000;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+#wb_Text2 div {
+    text-align: left;
+}

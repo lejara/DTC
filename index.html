@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Untitled Page</title>
+    <link href="Untitled1.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
+    <script src="https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="wb_Text1" style="position:absolute;left:337px;top:76px;width:296px;height:30px;text-align:center;z-index:1;">
+            <span style="color:#000000;font-family:Arial;font-size:27px;"><strong>Da Twitch Charades</strong></span></div>
+
+        <input type="text" id="Editbox1" style="position:absolute;left:411px;top:228px;width:138px;height:16px;z-index:2;" name="Editbox1" value="" spellcheck="false">
+        <input type="submit" id="Button1" name="" value="Submit" style="position:absolute;left:437px;top:267px;width:96px;height:25px;z-index:3;" onclick="startGame()">
+
+        <div id="wb_Text2" style="position:absolute;left:361px;top:127px;width:305px;height:15px;z-index:4;">
+            <span id="output" style="color:#000000;font-family:Arial;font-size:13px;">Ouput</span></div>
+    </div>
+
+    <script>
+        const token = "gwam71i51a99gtupxqssfrzlg4o0qd";
+        const username = "darkll";
+        var isConnected = false;
+        var connectedChannel = ""
+        const {
+            chat,
+            api
+        } = new TwitchJs({
+            token,
+            username
+        });
+
+        function startGame() {
+            const channel = document.getElementById("Editbox1").value;
+
+            if (isConnected) {
+                chat.reconnect().then(() => {
+                    chat.part(connectedChannel);
+                    chat.join(channel);
+                    connectedChannel = channel;
+                })
+            } else {
+
+                const handleMessage = message => {
+                    //console.log(message);
+                    document.getElementById("output").innerHTML = message.message;
+                };
+
+                // Listen for all events.
+                chat.on(TwitchJs.Chat.Events.ALL, handleMessage);
+
+                // Connect ...
+                chat.connect().then(() => {
+                    chat.join(channel);
+                    isConnected = true;
+                    connectedChannel = channel;
+                });
+
+            }
+
+
+        };
+    </script>
+
+
+</body>
+
+</html>
