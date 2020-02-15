@@ -124,8 +124,10 @@ h6, .h6
 .ChatOuput
 {
    font-family: "Lucida Console";
-   font-size: 12px;
+   font-size: 15px;
    text-align: center;
    text-decoration: none;
+   color: #FFFFFF;
    background-color: transparent;
+   animation: pulsate-bck 1.2s ease-in-out infinite both;
 }
