@@ -1,3 +1,18 @@
+@-webkit-keyframes pop
+{
+   0% { -webkit-transform: perspective(1px) rotateX(0deg) scale3d(1,1,1) ;  }
+   100% { -webkit-transform: perspective(1px) rotateX(0deg) scale3d(1.2,1.2,1.2) ;  }
+}
+@-moz-keyframes pop
+{
+   0% { -moz-transform: perspective(1px) rotateX(0deg) scale3d(1,1,1) ;  }
+   100% { -moz-transform: perspective(1px) rotateX(0deg) scale3d(1.2,1.2,1.2) ;  }
+}
+@keyframes pop
+{
+   0% { transform: perspective(1px) rotateX(0deg) scale3d(1,1,1) ;  }
+   100% { transform: perspective(1px) rotateX(0deg) scale3d(1.2,1.2,1.2) ;  }
+}
 a
 {
    color: #0000FF;
@@ -104,5 +119,13 @@ h6, .h6
    font-size: 16px;
    text-decoration: none;
    color: #2E74B5;
+   background-color: transparent;
+}
+.ChatOuput
+{
+   font-family: "Lucida Console";
+   font-size: 12px;
+   text-align: center;
+   text-decoration: none;
    background-color: transparent;
 }
