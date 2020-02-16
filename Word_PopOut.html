@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Untitled Page</title>
+    <meta name="generator" content="WYSIWYG Web Builder 15 Trial Version - http://www.wysiwygwebbuilder.com">
+    <link href="TS.css" rel="stylesheet">
+    <link href="Word_PopOut.css" rel="stylesheet">
+    <script>
+        console.log(document.domain)
+
+        function loaded() {
+            window.opener.callback(document);
+        }
+    </script>
+</head>
+
+<body onload="loaded();return false;">
+    <a href="http://www.wysiwygwebbuilder.com" target="_blank"><img src="images/builtwithwwb15.png" alt="WYSIWYG Web Builder" style="position:absolute;left:441px;top:967px;margin: 0;border-width:0;z-index:250"></a>
+    <div id="wb_Text1" style="position:absolute;left:34px;top:54px;width:250px;height:19px;text-align:center;z-index:1;">
+        <span style="color:#F0FFF0;font-family:Arial;font-size:17px;"><strong>YOUR WORD:</strong></span></div>
+    <div id="wb_Text2" style="position:absolute;left:46px;top:163px;width:250px;height:15px;z-index:2;">
+        <span style="background-color:#FFFFFF;color:#F0FFF0;font-family:Arial;font-size:13px;"><em>Don't Show to Chat</em></span></div>
+    <input type="submit" id="show_hide_theword_btn" name="" value="Show" style="position:absolute;left:34px;top:98px;width:48px;height:20px;z-index:3;">
+    <div id="wb_theword_ouput" style="position:absolute;left:104px;top:101px;width:111px;height:15px;text-align:center;z-index:4;">
+        <span style="color:#000000;font-family:Arial;font-size:13px;">OUTPUT</span></div>
+
+</body>
+
+</html>
