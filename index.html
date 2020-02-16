@@ -1,122 +1,85 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>TwitchCharades</title>
-<meta name="robots" content="index, follow">
-<meta name="generator" content="WYSIWYG Web Builder 15 Trial Version - http://www.wysiwygwebbuilder.com">
-<link href="base/jquery-ui.min.css" rel="stylesheet">
-<link href="TS.css" rel="stylesheet">
-<link href="index.css" rel="stylesheet">
-<script src="jquery-1.12.4.min.js"></script>
-<script src="jquery-ui.min.js"></script>
-<script>
-$(document).ready(function()
-{
-   $("#Spinner1").spinner(
-   {
-      min: 10,
-      max: 1200,
-      step: 1
-   });
-});
-</script>
+    <meta charset="utf-8">
+    <title>TwitchCharades</title>
+    <meta name="robots" content="index, follow">
+    <meta name="generator" content="WYSIWYG Web Builder 15 Trial Version - http://www.wysiwygwebbuilder.com">
+    <link href="base/jquery-ui.min.css" rel="stylesheet">
+    <link href="TS.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
+    <script src="jquery-1.12.4.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#timer_Spinner").spinner({
+                min: 10,
+                max: 1200,
+                step: 1
+            });
+        });
+    </script>
     <script src="https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js"></script>
     <script src="TCharadesGame.js"></script>
 </head>
-<body>
-<div id="container">
-<a href="http://www.wysiwygwebbuilder.com" target="_blank"><img src="images/builtwithwwb15.png" alt="WYSIWYG Web Builder" style="position:absolute;left:441px;top:967px;margin: 0;border-width:0;z-index:250"></a>
-<div id="wb_output" style="position:absolute;left:306px;top:211px;width:358px;height:122px;text-align:center;z-index:24;" class="ChatOuput">
-&nbsp;</div>
-<input type="text" id="channelName" style="position:absolute;left:408px;top:519px;width:144px;height:19px;z-index:25;" name="Editbox1" value="" autocomplete="off" spellcheck="false" placeholder="Channel Name">
-<input type="submit" id="StartGame" onclick="StartGame();return false;" name="" value="Start Game" style="position:absolute;left:390px;top:564px;width:191px;height:69px;z-index:26;">
-<input type="submit" id="NextWord" onclick="NextWord();return false;" name="" value="Next Word" style="position:absolute;left:395px;top:563px;width:193px;height:71px;visibility:hidden;z-index:27;">
-<div id="wb_theWord" style="position:absolute;left:504px;top:485px;width:266px;height:15px;z-index:28;">
-<span style="color:#F0FFF0;font-family:Arial;font-size:13px;"><strong>???</strong></span></div>
-<div id="wb_word_label" style="position:absolute;left:446px;top:484px;width:47px;height:16px;z-index:29;">
-<span style="color:#FBFBFB;font-family:Arial;font-size:15px;"><strong>Word:</strong></span></div>
 
-<div id="Layer2" style="position:absolute;text-align:left;left:0px;top:95px;width:209px;height:354px;z-index:31;">
-<div id="wb_Game_Switch" style="position:absolute;left:149px;top:54px;width:41px;height:20px;z-index:2;">
-<input type="checkbox" name="" id="Game_Switch" value="" checked>
-<label id="Game_Switch-label" for="Game_Switch">
-<span id="Game_Switch-inner"></span>
-<span id="Game_Switch-switch"></span>
-</label>
-</div>
-<label for="" id="Label2" style="position:absolute;left:12px;top:52px;width:65px;height:16px;line-height:16px;z-index:3;">Games:</label>
-<div id="wb_Twitch_Emotes_Switch" style="position:absolute;left:149px;top:78px;width:41px;height:20px;z-index:4;">
-<input type="checkbox" name="" id="Twitch_Emotes_Switch" value="">
-<label id="Twitch_Emotes_Switch-label" for="Twitch_Emotes_Switch">
-<span id="Twitch_Emotes_Switch-inner"></span>
-<span id="Twitch_Emotes_Switch-switch"></span>
-</label>
-</div>
-<label for="" id="Label1" style="position:absolute;left:12px;top:76px;width:89px;height:16px;line-height:16px;z-index:5;">Twitch Emotes:</label>
-<label for="" id="Label3" style="position:absolute;left:12px;top:100px;width:89px;height:16px;line-height:16px;z-index:6;">Movies:</label>
-<label for="" id="Label4" style="position:absolute;left:12px;top:123px;width:89px;height:16px;line-height:16px;z-index:7;">Actions:</label>
-<label for="" id="Label5" style="position:absolute;left:12px;top:147px;width:89px;height:16px;line-height:16px;z-index:8;">Actors:</label>
-<label for="" id="Label6" style="position:absolute;left:12px;top:171px;width:73px;height:16px;line-height:16px;z-index:9;">TV Shows:</label>
-<div id="wb_Movies_Switch" style="position:absolute;left:149px;top:102px;width:41px;height:20px;z-index:10;">
-<input type="checkbox" name="" id="Movies_Switch" value="" checked>
-<label id="Movies_Switch-label" for="Movies_Switch">
-<span id="Movies_Switch-inner"></span>
-<span id="Movies_Switch-switch"></span>
-</label>
-</div>
-<div id="wb_Actions_Switch" style="position:absolute;left:149px;top:125px;width:41px;height:20px;z-index:11;">
-<input type="checkbox" name="" id="Actions_Switch" value="">
-<label id="Actions_Switch-label" for="Actions_Switch">
-<span id="Actions_Switch-inner"></span>
-<span id="Actions_Switch-switch"></span>
-</label>
-</div>
-<div id="wb_Actors_Switch" style="position:absolute;left:149px;top:149px;width:41px;height:20px;z-index:12;">
-<input type="checkbox" name="" id="Actors_Switch" value="">
-<label id="Actors_Switch-label" for="Actors_Switch">
-<span id="Actors_Switch-inner"></span>
-<span id="Actors_Switch-switch"></span>
-</label>
-</div>
-<div id="wb_TV_Shows_Switch" style="position:absolute;left:149px;top:173px;width:41px;height:20px;z-index:13;">
-<input type="checkbox" name="" id="TV_Shows_Switch" value="">
-<label id="TV_Shows_Switch-label" for="TV_Shows_Switch">
-<span id="TV_Shows_Switch-inner"></span>
-<span id="TV_Shows_Switch-switch"></span>
-</label>
-</div>
-<label for="" id="Categories" style="position:absolute;left:0px;top:0px;width:201px;height:46px;line-height:46px;z-index:14;">Categories</label>
-<label for="" id="Label7" style="position:absolute;left:12px;top:195px;width:129px;height:16px;line-height:16px;z-index:15;">BTTV / FFZ Emotes:</label>
-<div id="wb_BTT_FFZ_Switch" style="position:absolute;left:149px;top:197px;width:41px;height:20px;z-index:16;">
-<input type="checkbox" name="" id="BTT_FFZ_Switch" value="">
-<label id="BTT_FFZ_Switch-label" for="BTT_FFZ_Switch">
-<span id="BTT_FFZ_Switch-inner"></span>
-<span id="BTT_FFZ_Switch-switch"></span>
-</label>
-</div>
-<label for="" id="Label9" style="position:absolute;left:12px;top:291px;width:87px;height:16px;line-height:16px;z-index:17;">Time Set (Sec):</label>
-<label for="" id="Label8" style="position:absolute;left:0px;top:237px;width:201px;height:46px;line-height:46px;z-index:18;">Settings</label>
-<hr id="Line1" style="position:absolute;left:0px;top:230px;width:209px;z-index:19;">
-<div id="wb_Spinner1" style="position:absolute;left:117px;top:291px;width:73px;height:24px;z-index:20;">
-<input type="text" id="Spinner1" style="width:100%;height:16px;line-height:16px;" name="Spinner1" value="120"></div>
-<hr id="Line2" style="position:absolute;left:0px;top:0px;width:209px;z-index:21;">
-</div>
-<input type="submit" id="word_hidder" name="" value="Show" style="position:absolute;left:385px;top:483px;width:48px;height:18px;z-index:32;">
-<div id="wb_Error_Category" style="position:absolute;left:408px;top:647px;width:154px;height:30px;text-align:center;z-index:33;">
-<span style="color:#A52A2A;font-family:Arial;font-size:13px;">At least one Category must be selected</span></div>
-<div id="wb_timer_ouput" style="position:absolute;left:399px;top:375px;width:171px;height:72px;text-align:center;z-index:34;">
-<span style="color:#FBFBFB;font-family:Arial;font-size:64px;">00:00</span></div>
-</div>
-<div id="PageHeader1" style="position:absolute;text-align:left;left:0px;top:0px;width:100%;height:95px;z-index:7777;">
-<div id="wb_title" style="position:absolute;left:260px;top:20px;width:486px;height:54px;text-align:center;z-index:0;">
-<span style="color:#FBFBFB;font-family:Arial;font-size:48px;"><strong>Da Twitch Charades</strong></span></div>
-<div id="wb_Text1" style="position:absolute;left:731px;top:56px;width:39px;height:30px;text-align:center;z-index:1;">
-<span style="color:#C0C0C0;font-family:Arial;font-size:13px;">1.0v<br></span></div>
-</div>
-<div id="PageFooter1" style="position:absolute;overflow:hidden;text-align:left;left:0px;top:913px;width:100%;height:100px;z-index:35;">
-<div id="wb_made_by" style="position:absolute;left:838px;top:70px;width:105px;height:15px;z-index:22;">
-<span style="color:#808080;font-family:Arial;font-size:13px;">Made By: Lejara</span></div>
-</div>
+<body>
+    <div id="container">
+        <a href="http://www.wysiwygwebbuilder.com" target="_blank"><img src="images/builtwithwwb15.png" alt="WYSIWYG Web Builder" style="position:absolute;left:441px;top:967px;margin: 0;border-width:0;z-index:250"></a>
+        <div id="wb_output" style="position:absolute;left:306px;top:211px;width:358px;height:122px;text-align:center;z-index:27;" class="ChatOuput">
+            &nbsp;</div>
+        <div id="wb_theWord" style="position:absolute;left:504px;top:543px;width:266px;height:15px;z-index:28;">
+            <span style="color:#F0FFF0;font-family:Arial;font-size:13px;"><strong>???</strong></span></div>
+        <div id="wb_word_label" style="position:absolute;left:446px;top:542px;width:47px;height:16px;z-index:29;">
+            <span style="color:#FBFBFB;font-family:Arial;font-size:15px;"><strong>Word:</strong></span></div>
+
+        <div id="Layer2" style="position:absolute;text-align:left;left:0px;top:95px;width:209px;height:569px;z-index:31;">
+            <label for="" id="Label2" style="position:absolute;left:12px;top:52px;width:65px;height:16px;line-height:16px;z-index:2;">Games:</label>
+            <label for="" id="Label1" style="position:absolute;left:12px;top:76px;width:89px;height:16px;line-height:16px;z-index:3;">Twitch Emotes:</label>
+            <label for="" id="Label3" style="position:absolute;left:12px;top:100px;width:89px;height:16px;line-height:16px;z-index:4;">Movies:</label>
+            <label for="" id="Label4" style="position:absolute;left:12px;top:123px;width:89px;height:16px;line-height:16px;z-index:5;">Actions:</label>
+            <label for="" id="Label5" style="position:absolute;left:12px;top:147px;width:89px;height:16px;line-height:16px;z-index:6;">Actors:</label>
+            <label for="" id="Label6" style="position:absolute;left:12px;top:171px;width:73px;height:16px;line-height:16px;z-index:7;">TV Shows:</label>
+            <label for="" id="Categories" style="position:absolute;left:0px;top:0px;width:201px;height:46px;line-height:46px;z-index:8;">Categories</label>
+            <label for="" id="Label7" style="position:absolute;left:12px;top:195px;width:129px;height:16px;line-height:16px;z-index:9;">BTTV / FFZ Emotes:</label>
+            <label for="" id="Label9" style="position:absolute;left:12px;top:291px;width:87px;height:16px;line-height:16px;z-index:10;">Time Set (Sec):</label>
+            <label for="" id="Label8" style="position:absolute;left:0px;top:237px;width:201px;height:46px;line-height:46px;z-index:11;">Settings</label>
+            <hr id="Line1" style="position:absolute;left:0px;top:230px;width:209px;z-index:12;">
+            <div id="wb_timer_Spinner" style="position:absolute;left:117px;top:291px;width:73px;height:24px;z-index:13;">
+                <input type="text" id="timer_Spinner" style="width:100%;height:16px;line-height:16px;" name="Spinner1" value="120"></div>
+            <hr id="Line2" style="position:absolute;left:0px;top:0px;width:209px;z-index:14;">
+            <input type="submit" id="StartGame_btn" onclick="StartGame();" name="" value="Start Game" style="position:absolute;left:9px;top:427px;width:191px;height:69px;z-index:15;">
+            <input type="text" id="channelName" style="position:absolute;left:27px;top:362px;width:144px;height:19px;z-index:16;" name="Editbox1" value="" autocomplete="off" spellcheck="false" placeholder="Channel Name">
+            <input type="submit" id="NextWord_btn" onclick="NextWord();" name="" value="Next Word" style="position:absolute;left:8px;top:426px;width:193px;height:71px;visibility:hidden;z-index:17;">
+            <div id="wb_Game_Switch" style="position:absolute;left:170px;top:54px;width:20px;height:20px;z-index:18;">
+                <input type="checkbox" id="Game_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="Game_Switch"></label></div>
+            <div id="wb_Twitch_Emotes_Switch" style="position:absolute;left:170px;top:78px;width:20px;height:20px;z-index:19;">
+                <input type="checkbox" id="Twitch_Emotes_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="Twitch_Emotes_Switch"></label></div>
+            <div id="wb_Movies_Switch" style="position:absolute;left:170px;top:102px;width:20px;height:20px;z-index:20;">
+                <input type="checkbox" id="Movies_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="Movies_Switch"></label></div>
+            <div id="wb_Actions_Switch" style="position:absolute;left:170px;top:125px;width:20px;height:20px;z-index:21;">
+                <input type="checkbox" id="Actions_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="Actions_Switch"></label></div>
+            <div id="wb_Actors_Switch" style="position:absolute;left:170px;top:149px;width:20px;height:20px;z-index:22;">
+                <input type="checkbox" id="Actors_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="Actors_Switch"></label></div>
+            <div id="wb_TV_Shows_Switch" style="position:absolute;left:170px;top:173px;width:20px;height:20px;z-index:23;">
+                <input type="checkbox" id="TV_Shows_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="TV_Shows_Switch"></label></div>
+            <div id="wb_BTT_FFZ_Switch" style="position:absolute;left:170px;top:197px;width:20px;height:20px;z-index:24;">
+                <input type="checkbox" id="BTT_FFZ_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="BTT_FFZ_Switch"></label></div>
+        </div>
+        <input type="submit" id="word_hidder" name="" value="Show" style="position:absolute;left:385px;top:541px;width:48px;height:18px;z-index:32;">
+        <label for="" id="timer_ouput" style="position:absolute;left:399px;top:421px;width:164px;height:93px;line-height:93px;z-index:33;">00:00</label>
+    </div>
+    <div id="PageHeader1" style="position:absolute;text-align:left;left:0px;top:0px;width:100%;height:95px;z-index:7777;">
+        <div id="wb_title" style="position:absolute;left:260px;top:20px;width:486px;height:54px;text-align:center;z-index:0;">
+            <span style="color:#FBFBFB;font-family:Arial;font-size:48px;"><strong>Da Twitch Charades</strong></span></div>
+        <div id="wb_Text1" style="position:absolute;left:731px;top:56px;width:39px;height:30px;text-align:center;z-index:1;">
+            <span style="color:#C0C0C0;font-family:Arial;font-size:13px;">1.0v<br></span></div>
+    </div>
+    <div id="PageFooter1" style="position:absolute;overflow:hidden;text-align:left;left:0px;top:913px;width:100%;height:100px;z-index:34;">
+        <div id="wb_made_by" style="position:absolute;left:838px;top:70px;width:105px;height:15px;z-index:25;">
+            <span style="color:#808080;font-family:Arial;font-size:13px;">Made By: Lejara</span></div>
+    </div>
 </body>
+
 </html>
