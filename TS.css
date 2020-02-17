@@ -131,3 +131,12 @@ h6, .h6
    background-color: transparent;
    animation: pulsate-bck 1.2s ease-in-out infinite both;
 }
+.Error_MSG
+{
+   font-family: Tahoma;
+   font-size: 12px;
+   text-align: center;
+   text-decoration: none;
+   color: #B22222;
+   background-color: transparent;
+}

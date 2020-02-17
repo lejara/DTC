@@ -78,7 +78,7 @@ body
    border: 1px solid #2E6DA4;
    border-radius: 4px;
    background-clip: padding-box;
-   background-color: #708090;
+   background-color: #6A8695;
    background-image: none;
    color: #FFFFFF;
    font-family: Arial;
@@ -87,51 +87,10 @@ body
    -webkit-appearance: none;
    margin: 0;
 }
-#wb_theWord 
-{
-   background-color: transparent;
-   background-image: none;
-   border: 0px solid #000000;
-   padding: 0;
-   margin: 0;
-   text-align: left;
-}
-#wb_theWord div
-{
-   text-align: left;
-}
-#wb_word_label 
-{
-   background-color: transparent;
-   background-image: none;
-   border: 0px solid #000000;
-   padding: 0;
-   margin: 0;
-   text-align: left;
-}
-#wb_word_label div
-{
-   text-align: left;
-}
 #Layer2
 {
    background-color: #6A159D;
    background-image: none;
-}
-#Categories
-{
-   border: 0px solid #F5FFFA;
-   border-radius: 4px;
-   background-color: transparent;
-   background-image: none;
-   color :#F5FFFA;
-   font-family: Arial;
-   font-weight: normal;
-   font-size: 27px;
-   padding: 4px 4px 4px 4px;
-   margin: 0;
-   text-align: center;
-   vertical-align: top;
 }
 #Label2
 {
@@ -226,12 +185,12 @@ body
 #word_hidder_btn
 {
    border: 0px solid #2E6DA4;
-   background-color: #D3D3D3;
+   background-color: #A52A2A;
    background-image: none;
-   color: #000000;
+   color: #FFFFFF;
    font-family: Arial;
    font-weight: normal;
-   font-size: 13px;
+   font-size: 17px;
    -webkit-appearance: none;
    margin: 0;
 }
@@ -419,7 +378,7 @@ body
    border: 0px solid #CCCCCC;
    background-color: transparent;
    background-image: none;
-   color :#F0FFF0;
+   color :#4682B4;
    font-family: Arial;
    font-weight: normal;
    font-size: 64px;
@@ -935,14 +894,33 @@ body
 #popout_theword_btn
 {
    border: 0px solid #2E6DA4;
-   background-color: #D3D3D3;
+   background-color: #696978;
    background-image: none;
-   color: #000000;
+   color: #FFFFFF;
    font-family: Arial;
    font-weight: normal;
    font-size: 13px;
    -webkit-appearance: none;
    margin: 0;
+}
+#theWord
+{
+   border: 0px solid #CCCCCC;
+   border-radius: 4px;
+   background-color: transparent;
+   background-image: none;
+   color :#FFFFFF;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 32px;
+   padding: 4px 4px 4px 4px;
+   margin: 0;
+   text-align: center;
+   vertical-align: top;
+}
+#wb_error_msg_box div
+{
+   text-align: center;
 }
 #PageFooter1
 {
