@@ -45,7 +45,7 @@ body
    border-radius: 4px;
    background-color: #484853;
    background-image: none;
-   color :#000000;
+   color :#FFFFFF;
    font-family: Arial;
    font-weight: normal;
    font-size: 13px;
@@ -56,8 +56,8 @@ body
 }
 #channelName:focus
 {
-   border-color: #66AFE9;
-   box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(102,175,233,0.60);
+   border-color: #32CD32;
+   box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(50,205,50,0.60);
    outline: 0;
 }
 #StartGame_btn
@@ -921,6 +921,21 @@ body
 #wb_error_msg_box div
 {
    text-align: center;
+}
+#Button1
+{
+   border: 1px solid #2E6DA4;
+   border-radius: 4px;
+   background-color: transparent;
+   background-image: url(images/index_Button1_bkgrnd.png);
+   background-repeat: repeat;
+   background-position: left top;
+   color: #FFFFFF;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 13px;
+   -webkit-appearance: none;
+   margin: 0;
 }
 #PageFooter1
 {

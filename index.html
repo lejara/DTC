@@ -21,16 +21,28 @@ $(document).ready(function()
    });
 });
 </script>
-    <script src="https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js"></script>
-    <script src="TCharadesGame.js"></script>
+<script src="https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js"></script>
+<script src="TCharadesGame.js"></script>
+    
+ <audio id="kids_hooray">
+  <source src="sounds/children-hooray.wav" type="audio/wav"> 
+</audio>
+
+ <audio id="btn_click">
+  <source src="sounds/button_click.wav" type="audio/wav"> 
+</audio>
+
+ <audio id="lose_s">
+  <source src="sounds/loseSound.wav" type="audio/wav"> 
+</audio>
 </head>
 <body>
 <div id="container">
 <a href="http://www.wysiwygwebbuilder.com" target="_blank"><img src="images/builtwithwwb15.png" alt="WYSIWYG Web Builder" style="position:absolute;left:441px;top:967px;margin: 0;border-width:0;z-index:250"></a>
-<div id="wb_output" style="position:absolute;left:306px;top:211px;width:358px;height:122px;text-align:center;z-index:28;" class="ChatOuput">
+<div id="wb_output" style="position:absolute;left:306px;top:211px;width:358px;height:122px;text-align:center;z-index:29;" class="ChatOuput">
 &nbsp;</div>
 
-<div id="Layer2" style="position:absolute;text-align:left;left:0px;top:95px;width:209px;height:568px;z-index:30;">
+<div id="Layer2" style="position:absolute;text-align:left;left:0px;top:95px;width:209px;height:588px;z-index:31;">
 <label for="" id="Label2" style="position:absolute;left:12px;top:52px;width:65px;height:16px;line-height:16px;z-index:2;">Games:</label>
 <label for="" id="Label1" style="position:absolute;left:12px;top:76px;width:89px;height:16px;line-height:16px;z-index:3;">Twitch Emotes:</label>
 <label for="" id="Label3" style="position:absolute;left:12px;top:100px;width:89px;height:16px;line-height:16px;z-index:4;">Movies:</label>
@@ -44,7 +56,7 @@ $(document).ready(function()
 <input type="text" id="timer_Spinner" style="width:100%;height:16px;line-height:16px;" name="Spinner1" value="120"></div>
 <hr id="Line2" style="position:absolute;left:0px;top:0px;width:209px;z-index:12;">
 <input type="submit" id="StartGame_btn" onclick="StartGame();return false;" name="" value="Start Game" style="position:absolute;left:9px;top:427px;width:191px;height:69px;z-index:13;">
-<input type="text" id="channelName" style="position:absolute;left:27px;top:319px;width:144px;height:19px;z-index:14;" name="Editbox1" value="" autocomplete="off" spellcheck="false" placeholder="Channel Name">
+<input type="text" id="channelName" style="position:absolute;left:27px;top:325px;width:144px;height:19px;z-index:14;" name="Editbox1" value="" autocomplete="off" spellcheck="false" placeholder="Channel Name">
 <div id="wb_Game_Switch" style="position:absolute;left:170px;top:54px;width:20px;height:20px;z-index:15;">
 <input type="checkbox" id="Game_Switch" onclick="p.call(this);return false;" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="Game_Switch"></label></div>
 <div id="wb_Twitch_Emotes_Switch" style="position:absolute;left:170px;top:78px;width:20px;height:20px;z-index:16;">
@@ -59,15 +71,16 @@ $(document).ready(function()
 <input type="checkbox" id="TV_Shows_Switch" onclick="p.call(this);return false;" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="TV_Shows_Switch"></label></div>
 <div id="wb_BTT_FFZ_Switch" style="position:absolute;left:170px;top:197px;width:20px;height:20px;z-index:21;">
 <input type="checkbox" id="BTT_FFZ_Switch" onclick="p.call(this);return false;" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="BTT_FFZ_Switch"></label></div>
-<input type="submit" id="popout_theword_btn" onclick="PopOutWord();return false;" name="" value="Open Word Popout" style="position:absolute;left:33px;top:366px;width:143px;height:37px;z-index:22;">
+<input type="submit" id="popout_theword_btn" onclick="PopOutWord();return false;" name="" value="Open Word Window" style="position:absolute;left:33px;top:388px;width:137px;height:28px;z-index:22;">
 <label for="" id="Label8" style="position:absolute;left:0px;top:7px;width:201px;height:46px;line-height:46px;z-index:23;">Settings</label>
 <div id="wb_error_msg_box" style="position:absolute;left:24px;top:510px;width:160px;height:15px;text-align:center;z-index:24;" class="Error_MSG">
 &nbsp;</div>
 <input type="submit" id="NextWord_btn" onclick="NextRound();return false;" name="" value="Next Word" style="position:absolute;left:9px;top:427px;width:191px;height:69px;visibility:hidden;z-index:25;">
+<input type="submit" id="Button1" onclick="location.reload();return false;" name="" value="Reset" style="position:absolute;left:128px;top:554px;width:72px;height:25px;z-index:26;">
 </div>
-<input type="submit" id="word_hidder_btn" onclick="WordNotGuessed();return false;" name="" value="Reveal Word" style="position:absolute;left:426px;top:591px;width:119px;height:28px;z-index:31;">
-<label for="" id="timer_ouput" style="position:absolute;left:399px;top:397px;width:164px;height:93px;line-height:93px;z-index:32;">00:00</label>
-<label for="" id="theWord" style="position:absolute;left:254px;top:483px;width:455px;height:100px;line-height:100px;z-index:33;">???</label>
+<input type="submit" id="word_hidder_btn" onclick="WordNotGuessed();return false;" name="" value="Reveal Word" style="position:absolute;left:426px;top:591px;width:119px;height:28px;z-index:32;">
+<label for="" id="timer_ouput" style="position:absolute;left:399px;top:397px;width:164px;height:93px;line-height:93px;z-index:33;">00:00</label>
+<label for="" id="theWord" style="position:absolute;left:254px;top:483px;width:455px;height:100px;line-height:100px;z-index:34;">???</label>
 </div>
 <div id="PageHeader1" style="position:absolute;text-align:left;left:0px;top:0px;width:100%;height:95px;z-index:7777;">
 <div id="wb_title" style="position:absolute;left:260px;top:20px;width:486px;height:54px;text-align:center;z-index:0;">
@@ -75,8 +88,8 @@ $(document).ready(function()
 <div id="wb_Text1" style="position:absolute;left:731px;top:56px;width:39px;height:30px;text-align:center;z-index:1;">
 <span style="color:#C0C0C0;font-family:Arial;font-size:13px;">1.0v<br></span></div>
 </div>
-<div id="PageFooter1" style="position:absolute;overflow:hidden;text-align:left;left:0px;top:913px;width:100%;height:100px;z-index:34;">
-<div id="wb_made_by" style="position:absolute;left:838px;top:70px;width:105px;height:15px;z-index:26;">
+<div id="PageFooter1" style="position:absolute;overflow:hidden;text-align:left;left:0px;top:913px;width:100%;height:100px;z-index:35;">
+<div id="wb_made_by" style="position:absolute;left:838px;top:70px;width:105px;height:15px;z-index:27;">
 <span style="color:#808080;font-family:Arial;font-size:13px;">Made By: Lejara</span></div>
 </div>
 </body>
