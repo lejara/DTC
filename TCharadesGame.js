@@ -81,6 +81,7 @@ function NextRound() {
   gameFailed = false;
   PickWord();
   StopTimer();
+  PopOutWord();
   StartTimer(document.getElementById("timer_Spinner").value);
   document.getElementById("NextWord_btn").style.visibility = "visible";
   document.getElementById("StartGame_btn").style.visibility = "hidden";
@@ -122,12 +123,9 @@ function ConnectTwtichChat() {
     // Connect ...
     chat.connect().then(() => {
       chat.join(channel).then(() => {
-
         isConnected = true;
         connectedChannel = channel;
         NextRound();
-        PopOutWord();
-
       }).catch(function(err) {
         console.log(err);
         document.getElementById("wb_error_msg_box").innerHTML = "Make Sure Channel Name Is Filled Correctly.";
@@ -147,7 +145,7 @@ function StartTimer(duration) {
   var runner = function() {
     minutes = parseInt(timer / 60, 10)
     seconds = parseInt(timer % 60, 10);
-
+    // console.log(pop_window);
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     document.getElementById("timer_ouput").innerHTML = minutes + ":" + seconds;
@@ -254,31 +252,7 @@ var p = function() {
 //Popout window for word
 function PopOutWord() {
   if (pop_window == null || pop_window.closed) {
-    var p = window.open('Word_PopOut.html', 'PopUpWindow_TCharadesGame', 'height=250,width=600,left=100,top=100,menubar=no,location=no,directories=no, status=yes');
-
-    if (p == null) {
-      var keeptrying = setInterval(function() {
-        var p = window.open('Word_PopOut.html', 'PopUpWindow_TCharadesGame', 'height=250,width=600,left=100,top=100,menubar=no,location=no,directories=no, status=yes');
-        console.log(p);
-        if (p != null) {
-          p.window.onload = function() {
-            pop_window = p;
-            pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
-          }
-          console.log("p was not null");
-          clearInterval(keeptrying);
-        }
-      }, 500);
-
-    } else {
-      p.window.onload = function() {
-        pop_window = p;
-        pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
-
-      }
-    }
-
-
+    pop_window = window.open('Word_PopOut.html', 'PopUpWindow_TCharadesGame', 'height=250,width=600,left=100,top=100,menubar=no,location=no,directories=no, status=yes');
   } else {
     pop_window.focus();
   }
@@ -288,6 +262,13 @@ window.onbeforeunload = function() {
   if (pop_window != null) {
     pop_window.close();
   }
+}
+
+function SetPopOut(ref) {
+  console.log("ran");
+  pop_window = ref
+  pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
+
 }
 
 function updatePopoutWord() {
