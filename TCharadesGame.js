@@ -258,13 +258,13 @@ function PopOutWord() {
 
     if (p == null) {
       var keeptrying = setInterval(function() {
-        console(p);
+        console.log(p);
         if (p != null) {
           p.window.onload = function() {
             pop_window = p;
             pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
           }
-          console("p was not null");
+          console.log("p was not null");
           clearInterval(keeptrying);
         }
       }, 500);
