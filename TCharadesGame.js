@@ -258,6 +258,7 @@ function PopOutWord() {
 
     if (p == null) {
       var keeptrying = setInterval(function() {
+        var p = window.open('Word_PopOut.html', 'PopUpWindow_TCharadesGame', 'height=250,width=600,left=100,top=100,menubar=no,location=no,directories=no, status=yes');
         console.log(p);
         if (p != null) {
           p.window.onload = function() {
