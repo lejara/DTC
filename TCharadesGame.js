@@ -1,6 +1,7 @@
 //TODO: make word bank with catagories in json format
 //TODO; add in how to play
 //TODO: Make sure logining into the twtich api is good
+//TODO: make sure to tell to allow pop-out windows
 //BUGS---
 //TODO: popout will unsync the  word display when you hit F5 on the popout window
 
@@ -201,7 +202,7 @@ function WordGuessed() {
 
 async function RunConfetti() {
   confetti.maxCount = 300;
-  confetti.particleSpeed = 5;
+  confetti.particleSpeed = 3;
   confetti.start();
   await new Promise(resolve => {
     setTimeout(resolve, 2000);
@@ -254,11 +255,29 @@ var p = function() {
 function PopOutWord() {
   if (pop_window == null || pop_window.closed) {
     var p = window.open('Word_PopOut.html', 'PopUpWindow_TCharadesGame', 'height=250,width=600,left=100,top=100,menubar=no,location=no,directories=no, status=yes');
-    p.window.onload = function() {
-      pop_window = p;
-      pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
 
+    if (p == null) {
+      var keeptrying = setInterval(function() {
+        console(p);
+        if (p != null) {
+          p.window.onload = function() {
+            pop_window = p;
+            pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
+          }
+          console("p was not null");
+          clearInterval(keeptrying);
+        }
+      }, 500);
+
+    } else {
+      p.window.onload = function() {
+        pop_window = p;
+        pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
+
+      }
     }
+
+
   } else {
     pop_window.focus();
   }
