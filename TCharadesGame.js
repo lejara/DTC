@@ -1,17 +1,14 @@
 //TODO: make word bank with catagories in json format
+//TODO; add in how to play
 //TODO: Make sure logining into the twtich api is good
-//TODO: make timer feel better when it starts and ends
-//TODO: make cheer ad little animation when someone guesses it
-//TODO: make chat look nice and maybe cool animations. try to fix the overflow porblem with chat output
 //BUGS---
-//TODO: PONG/#tmi.twitch.tv <empty string> <empty string> // Clears my chat output >:( // style chose cuz i remove in the else
-//TODO: popout will unsunc the  word display when you hit F5 on the popout window
+//TODO: popout will unsync the  word display when you hit F5 on the popout window
 
 //https://twitch-js.netlify.com/index.html
+//https://www.cssscript.com/confetti-falling-animation/
+
 const MAX_REPEAT_OF_WORDS = 2; // Depends on how long a single category list is
 
-const token = "gwam71i51a99gtupxqssfrzlg4o0qd";
-const username = "darkll";
 var isConnected = false;
 var connectedChannel = ""
 
@@ -53,7 +50,6 @@ function Category(p_id, p_state, p_words) {
   this.state = p_state;
   this.words = p_words;
 }
-
 //Awake Function
 $(".input").ready(function() {
   list_of_categories.push(new Category("Game_Switch", true, ["Overwatch", "Teamfortress 2", "League Of Lengends"]));
@@ -73,8 +69,6 @@ const {
   chat,
   api
 } = new TwitchJs({
-  token,
-  username,
   log: { enabled: false },
 });
 
@@ -148,7 +142,8 @@ function ConnectTwtichChat() {
 function StartTimer(duration) {
   var timer = duration,
     minutes, seconds;
-  intervalTimer = setInterval(function() {
+
+  var runner = function() {
     minutes = parseInt(timer / 60, 10)
     seconds = parseInt(timer % 60, 10);
 
@@ -160,7 +155,9 @@ function StartTimer(duration) {
       timer = 0;
       WordNotGuessed();
     }
-  }, 1000);
+  };
+  runner();
+  intervalTimer = setInterval(runner, 1000);
 }
 
 function StopTimer() {
@@ -197,12 +194,23 @@ function WordGuessed() {
   document.getElementById("timer_ouput").style.color = "green";
   var winSound = document.getElementById("kids_hooray");
   winSound.volume = 0.5;
+  RunConfetti();
   winSound.play();
   GameEnd();
 }
 
+async function RunConfetti() {
+  confetti.maxCount = 300;
+  confetti.particleSpeed = 5;
+  confetti.start();
+  await new Promise(resolve => {
+    setTimeout(resolve, 2000);
+  });
+  confetti.stop();
+}
+
 function WordNotGuessed() {
-  if (isConnected) {
+  if (isConnected && !gameFailed) {
     console.log("WORD NOT GUESSED");
     gameFailed = true;
     document.getElementById("timer_ouput").style.color = "red";
