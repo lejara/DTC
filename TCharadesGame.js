@@ -1,28 +1,25 @@
-//TODO: make word pop out to a window and show button will fail the game
 //TODO: make word bank with catagories in json format
+//TODO; add in how to play
 //TODO: Make sure logining into the twtich api is good
-//TODO: make timer feel better when it starts and ends
-//TODO: make cheer ad little animation when someone guesses it
-//TODO: make chat look nice and maybe cool animations
 //BUGS---
-//TODO: PONG/#tmi.twitch.tv <empty string> <empty string> // Clears my chat output >:(
-//TODO: odd bug that word not guess func does not run sometimes
-//TODO: fix that odd warning : Empty string passed to getElementById().
+//TODO: popout will unsync the  word display when you hit F5 on the popout window
 
 //https://twitch-js.netlify.com/index.html
+//https://www.cssscript.com/confetti-falling-animation/
+
 const MAX_REPEAT_OF_WORDS = 2; // Depends on how long a single category list is
 
-const token = "gwam71i51a99gtupxqssfrzlg4o0qd";
-const username = "darkll";
 var isConnected = false;
 var connectedChannel = ""
 
+var display_ChosenWord = "--Game Has Not Started--";
 var chosenWord = "";
 var wordFound = false;
 var intervalTimer = null;
 var gameFailed;
-
 var list_of_categories = [];
+
+var pop_window = null;
 
 //Holder Object for repeats of words
 //Returns: false when there is a word in the list in add() func, true otherwise
@@ -53,7 +50,6 @@ function Category(p_id, p_state, p_words) {
   this.state = p_state;
   this.words = p_words;
 }
-
 //Awake Function
 $(".input").ready(function() {
   list_of_categories.push(new Category("Game_Switch", true, ["Overwatch", "Teamfortress 2", "League Of Lengends"]));
@@ -73,22 +69,25 @@ const {
   chat,
   api
 } = new TwitchJs({
-  token,
-  username,
-  log: { enabled: true },
+  log: { enabled: false },
 });
 
 function StartGame() {
   ConnectTwtichChat();
 };
 
-function NextWord() {
+function NextRound() {
   gameFailed = false;
   PickWord();
   StopTimer();
   StartTimer(document.getElementById("timer_Spinner").value);
-  document.getElementById("StartGame_btn").style.visibility = "hidden";
   document.getElementById("NextWord_btn").style.visibility = "visible";
+  document.getElementById("StartGame_btn").style.visibility = "hidden";
+  document.getElementById("wb_error_msg_box").innerHTML = "";
+  document.getElementById("timer_ouput").style.color = "#4682B4";
+  var clickSound = document.getElementById("btn_click");
+  clickSound.volume = 0.5;
+  clickSound.play();
 }
 
 function ConnectTwtichChat() {
@@ -103,40 +102,48 @@ function ConnectTwtichChat() {
   } else {
 
     const handleMessage = message => {
-      console.log(message)
-      if (message.event === "PRIVMSG") {
-        if (!wordFound && message.message != null && !gameFailed) {
+        if (message.event === "PRIVMSG") {
+          if (!wordFound && message.message != null) {
 
-          document.getElementById("wb_output").innerHTML = ("<strong>" + message.username + ": </strong>" + message.message);
+            document.getElementById("wb_output").innerHTML = ("<strong style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + message.message);
 
-          if (message.message.toLowerCase().search("\\b" + chosenWord + "\\b") != -1) {
-            WordGuessed();
+            if (message.message.toLowerCase().search("\\b" + chosenWord + "\\b") != -1) {
+              WordGuessed();
+            }
+
           }
+        };
 
-        } else {
-          document.getElementById("wb_output").innerHTML = "";
-        }
-      };
+      }
       // Listen for all events.
-      chat.on(TwitchJs.Chat.Events.ALL, handleMessage);
-    }
+    chat.on(TwitchJs.Chat.Events.ALL, handleMessage);
+
+    // Connect ...
+    chat.connect().then(() => {
+      chat.join(channel).then(() => {
+
+        isConnected = true;
+        connectedChannel = channel;
+        NextRound();
+        PopOutWord();
+
+      }).catch(function(err) {
+        console.log(err);
+        document.getElementById("wb_error_msg_box").innerHTML = "Make Sure Channel Name Is Filled Correctly.";
+      })
+    }).catch(function(err) {
+      console.log(err);
+      document.getElementById("wb_error_msg_box").innerHTML = "Could Not Connect To Twtich API.";
+    });
 
   }
-
-  // Connect ...
-  chat.connect().then(() => {
-    chat.join(channel).then(() => {
-      isConnected = true;
-      connectedChannel = channel;
-      NextWord();
-    });
-  });
 };
 
 function StartTimer(duration) {
   var timer = duration,
     minutes, seconds;
-  intervalTimer = setInterval(function() {
+
+  var runner = function() {
     minutes = parseInt(timer / 60, 10)
     seconds = parseInt(timer % 60, 10);
 
@@ -148,7 +155,9 @@ function StartTimer(duration) {
       timer = 0;
       WordNotGuessed();
     }
-  }, 1000);
+  };
+  runner();
+  intervalTimer = setInterval(runner, 1000);
 }
 
 function StopTimer() {
@@ -159,8 +168,6 @@ function StopTimer() {
 
 function PickWord() {
   wordFound = false;
-  chosenWord = "See";
-
   var word_list = [];
 
   for (var key in list_of_categories) {
@@ -175,25 +182,53 @@ function PickWord() {
     pickedAWord = WordListRepeatHolder.add(chosenWord);
 
   }
-  document.getElementById("wb_theWord").innerHTML = chosenWord;
-
+  document.getElementById("theWord").innerHTML = "???";
+  display_ChosenWord = chosenWord;
+  updatePopoutWord();
   chosenWord = chosenWord.toLowerCase();
-
 }
 
 function WordGuessed() {
-  console.log("WORD GUEESED!")
-  StopTimer();
+  console.log("WORD GUEESED!");
   wordFound = true;
+  document.getElementById("timer_ouput").style.color = "green";
+  var winSound = document.getElementById("kids_hooray");
+  winSound.volume = 0.5;
+  RunConfetti();
+  winSound.play();
+  GameEnd();
+}
+
+async function RunConfetti() {
+  confetti.maxCount = 300;
+  confetti.particleSpeed = 5;
+  confetti.start();
+  await new Promise(resolve => {
+    setTimeout(resolve, 2000);
+  });
+  confetti.stop();
 }
 
 function WordNotGuessed() {
-  console.log("WORD NOT GUESSED")
-  StopTimer();
-  gameFailed = true;
+  if (isConnected && !gameFailed) {
+    console.log("WORD NOT GUESSED");
+    gameFailed = true;
+    document.getElementById("timer_ouput").style.color = "red";
+    var winSound = document.getElementById("lose_s");
+    winSound.volume = 0.6;
+    winSound.play();
+
+    GameEnd();
+  }
 }
 
-//Categories All Swtiches Off Prevention
+function GameEnd() {
+  StopTimer();
+  document.getElementById("theWord").innerHTML = display_ChosenWord;
+
+}
+
+//Categories All Swtiches Off Prevention, and Selection
 var p = function() {
   var number_of_trues = 0;
   var this_Category_Key = -1;
@@ -215,16 +250,29 @@ var p = function() {
 };
 
 
-//Word Showing
-
+//Popout window for word
 function PopOutWord() {
-  var pop_window = window.open('Word_PopOut.html', 'popUpWindow', 'height=500,width=400,left=100,top=100,menubar=no,location=no,directories=no, status=yes');
+  if (pop_window == null || pop_window.closed) {
+    var p = window.open('Word_PopOut.html', 'PopUpWindow_TCharadesGame', 'height=250,width=600,left=100,top=100,menubar=no,location=no,directories=no, status=yes');
+    p.window.onload = function() {
+      pop_window = p;
+      pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
 
-  pop_window.callback = function(doc) {
-    pop_window.document.getElementById("wb_theword_ouput").innerHTML = "hi";
-    console.log("looadded");
+    }
+  } else {
+    pop_window.focus();
   }
+}
 
-  console.log(document.domain)
+window.onbeforeunload = function() {
+  if (pop_window != null) {
+    pop_window.close();
+  }
+}
 
+function updatePopoutWord() {
+  if (pop_window != null) {
+    pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
+    pop_window.focus();
+  }
 }

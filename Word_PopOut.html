@@ -1,31 +1,40 @@
 <!doctype html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <title>Untitled Page</title>
-    <meta name="generator" content="WYSIWYG Web Builder 15 Trial Version - http://www.wysiwygwebbuilder.com">
-    <link href="TS.css" rel="stylesheet">
-    <link href="Word_PopOut.css" rel="stylesheet">
-    <script>
-        console.log(document.domain)
+<meta charset="utf-8">
+<title>Twtich Charades Word Module</title>
+<meta name="generator" content="WYSIWYG Web Builder 15 Trial Version - http://www.wysiwygwebbuilder.com">
+<link href="TS.css" rel="stylesheet">
+<link href="Word_PopOut.css" rel="stylesheet">
+<script>
+var wordShown = false;
 
-        function loaded() {
-            window.opener.callback(document);
-        }
-    </script>
+function word_module_show_btn(){
+
+   if(!wordShown){
+      document.getElementById("show_hide_theword_btn").value = "Hide";   
+      document.getElementById("theword_ouput").style.visibility = "visible";
+      document.getElementById("hidder_word").style.visibility = "hidden";
+      wordShown = true;
+   }
+   else{
+      document.getElementById("show_hide_theword_btn").value = "Show";   
+      document.getElementById("theword_ouput").style.visibility = "hidden";
+      document.getElementById("hidder_word").style.visibility = "visible";
+      wordShown = false;
+   }
+}
+</script>
 </head>
-
-<body onload="loaded();return false;">
-    <a href="http://www.wysiwygwebbuilder.com" target="_blank"><img src="images/builtwithwwb15.png" alt="WYSIWYG Web Builder" style="position:absolute;left:441px;top:967px;margin: 0;border-width:0;z-index:250"></a>
-    <div id="wb_Text1" style="position:absolute;left:34px;top:54px;width:250px;height:19px;text-align:center;z-index:1;">
-        <span style="color:#F0FFF0;font-family:Arial;font-size:17px;"><strong>YOUR WORD:</strong></span></div>
-    <div id="wb_Text2" style="position:absolute;left:46px;top:163px;width:250px;height:15px;z-index:2;">
-        <span style="background-color:#FFFFFF;color:#F0FFF0;font-family:Arial;font-size:13px;"><em>Don't Show to Chat</em></span></div>
-    <input type="submit" id="show_hide_theword_btn" name="" value="Show" style="position:absolute;left:34px;top:98px;width:48px;height:20px;z-index:3;">
-    <div id="wb_theword_ouput" style="position:absolute;left:104px;top:101px;width:111px;height:15px;text-align:center;z-index:4;">
-        <span style="color:#000000;font-family:Arial;font-size:13px;">OUTPUT</span></div>
+<body>
+<a href="http://www.wysiwygwebbuilder.com" target="_blank"><img src="images/builtwithwwb15.png" alt="WYSIWYG Web Builder" style="position:absolute;left:441px;top:967px;margin: 0;border-width:0;z-index:250"></a>
+<div id="wb_Text1" style="position:absolute;left:156px;top:64px;width:250px;height:19px;text-align:center;z-index:1;">
+<span style="color:#F0FFF0;font-family:Arial;font-size:17px;"><strong><u>YOUR WORD</u></strong></span></div>
+<div id="wb_Text2" style="position:absolute;left:34px;top:168px;width:250px;height:30px;z-index:2;">
+<p style="font-size:13px;line-height:16px;color:#F0FFF0;"><span style="font-style:italic;">Note: Don't Show this window</span><span style="font-style:italic;"> on your stream</span></p></div>
+<input type="submit" id="show_hide_theword_btn" onclick="word_module_show_btn();return false;" name="" value="Show" style="position:absolute;left:34px;top:105px;width:48px;height:20px;z-index:3;">
+<label for="" id="theword_ouput" style="visibility:hidden;position:absolute;left:82px;top:64px;width:379px;height:92px;line-height:92px;z-index:4;">--Word Not Picked Yet--</label>
+<label for="" id="hidder_word" style="position:absolute;left:248px;top:65px;width:59px;height:92px;line-height:92px;z-index:5;">???</label>
 
 </body>
-
 </html>

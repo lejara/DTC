@@ -18,9 +18,24 @@ body
 }
 #PageHeader1
 {
-   background-color: #6A159D;
+   background-color: #571182;
    background-image: none;
    box-sizing: border-box;
+}
+#border_ouput
+{
+   border: 1px inset #CCCCCC;
+   border-radius: 13px;
+   background-color: transparent;
+   background-image: none;
+   color :#000000;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 13px;
+   padding: 4px 4px 4px 4px;
+   margin: 0;
+   text-align: left;
+   vertical-align: top;
 }
 #wb_title 
 {
@@ -45,7 +60,7 @@ body
    border-radius: 4px;
    background-color: #484853;
    background-image: none;
-   color :#000000;
+   color :#FFFFFF;
    font-family: Arial;
    font-weight: normal;
    font-size: 13px;
@@ -56,13 +71,14 @@ body
 }
 #channelName:focus
 {
-   border-color: #66AFE9;
-   box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(102,175,233,0.60);
+   border-color: #32CD32;
+   box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(50,205,50,0.60);
    outline: 0;
 }
 #StartGame_btn
 {
-   border: 0px solid #2E6DA4;
+   border: 1px solid #2E8B57;
+   border-radius: 8px;
    background-clip: padding-box;
    background-color: #2E8B57;
    background-image: none;
@@ -75,10 +91,10 @@ body
 }
 #NextWord_btn
 {
-   border: 1px solid #2E6DA4;
-   border-radius: 4px;
+   border: 1px solid #6A8695;
+   border-radius: 8px;
    background-clip: padding-box;
-   background-color: #708090;
+   background-color: #6A8695;
    background-image: none;
    color: #FFFFFF;
    font-family: Arial;
@@ -87,51 +103,13 @@ body
    -webkit-appearance: none;
    margin: 0;
 }
-#wb_theWord 
-{
-   background-color: transparent;
-   background-image: none;
-   border: 0px solid #000000;
-   padding: 0;
-   margin: 0;
-   text-align: left;
-}
-#wb_theWord div
-{
-   text-align: left;
-}
-#wb_word_label 
-{
-   background-color: transparent;
-   background-image: none;
-   border: 0px solid #000000;
-   padding: 0;
-   margin: 0;
-   text-align: left;
-}
-#wb_word_label div
-{
-   text-align: left;
-}
 #Layer2
 {
-   background-color: #6A159D;
+   background-clip: padding-box;
+   background-color: #571182;
    background-image: none;
-}
-#Categories
-{
-   border: 0px solid #F5FFFA;
-   border-radius: 4px;
-   background-color: transparent;
-   background-image: none;
-   color :#F5FFFA;
-   font-family: Arial;
-   font-weight: normal;
-   font-size: 27px;
-   padding: 4px 4px 4px 4px;
-   margin: 0;
-   text-align: center;
-   vertical-align: top;
+   border: 1px inset #FFFFFF;
+   border-radius: 13px;
 }
 #Label2
 {
@@ -225,13 +203,14 @@ body
 }
 #word_hidder_btn
 {
-   border: 0px solid #2E6DA4;
-   background-color: #D3D3D3;
+   border: 1px solid #A52A2A;
+   border-radius: 8px;
+   background-color: #A52A2A;
    background-image: none;
-   color: #000000;
+   color: #FFFFFF;
    font-family: Arial;
    font-weight: normal;
-   font-size: 13px;
+   font-size: 17px;
    -webkit-appearance: none;
    margin: 0;
 }
@@ -292,19 +271,6 @@ body
    margin: 0;
    text-align: left;
    vertical-align: top;
-}
-#Line1
-{
-   border-color: #9400D3;
-   border-style: solid;
-   border-bottom-width: 7px;
-   border-top: 0px;
-   border-left: 0px;
-   border-right: 0px;
-   height: 0 !important;
-   line-height: 0px !important;
-   margin: 0;
-   padding: 0;
 }
 #wb_timer_Spinner
 {
@@ -388,19 +354,6 @@ body
 {
    border-bottom-right-radius: 0px;
 }
-#Line2
-{
-   border-color: #9400D3;
-   border-style: solid;
-   border-bottom-width: 7px;
-   border-top: 0px;
-   border-left: 0px;
-   border-right: 0px;
-   height: 0 !important;
-   line-height: 0px !important;
-   margin: 0;
-   padding: 0;
-}
 #wb_Text1 
 {
    background-color: transparent;
@@ -419,7 +372,7 @@ body
    border: 0px solid #CCCCCC;
    background-color: transparent;
    background-image: none;
-   color :#F0FFF0;
+   color :#4682B4;
    font-family: Arial;
    font-weight: normal;
    font-size: 64px;
@@ -934,15 +887,86 @@ body
 }
 #popout_theword_btn
 {
-   border: 0px solid #2E6DA4;
-   background-color: #D3D3D3;
+   border: 1px solid #696978;
+   border-radius: 8px;
+   background-color: #696978;
    background-image: none;
-   color: #000000;
+   color: #FFFFFF;
    font-family: Arial;
    font-weight: normal;
    font-size: 13px;
    -webkit-appearance: none;
    margin: 0;
+}
+#theWord
+{
+   border: 0px solid #CCCCCC;
+   border-radius: 4px;
+   background-color: transparent;
+   background-image: none;
+   color :#FFFFFF;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 32px;
+   padding: 4px 4px 4px 4px;
+   margin: 0;
+   text-align: center;
+   vertical-align: top;
+}
+#wb_error_msg_box div
+{
+   text-align: center;
+}
+#Button1
+{
+   border: 1px solid #2E6DA4;
+   border-radius: 4px;
+   background-color: transparent;
+   background-image: url(images/index_Button1_bkgrnd.png);
+   background-repeat: repeat;
+   background-position: left top;
+   color: #FFFFFF;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 13px;
+   -webkit-appearance: none;
+   margin: 0;
+}
+#wb_Text2 
+{
+   background-color: transparent;
+   background-image: none;
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   text-align: center;
+}
+#wb_Text2 div
+{
+   text-align: center;
+}
+#wb_Image1
+{
+   vertical-align: top;
+}
+#Image1
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#Donate
+{
+   border: 0px solid #000000;
+   padding: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
 }
 #PageFooter1
 {

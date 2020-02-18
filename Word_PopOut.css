@@ -31,15 +31,24 @@ body
    margin: 0;
    text-align: left;
 }
-#wb_Text2 div
+#wb_Text2
 {
-   text-align: left;
+   color: #F0FFF0;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 13px;
+   line-height: 16px;
+}
+#wb_Text2 p, #wb_Text2 ul
+{
+   margin: 0;
+   padding: 0;
 }
 #show_hide_theword_btn
 {
    border: 1px solid #2E6DA4;
    border-radius: 4px;
-   background-color: #3370B7;
+   background-color: #696969;
    background-image: none;
    color: #FFFFFF;
    font-family: Arial;
@@ -48,16 +57,33 @@ body
    -webkit-appearance: none;
    margin: 0;
 }
-#wb_theword_ouput 
+#theword_ouput
 {
+   border: 0px solid #CCCCCC;
+   border-radius: 4px;
    background-color: transparent;
    background-image: none;
-   border: 0px solid #000000;
-   padding: 0;
+   color :#FFFFFF;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 29px;
+   padding: 4px 4px 4px 4px;
    margin: 0;
    text-align: center;
+   vertical-align: top;
 }
-#wb_theword_ouput div
+#hidder_word
 {
-   text-align: center;
+   border: 0px solid #CCCCCC;
+   border-radius: 4px;
+   background-color: transparent;
+   background-image: none;
+   color :#FFFFFF;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 32px;
+   padding: 4px 4px 4px 4px;
+   margin: 0;
+   text-align: left;
+   vertical-align: top;
 }
