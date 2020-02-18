@@ -128,11 +128,11 @@ function ConnectTwtichChat() {
         NextRound();
       }).catch(function(err) {
         console.log(err);
-        document.getElementById("wb_error_msg_box").innerHTML = "Make Sure Channel Name Is Filled Correctly.";
+        document.getElementById("wb_error_msg_box").innerHTML = "Error: Make Sure Channel Name Is Filled Correctly.";
       })
     }).catch(function(err) {
       console.log(err);
-      document.getElementById("wb_error_msg_box").innerHTML = "Could Not Connect To Twtich API.";
+      document.getElementById("wb_error_msg_box").innerHTML = "Error: Could Not Connect To Twtich API.";
     });
 
   }
@@ -265,7 +265,6 @@ window.onbeforeunload = function() {
 }
 
 function SetPopOut(ref) {
-  console.log("ran");
   pop_window = ref
   pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
 
