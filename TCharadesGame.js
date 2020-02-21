@@ -98,7 +98,7 @@ function ConnectTwtichChat() {
 
     const handleMessage = message => {
         if (message.event === "PRIVMSG") {
-          if (!wordFound && message.message != null) {
+          if (!wordFound && !gameFailed && message.message != null) {
             document.getElementById("wb_output").innerHTML = ("<strong style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + message.message);
             var regex_f_p = document.getElementById("first_word_detect_box").checked ? "^" : "";
             if (message.message.toLowerCase().search("\\b" + regex_f_p + chosenWord + "\\b") != -1) {
