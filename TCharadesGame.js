@@ -98,13 +98,15 @@ function ConnectTwtichChat() {
 
     const handleMessage = message => {
         if (message.event === "PRIVMSG") {
-          if (!wordFound && !gameFailed && message.message != null) {
-            document.getElementById("wb_output").innerHTML = ("<strong style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + message.message);
-            var regex_f_p = document.getElementById("first_word_detect_box").checked ? "^" : "";
-            if (message.message.toLowerCase().search("\\b" + regex_f_p + chosenWord + "\\b") != -1) {
-              WordGuessed();
-            }
+          if (!wordFound && message.message != null) {
+            if (!gameFailed) {
+              document.getElementById("wb_output").innerHTML = ("<strong style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + message.message);
+              var regex_f_p = document.getElementById("first_word_detect_box").checked ? "^" : "";
+              if (message.message.toLowerCase().search("\\b" + regex_f_p + chosenWord + "\\b") != -1) {
+                WordGuessed();
+              }
 
+            }
           }
         };
 
@@ -239,6 +241,7 @@ function WordNotGuessed() {
     console.log("WORD NOT GUESSED");
     gameFailed = true;
     document.getElementById("timer_ouput").style.color = "red";
+    document.getElementById("wb_output").innerHTML = "...";
     var winSound = document.getElementById("lose_s");
     winSound.volume = 0.9;
     winSound.play();
