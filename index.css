@@ -1224,6 +1224,20 @@ body
 {
    text-align: center;
 }
+#wb_ram_ad
+{
+   vertical-align: top;
+}
+#ram_ad
+{
+   border: 0px solid #000000;
+   padding: 0;
+   margin: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
 #PageFooter1
 {
    background-color: #3C3C44;
