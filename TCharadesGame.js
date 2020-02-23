@@ -81,7 +81,7 @@ function NextRound() {
   document.getElementById("timer_ouput").style.color = "#4682B4";
   document.getElementById("word_image_placeholder").innerHTML = "";
   var clickSound = document.getElementById("btn_click");
-  clickSound.volume = 0.4;
+  clickSound.volume = 0.2;
   clickSound.play();
 }
 
