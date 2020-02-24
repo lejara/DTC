@@ -101,10 +101,10 @@ function ConnectTwtichChat() {
         if (message.event === "PRIVMSG") {
           if (!wordFound && message.message != null) {
             if (!gameFailed) {
-              var clean_message = DOMPurify.sanitize(message.message, {ALLOWED_TAGS: ['b']})
+              var clean_message = DOMPurify.sanitize(message.message, { ALLOWED_TAGS: ['b'] })
               document.getElementById("wb_output").innerHTML = ("<strong style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + clean_message);
               var regex_f_p = document.getElementById("first_word_detect_box").checked ? "^" : "";
-              if (message.message.toLowerCase().search("\\b" + regex_f_p + chosenWord + "\\b") != -1) {
+              if (clean_message.toLowerCase().search("\\b" + regex_f_p + chosenWord + "\\b") != -1) {
                 WordGuessed();
               }
 
