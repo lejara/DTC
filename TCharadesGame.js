@@ -1,4 +1,4 @@
-const MAX_REPEAT_OF_WORDS = 30;
+const MAX_REPEAT_OF_WORDS = 40;
 
 var isConnected = false;
 var connectedChannel = ""
@@ -103,8 +103,7 @@ function ConnectTwtichChat() {
             if (!gameFailed) {
               var clean_message = DOMPurify.sanitize(message.message, { ALLOWED_TAGS: ['b'] })
               document.getElementById("wb_output").innerHTML = ("<strong style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + clean_message);
-              var regex_f_p = document.getElementById("first_word_detect_box").checked ? "^" : "";
-              if (clean_message.toLowerCase().search("\\b" + regex_f_p + chosenWord + "\\b") != -1) {
+              if (clean_message.toLowerCase().search("^" + chosenWord) != -1) {
                 WordGuessed();
               }
 
