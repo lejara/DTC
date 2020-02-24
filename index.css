@@ -987,20 +987,6 @@ body
 {
    outline: thin dotted;
 }
-#wb_ba
-{
-   vertical-align: top;
-}
-#ba
-{
-   border: 0px solid #000000;
-   padding: 0;
-   margin: 0;
-   left: 0;
-   top: 0;
-   width: 100%;
-   height: 100%;
-}
 #Patch_Notes_DropDown *, #Patch_Notes_DropDown *::before, #Patch_Notes_DropDown *::after
 {
    box-sizing: border-box;
