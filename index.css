@@ -1,6 +1,6 @@
 div#container
 {
-   width: 1201px;
+   width: 1302px;
    position: relative;
    margin: 0 auto 0 auto;
    text-align: left;
@@ -18,13 +18,13 @@ body
 }
 #PageHeader1
 {
-   background-color: #571182;
+   background-color: #400D5E;
    background-image: none;
    box-sizing: border-box;
 }
 #border_ouput
 {
-   border: 1px inset #CCCCCC;
+   border: 1px solid #969696;
    border-radius: 13px;
    background-color: transparent;
    background-image: none;
@@ -37,18 +37,10 @@ body
    text-align: left;
    vertical-align: top;
 }
-#wb_title 
+#title 
 {
-   background-color: transparent;
-   background-image: none;
-   border: 0px solid #FBFBFB;
-   padding: 0;
+   border: 0px #FBFBFB solid;
    margin: 0;
-   text-align: center;
-}
-#wb_title div
-{
-   text-align: center;
 }
 #wb_output div
 {
@@ -103,24 +95,24 @@ body
    -webkit-appearance: none;
    margin: 0;
 }
-#Layer2
+#settings_layer
 {
    background-clip: padding-box;
-   background-color: #571182;
+   background-color: #400D5E;
    background-image: none;
-   border: 1px inset #FFFFFF;
-   border-radius: 13px;
+   border: 1px inset #969696;
+   border-radius: 5px;
 }
 #word_hidder_btn
 {
-   border: 1px solid #A52A2A;
-   border-radius: 8px;
-   background-color: #A52A2A;
+   border: 1px solid #969696;
+   border-radius: 4px;
+   background-color: #521414;
    background-image: none;
    color: #FFFFFF;
    font-family: Arial;
    font-weight: normal;
-   font-size: 17px;
+   font-size: 13px;
    -webkit-appearance: none;
    margin: 0;
 }
@@ -854,17 +846,17 @@ body
    width: 100%;
    height: 100%;
 }
-#wb_Text4 
+#wb_instruct 
 {
-   background-color: #2F2F35;
+   background-color: #400D5E;
    background-image: none;
-   border: 1px inset #FFFFFF;
-   border-radius: 13px;
+   border: 1px inset #969696;
+   border-radius: 5px;
    padding: 10px 10px 0px 10px;
    margin: 0;
    text-align: left;
 }
-#wb_Text4
+#wb_instruct
 {
    color: #FFFFFF;
    font-family: Arial;
@@ -872,7 +864,7 @@ body
    font-size: 16px;
    line-height: 18px;
 }
-#wb_Text4 p, #wb_Text4 ul
+#wb_instruct p, #wb_instruct ul
 {
    margin: 0;
    padding: 0;
@@ -993,7 +985,7 @@ body
 }
 #Patch_Notes_DropDown .panel
 {
-   background-color: #2F2F35;
+   background-color: #400D5E;
    background-image: none;
    border: 1px solid transparent;
    border-radius: 4px;
@@ -1004,7 +996,7 @@ body
 }
 #Patch_Notes_DropDown .panel-default
 {
-   border-color: #FFFFFF;
+   border-color: #969696;
 }
 #Patch_Notes_DropDown.panel-group .panel
 {
@@ -1021,16 +1013,16 @@ body
 }
 #Patch_Notes_DropDown .panel-default > .panel-heading
 {
-   background-color: #2F2F35;
+   background-color: #400D5E;
    background-image: none;
 }
 #Patch_Notes_DropDown .panel-default.active
 {
-   border-color: #DDDDDD;
+   border-color: #969696;
 }
 #Patch_Notes_DropDown .panel-default.active > .panel-heading
 {
-   background-color: #2F2F35;
+   background-color: #400D5E;
    background-image: none;
 }
 #Patch_Notes_DropDown .panel-body
@@ -1051,7 +1043,7 @@ body
 }
 #Patch_Notes_DropDown .panel-default > .panel-heading + .panel-collapse .panel-body
 {
-   border-top-color: #FFFFFF;
+   border-top-color: #969696;
 }
 #Patch_Notes_DropDown .panel-title
 {
@@ -1596,7 +1588,7 @@ body
 {
    border: 1px solid transparent;
    border-radius: 4px;
-   background-color: #2F2F35;
+   background-color: transparent;
    background-image: none;
    color :#DCDCDC;
    font-family: Arial;
@@ -1712,13 +1704,13 @@ body
 {
    outline: thin dotted;
 }
-#Accordion1 *, #Accordion1 *::before, #Accordion1 *::after
+#donatros_acc *, #donatros_acc *::before, #donatros_acc *::after
 {
    box-sizing: border-box;
 }
-#Accordion1 .panel
+#donatros_acc .panel
 {
-   background-color: #2F2F35;
+   background-color: #400D5E;
    background-image: none;
    border: 1px solid transparent;
    border-radius: 4px;
@@ -1727,58 +1719,58 @@ body
    overflow: hidden;
    text-align: left;
 }
-#Accordion1 .panel-default
+#donatros_acc .panel-default
 {
-   border-color: #FFFFFF;
+   border-color: #969696;
 }
-#Accordion1.panel-group .panel
+#donatros_acc.panel-group .panel
 {
    margin-bottom: 0px;
    overflow: hidden;
    border-radius: 4px;
 }
-#Accordion1 .panel-heading
+#donatros_acc .panel-heading
 {
    padding: 9px 10px 9px 10px;
    border-bottom: 1px solid transparent;
    border-top-right-radius: 4px;
    border-top-left-radius: 4px;
 }
-#Accordion1 .panel-default > .panel-heading
+#donatros_acc .panel-default > .panel-heading
 {
-   background-color: #2F2F35;
+   background-color: #400D5E;
    background-image: none;
 }
-#Accordion1 .panel-default.active
+#donatros_acc .panel-default.active
 {
-   border-color: #DDDDDD;
+   border-color: #969696;
 }
-#Accordion1 .panel-default.active > .panel-heading
+#donatros_acc .panel-default.active > .panel-heading
 {
-   background-color: #2F2F35;
+   background-color: #400D5E;
    background-image: none;
 }
-#Accordion1 .panel-body
+#donatros_acc .panel-body
 {
    height: 219px;
    padding: 0;
    position: relative;
 }
-#Accordion1 .panel-body::before, #Accordion1 .panel-body::after
+#donatros_acc .panel-body::before, #donatros_acc .panel-body::after
 {
    display: table;
    content: " ";
 }
-#Accordion1 .panel-body::after
+#donatros_acc .panel-body::after
 {
    clear: both;
 }
 }
-#Accordion1 .panel-default > .panel-heading + .panel-collapse .panel-body
+#donatros_acc .panel-default > .panel-heading + .panel-collapse .panel-body
 {
-   border-top-color: #FFFFFF;
+   border-top-color: #969696;
 }
-#Accordion1 .panel-title
+#donatros_acc .panel-title
 {
    margin-top: 0px;
    margin-bottom: 0px;
@@ -1790,24 +1782,24 @@ body
    font-style: normal;
    text-align: left;
 }
-#Accordion1 .panel-title > a
+#donatros_acc .panel-title > a
 {
    color: inherit;
    text-decoration: none;
 }
-#Accordion1 .active .panel-title > a
+#donatros_acc .active .panel-title > a
 {
    color: #FFFFFF;
 }
-#Accordion1 .collapse 
+#donatros_acc .collapse 
 {
    display: none;
 }
-#Accordion1 .collapse.in
+#donatros_acc .collapse.in
 {
    display: block;
 }
-#Accordion1 .collapsing
+#donatros_acc .collapsing
 {
    position: relative;
    height: 0;
@@ -1815,7 +1807,7 @@ body
    -webkit-transition: height 0.35s linear;
    transition: height 0.35s linear;
 }
-#Accordion1 .panel-default .panel-heading .panel-icon
+#donatros_acc .panel-default .panel-heading .panel-icon
 {
    width: 16px;
    height: 16px;
@@ -1827,14 +1819,14 @@ body
    position: relative;
    text-indent: -99999px;
    overflow: hidden;
-   background-image: url(images/index-Accordion1-default.png);
+   background-image: url(images/index-donatros_acc-default.png);
    background-repeat: no-repeat;
 }
-#Accordion1 .panel-default.active .panel-heading .panel-icon
+#donatros_acc .panel-default.active .panel-heading .panel-icon
 {
-   background-image: url(images/index-Accordion1-active.png);
+   background-image: url(images/index-donatros_acc-active.png);
 }
-#wb_Accordion1
+#wb_donatros_acc
 {
    margin: 0;
 }
@@ -1850,6 +1842,29 @@ body
 #wb_Text9 div
 {
    text-align: left;
+}
+#hide_all_tabs_btn
+{
+   border: 1px solid #969696;
+   border-radius: 4px;
+   background-color: transparent;
+   background-image: none;
+   color: #FFFFFF;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 13px;
+   -webkit-appearance: none;
+   margin: 0;
+}
+#wb_ClipArt1
+{
+   transform: rotate(0deg);
+   transform-origin: 50% 50%;
+}
+#ClipArt1
+{
+   border-width: 0;
+   vertical-align: top;
 }
 #PageFooter1
 {
