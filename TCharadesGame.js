@@ -317,3 +317,33 @@ function SetPopOutValues() {
   pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
 
 }
+
+//Tabs hide
+var tabs_hide = false;
+
+function HideAllTabs() {
+  if (!tabs_hide) {
+    var elements = document.getElementsByClassName("visible_tab")
+    while (elements.length > 0) {
+      elements[0].classList.remove("visible_tab");
+    }
+    document.getElementById("donatros_acc").classList.add("hidden_tab");
+    document.getElementById("wb_instruct").classList.add("hidden_tab");
+    document.getElementById("Patch_Notes_DropDown").classList.add("hidden_tab");
+    document.getElementById("hide_all_tabs_btn").value = "Show All";;
+    document.getElementById("settings_layer").classList.add("hidden_tab");
+
+  } else {
+    var elements = document.getElementsByClassName("hidden_tab")
+    while (elements.length > 0) {
+      elements[0].classList.remove("hidden_tab");
+    }
+    document.getElementById("donatros_acc").classList.add("visible_tab");
+    document.getElementById("wb_instruct").classList.add("visible_tab");
+    document.getElementById("Patch_Notes_DropDown").classList.add("visible_tab");
+    document.getElementById("hide_all_tabs_btn").value = "Hide All";
+    document.getElementById("settings_layer").classList.add("visible_tab");
+  }
+  tabs_hide = !tabs_hide;
+
+}
