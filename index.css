@@ -20,6 +20,7 @@ body
 {
    background-color: #400D5E;
    background-image: none;
+   box-shadow: 0px 2px 5px rgba(0,0,0,0.21);
    box-sizing: border-box;
 }
 #border_ouput
@@ -1710,7 +1711,7 @@ body
 }
 #donatros_acc .panel
 {
-   background-color: #400D5E;
+   background-color: #1F1F23;
    background-image: none;
    border: 1px solid transparent;
    border-radius: 4px;
@@ -1738,7 +1739,7 @@ body
 }
 #donatros_acc .panel-default > .panel-heading
 {
-   background-color: #400D5E;
+   background-color: #1F1F23;
    background-image: none;
 }
 #donatros_acc .panel-default.active
@@ -1747,7 +1748,7 @@ body
 }
 #donatros_acc .panel-default.active > .panel-heading
 {
-   background-color: #400D5E;
+   background-color: #1F1F23;
    background-image: none;
 }
 #donatros_acc .panel-body
@@ -1886,6 +1887,7 @@ body
    border: 0px solid #000000;
    padding: 0;
    margin: 0;
+   opacity: 0.35;
    text-align: center;
 }
 #wb_Text4 div
