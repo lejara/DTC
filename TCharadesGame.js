@@ -20,7 +20,7 @@ const dynamic_emotes_category = new Category("Active_BTT_FFZ_Switch", true, { })
 //Wrapper Object for tracking categories
 function Category(p_id, p_state, p_words) {
   this.id = p_id;
-  this.state = false;
+  this.state = p_state;
   this.words = p_words;
 }
 //Awake Function
