@@ -94,9 +94,9 @@ $(document).ready(function()
 <input type="submit" id="StartGame_btn" onclick="StartGame();" name="" value="Start Game" style="position:absolute;left:567px;top:741px;width:172px;height:41px;z-index:49;">
 <input type="submit" id="NextWord_btn" onclick="NextRound();" name="" value="Next Word" style="position:absolute;left:567px;top:741px;width:172px;height:41px;visibility:hidden;z-index:50;">
 <div id="settings_layer" style="position:absolute;text-align:left;left:1079px;top:196px;width:222px;height:566px;z-index:51;">
-<div id="wb_timer_Spinner" style="position:absolute;left:147px;top:384px;width:60px;height:24px;z-index:4;">
+<div id="wb_timer_Spinner" style="position:absolute;left:147px;top:390px;width:60px;height:24px;z-index:4;">
 <input type="text" id="timer_Spinner" style="width:100%;height:16px;line-height:16px;" name="Spinner1" value="50"></div>
-<input type="text" id="channelName" style="position:absolute;left:35px;top:428px;width:144px;height:19px;z-index:5;" name="Editbox1" value="" autocomplete="off" spellcheck="false" placeholder="Channel Name">
+<input type="text" id="channelName" style="position:absolute;left:35px;top:434px;width:144px;height:19px;z-index:5;" name="Editbox1" value="" autocomplete="off" spellcheck="false" placeholder="Channel Name">
 <div id="wb_Game_Switch" style="position:absolute;left:187px;top:56px;width:20px;height:20px;z-index:6;">
 <input type="checkbox" id="Game_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="Game_Switch"></label></div>
 <div id="wb_Twitch_Emotes_Switch" style="position:absolute;left:187px;top:78px;width:20px;height:20px;z-index:7;">
@@ -107,7 +107,7 @@ $(document).ready(function()
 <input type="checkbox" id="Actors_Sing_Switch" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="Actors_Sing_Switch"></label></div>
 <div id="wb_TV_Shows_Switch" style="position:absolute;left:187px;top:166px;width:20px;height:20px;z-index:10;">
 <input type="checkbox" id="TV_Shows_Switch" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="TV_Shows_Switch"></label></div>
-<input type="submit" id="popout_theword_btn" onclick="PopOutWord();" name="" value="Open Word Window" style="position:absolute;left:40px;top:470px;width:142px;height:24px;z-index:11;">
+<input type="submit" id="popout_theword_btn" onclick="PopOutWord();" name="" value="Open Word Window" style="position:absolute;left:40px;top:476px;width:142px;height:24px;z-index:11;">
 <label for="" id="Label8" style="position:absolute;left:0px;top:2px;width:201px;height:44px;line-height:44px;z-index:12;">Settings</label>
 <input type="submit" id="Button1" onclick="location.reload();" name="" value="Reset" style="position:absolute;left:141px;top:527px;width:72px;height:25px;z-index:13;">
 <div id="wb_Actions_Switch" style="position:absolute;left:187px;top:122px;width:20px;height:20px;z-index:14;">
@@ -140,19 +140,26 @@ $(document).ready(function()
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Video Game Characters</span></div>
 <div id="wb_V_G_C_Swtich" style="position:absolute;left:187px;top:254px;width:20px;height:20px;z-index:28;">
 <input type="checkbox" id="V_G_C_Swtich" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="V_G_C_Swtich"></label></div>
-<div id="wb_BBTT_FFZ_label" style="position:absolute;left:13px;top:281px;width:164px;height:27px;z-index:29;">
-<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">BTTV / FFZ Emotes <br></span><span style="color:#FFFFFF;font-family:Arial;font-size:11px;">(Easy)</span></div>
-<div id="wb_BTT_FFZ_MED_label" style="position:absolute;left:13px;top:316px;width:159px;height:27px;z-index:30;">
-<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">BTTV / FFZ Emotes </span><span style="color:#FFFFFF;font-family:Arial;font-size:11px;">(Medium)</span></div>
-<div id="wb_BTT_FFZ_Switch" style="position:absolute;left:187px;top:283px;width:20px;height:20px;z-index:31;">
-<input type="checkbox" id="BTT_FFZ_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="BTT_FFZ_Switch"></label></div>
-<div id="wb_BTT_FFZ__Med_Switch" style="position:absolute;left:187px;top:318px;width:20px;height:20px;z-index:32;">
+
+<div id="wb_Active_BTT_FFZ_label" style="position:absolute;left:13px;top:286px;width:164px;height:15px;z-index:33;">
+	<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Enabled BTTV/FFZ Emotes</span></div>
+	<div id="wb_Active_BTT_FFZ_Switch" style="position:absolute;left:187px;top:284px;width:20px;height:20px;z-index:34;">
+	<input type="checkbox" id="Active_BTT_FFZ_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="Active_BTT_FFZ_Switch"></label></div>
+
+
+<div id="wb_BBTT_FFZ_label" style="position:absolute;left:13px;top:311px;width:164px;height:15px;z-index:29;">
+<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Other emotes </span><span style="color:#FFFFFF;font-family:Arial;font-size:11px;">(Easy)</span></div>
+<div id="wb_BTT_FFZ_MED_label" style="position:absolute;left:13px;top:335px;width:159px;height:15px;z-index:30;">
+<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Other emotes </span><span style="color:#FFFFFF;font-family:Arial;font-size:11px;">(Medium)</span></div>
+<div id="wb_BTT_FFZ_Switch" style="position:absolute;left:187px;top:310px;width:20px;height:20px;z-index:31;">
+<input type="checkbox" id="BTT_FFZ_Switch" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="BTT_FFZ_Switch"></label></div>
+<div id="wb_BTT_FFZ__Med_Switch" style="position:absolute;left:187px;top:333px;width:20px;height:20px;z-index:32;">
 <input type="checkbox" id="BTT_FFZ__Med_Switch" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="BTT_FFZ__Med_Switch"></label></div>
-<div id="wb_Super_hero_label" style="position:absolute;left:13px;top:353px;width:164px;height:15px;z-index:33;">
+<div id="wb_Super_hero_label" style="position:absolute;left:13px;top:359px;width:164px;height:15px;z-index:33;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Superheroes</span></div>
-<div id="wb_Super_Hero_Swtich" style="position:absolute;left:187px;top:351px;width:20px;height:20px;z-index:34;">
+<div id="wb_Super_Hero_Swtich" style="position:absolute;left:187px;top:357px;width:20px;height:20px;z-index:34;">
 <input type="checkbox" id="Super_Hero_Swtich" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="Super_Hero_Swtich"></label></div>
-<label for="" id="Label9" style="position:absolute;left:12px;top:384px;width:118px;height:16px;line-height:16px;z-index:35;">Timer (Sec):</label>
+<label for="" id="Label9" style="position:absolute;left:12px;top:390px;width:118px;height:16px;line-height:16px;z-index:35;">Timer (Sec):</label>
 </div>
 <input type="submit" id="word_hidder_btn" onclick="WordNotGuessed();" name="" value="Reveal Word" style="position:absolute;left:894px;top:667px;width:91px;height:19px;z-index:52;">
 <label for="" id="timer_ouput" style="position:absolute;left:567px;top:657px;width:164px;height:72px;line-height:72px;z-index:53;">00:00</label>
