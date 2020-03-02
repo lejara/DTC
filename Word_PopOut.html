@@ -36,12 +36,13 @@ function word_module_show_btn(){
 }
 </script>
 </head>
-<body onload="opener.SetPopOut(this);">
+<body onload="opener.SetPopOut(this);return false;">
+
 <div id="wb_Text1" style="position:absolute;left:156px;top:64px;width:250px;height:19px;text-align:center;z-index:1;">
-<span style="color:#F0FFF0;font-family:Arial;font-size:17px;"><strong><u>YOUR WORD</u></strong></span></div>
+<span style="color:#F0FFF0;font-family:Arial;font-size:21px;"><strong><u>YOUR WORD</u></strong></span></div>
 <div id="wb_Text2" style="position:absolute;left:34px;top:307px;width:240px;height:15px;z-index:2;">
 <p style="font-size:13px;line-height:16px;color:#F0FFF0;"><span style="font-style:italic;">Don't Show this window on your stream</span></p></div>
-<input type="submit" id="show_hide_theword_btn" onclick="word_module_show_btn();" name="" value="Show" style="position:absolute;left:34px;top:99px;width:48px;height:26px;z-index:3;">
+<input type="submit" id="show_hide_theword_btn" onclick="word_module_show_btn();return false;" name="" value="Show" style="position:absolute;left:34px;top:99px;width:48px;height:26px;z-index:3;">
 <label for="" id="theword_ouput" style="visibility:hidden;position:absolute;left:82px;top:64px;width:379px;height:92px;line-height:92px;z-index:4;">--Word Not Picked Yet--</label>
 <label for="" id="hidder_word" style="position:absolute;left:248px;top:65px;width:59px;height:92px;line-height:92px;z-index:5;">???</label>
 
