@@ -10,6 +10,8 @@ var gameFailed;
 var random_word_list_keys = [];
 var word_obj_concat = {};
 var word_cur_index = 0;
+var canDoLocalStorage = true;
+var hasSeenWord = false;
 
 var pop_window = null;
 
@@ -148,6 +150,7 @@ function PickWord() {
 
   document.getElementById("theWord").innerHTML = "???";
   display_ChosenWord = chosenWord;
+  Check_Seen_Word(chosenWord);
   updatePopoutWord();
   chosenWord = chosenWord.toLowerCase();
 }
@@ -259,7 +262,48 @@ function updatePopoutWord() {
 function SetPopOutValues() {
   pop_window.document.getElementById("word_image_placeholder_pop").innerHTML = "<img style=\"display: block;max-width:150px;max-height:150px;width: auto;height: auto; top:0;left:0; right:0; bottom:0; position:absolute; margin:auto\" src=\"" + image_ChosenWord + "\"></img>"
   pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
+  Set_Seen_Word_Popout_Indicator();
 
+}
+
+function Set_Seen_Word_Popout_Indicator() {
+  if (canDoLocalStorage) {
+    if (hasSeenWord) {
+      pop_window.document.getElementById("seen_eye").style.visibility = "visible";
+      pop_window.document.getElementById("not_seen_eye").style.visibility = "hidden";
+    } else {
+      pop_window.document.getElementById("seen_eye").style.visibility = "hidden";
+      pop_window.document.getElementById("not_seen_eye").style.visibility = "visible";
+    }
+
+  } else {
+    pop_window.document.getElementById("seen_eye").style.visibility = "hidden";
+    pop_window.document.getElementById("not_seen_eye").style.visibility = "hidden";
+  }
+
+}
+
+function Check_Seen_Word(word) {
+  if (canDoLocalStorage) {
+    try {
+      var seenWord = localStorage.getItem(word);
+
+      if (seenWord != null) {
+        hasSeenWord = true;
+      } else {
+        localStorage.setItem(word, "");
+        hasSeenWord = false;
+      }
+    } catch (err) {
+      console.log(err);
+      canDoLocalStorage = false;
+    }
+  }
+}
+
+function Clear_Seen_all() {
+  // Clear all items
+  localStorage.clear();
 }
 
 //Tabs hide
