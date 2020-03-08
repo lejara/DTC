@@ -53,6 +53,7 @@ $(document).ready(function()
 <script src="https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js"></script>
 <script src="confetti.js"></script>
 <script src="purify.min.js"></script>
+<script src="TCat.js"></script>
 <script src="TCharadesGame.js"></script>
 
  <audio id="kids_hooray">
@@ -88,80 +89,92 @@ $(document).ready(function()
 </head>
 <body>
 <div id="container">
-<label for="" id="border_ouput" style="position:absolute;left:306px;top:303px;width:680px;height:346px;line-height:348px;z-index:47;"></label>
-<div id="wb_output" style="position:absolute;left:323px;top:430px;width:663px;height:229px;text-align:center;z-index:48;" class="ChatOuput">
+<label for="" id="border_ouput" style="position:absolute;left:306px;top:303px;width:680px;height:346px;line-height:348px;z-index:53;"></label>
+<div id="wb_output" style="position:absolute;left:323px;top:430px;width:663px;height:229px;text-align:center;z-index:54;" class="ChatOuput">
 &nbsp;</div>
-<input type="submit" id="StartGame_btn" onclick="StartGame();" name="" value="Start Game" style="position:absolute;left:567px;top:741px;width:172px;height:41px;z-index:49;">
-<input type="submit" id="NextWord_btn" onclick="NextRound();" name="" value="Next Word" style="position:absolute;left:567px;top:741px;width:172px;height:41px;visibility:hidden;z-index:50;">
-<div id="settings_layer" style="position:absolute;text-align:left;left:1079px;top:196px;width:222px;height:566px;z-index:51;">
-<div id="wb_timer_Spinner" style="position:absolute;left:147px;top:384px;width:60px;height:24px;z-index:4;">
-<input type="text" id="timer_Spinner" style="width:100%;height:16px;line-height:16px;" name="Spinner1" value="50"></div>
-<input type="text" id="channelName" style="position:absolute;left:35px;top:428px;width:144px;height:19px;z-index:5;" name="Editbox1" value="" autocomplete="off" spellcheck="false" placeholder="Channel Name">
-<div id="wb_Game_Switch" style="position:absolute;left:187px;top:56px;width:20px;height:20px;z-index:6;">
+<input type="submit" id="StartGame_btn" onclick="StartGame();" name="" value="Start Game" style="position:absolute;left:567px;top:741px;width:172px;height:41px;z-index:55;">
+<input type="submit" id="NextWord_btn" onclick="NextRound();" name="" value="Next Word" style="position:absolute;left:567px;top:741px;width:172px;height:41px;visibility:hidden;z-index:56;">
+<div id="settings_layer" style="position:absolute;text-align:left;left:1086px;top:132px;width:222px;height:675px;z-index:57;">
+<input type="text" id="channelName" style="position:absolute;left:34px;top:516px;width:144px;height:19px;z-index:4;" name="Editbox1" value="" autocomplete="off" spellcheck="false" placeholder="Channel Name">
+<div id="wb_Game_Switch" style="position:absolute;left:187px;top:56px;width:20px;height:20px;z-index:5;">
 <input type="checkbox" id="Game_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="Game_Switch"></label></div>
-<div id="wb_Twitch_Emotes_Switch" style="position:absolute;left:187px;top:78px;width:20px;height:20px;z-index:7;">
+<div id="wb_Twitch_Emotes_Switch" style="position:absolute;left:187px;top:78px;width:20px;height:20px;z-index:6;">
 <input type="checkbox" id="Twitch_Emotes_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="Twitch_Emotes_Switch"></label></div>
-<div id="wb_Movies_Switch" style="position:absolute;left:187px;top:100px;width:20px;height:20px;z-index:8;">
+<div id="wb_Movies_Switch" style="position:absolute;left:187px;top:100px;width:20px;height:20px;z-index:7;">
 <input type="checkbox" id="Movies_Switch" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="Movies_Switch"></label></div>
-<div id="wb_Actors_Sing_Switch" style="position:absolute;left:187px;top:144px;width:20px;height:20px;z-index:9;">
+<div id="wb_Actors_Sing_Switch" style="position:absolute;left:187px;top:144px;width:20px;height:20px;z-index:8;">
 <input type="checkbox" id="Actors_Sing_Switch" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="Actors_Sing_Switch"></label></div>
-<div id="wb_TV_Shows_Switch" style="position:absolute;left:187px;top:166px;width:20px;height:20px;z-index:10;">
+<div id="wb_TV_Shows_Switch" style="position:absolute;left:187px;top:166px;width:20px;height:20px;z-index:9;">
 <input type="checkbox" id="TV_Shows_Switch" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="TV_Shows_Switch"></label></div>
-<input type="submit" id="popout_theword_btn" onclick="PopOutWord();" name="" value="Open Word Window" style="position:absolute;left:40px;top:470px;width:142px;height:24px;z-index:11;">
-<label for="" id="Label8" style="position:absolute;left:0px;top:2px;width:201px;height:44px;line-height:44px;z-index:12;">Settings</label>
-<input type="submit" id="Button1" onclick="location.reload();" name="" value="Reset" style="position:absolute;left:141px;top:527px;width:72px;height:25px;z-index:13;">
-<div id="wb_Actions_Switch" style="position:absolute;left:187px;top:122px;width:20px;height:20px;z-index:14;">
+<input type="submit" id="popout_theword_btn" onclick="PopOutWord();" name="" value="Open Word Window" style="position:absolute;left:40px;top:564px;width:142px;height:24px;z-index:10;">
+<label for="" id="Label8" style="position:absolute;left:0px;top:2px;width:201px;height:44px;line-height:44px;z-index:11;">Settings</label>
+<div id="wb_Actions_Switch" style="position:absolute;left:187px;top:122px;width:20px;height:20px;z-index:12;">
 <input type="checkbox" id="Actions_Switch" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="Actions_Switch"></label></div>
-<div id="wb_Live_Streamers_Switch" style="position:absolute;left:187px;top:188px;width:20px;height:20px;z-index:15;">
+<div id="wb_Live_Streamers_Switch" style="position:absolute;left:187px;top:188px;width:20px;height:20px;z-index:13;">
 <input type="checkbox" id="Live_Streamers_Switch" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="Live_Streamers_Switch"></label></div>
-<div id="wb_Youtube_Channels_Switch" style="position:absolute;left:187px;top:210px;width:20px;height:20px;z-index:16;">
+<div id="wb_Youtube_Channels_Switch" style="position:absolute;left:187px;top:210px;width:20px;height:20px;z-index:14;">
 <input type="checkbox" id="Youtube_Channels_Switch" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="Youtube_Channels_Switch"></label></div>
-<div id="wb_Games_label" style="position:absolute;left:13px;top:59px;width:164px;height:15px;z-index:17;">
+<div id="wb_Games_label" style="position:absolute;left:13px;top:59px;width:164px;height:15px;z-index:15;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Games</span></div>
-<div id="wb_Twtich_emotes_label" style="position:absolute;left:13px;top:81px;width:164px;height:15px;z-index:18;">
+<div id="wb_Twtich_emotes_label" style="position:absolute;left:13px;top:81px;width:164px;height:15px;z-index:16;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Twitch Emotes</span></div>
-<div id="wb_Movies_label" style="position:absolute;left:13px;top:103px;width:164px;height:15px;z-index:19;">
+<div id="wb_Movies_label" style="position:absolute;left:13px;top:103px;width:164px;height:15px;z-index:17;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Movies</span></div>
-<div id="wb_Actions_label" style="position:absolute;left:13px;top:125px;width:164px;height:15px;z-index:20;">
+<div id="wb_Actions_label" style="position:absolute;left:13px;top:125px;width:164px;height:15px;z-index:18;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Actions</span></div>
-<div id="wb_Actors_singers_label" style="position:absolute;left:13px;top:147px;width:164px;height:15px;z-index:21;">
+<div id="wb_Actors_singers_label" style="position:absolute;left:13px;top:147px;width:164px;height:15px;z-index:19;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Actors / Signers</span></div>
-<div id="wb_TV_shows_label" style="position:absolute;left:13px;top:169px;width:164px;height:15px;z-index:22;">
+<div id="wb_TV_shows_label" style="position:absolute;left:13px;top:169px;width:164px;height:15px;z-index:20;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">TV Shows</span></div>
-<div id="wb_Live_Streamers_label" style="position:absolute;left:13px;top:191px;width:164px;height:15px;z-index:23;">
+<div id="wb_Live_Streamers_label" style="position:absolute;left:13px;top:191px;width:164px;height:15px;z-index:21;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Live Streamers</span></div>
-<div id="wb_Youtube_channels_labels" style="position:absolute;left:13px;top:214px;width:164px;height:15px;z-index:24;">
+<div id="wb_Youtube_channels_labels" style="position:absolute;left:13px;top:214px;width:164px;height:15px;z-index:22;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Youtube Channels</span></div>
-<div id="wb_pokemon_label" style="position:absolute;left:13px;top:235px;width:164px;height:15px;z-index:25;">
+<div id="wb_pokemon_label" style="position:absolute;left:13px;top:235px;width:164px;height:15px;z-index:23;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Pokémon</span></div>
-<div id="wb_Pokemon_Switch" style="position:absolute;left:187px;top:232px;width:20px;height:20px;z-index:26;">
+<div id="wb_Pokemon_Switch" style="position:absolute;left:187px;top:232px;width:20px;height:20px;z-index:24;">
 <input type="checkbox" id="Pokemon_Switch" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="Pokemon_Switch"></label></div>
-<div id="wb_V_G_C_Label" style="position:absolute;left:13px;top:257px;width:164px;height:15px;z-index:27;">
+<div id="wb_V_G_C_Label" style="position:absolute;left:13px;top:257px;width:164px;height:15px;z-index:25;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Video Game Characters</span></div>
-<div id="wb_V_G_C_Swtich" style="position:absolute;left:187px;top:254px;width:20px;height:20px;z-index:28;">
+<div id="wb_V_G_C_Swtich" style="position:absolute;left:187px;top:254px;width:20px;height:20px;z-index:26;">
 <input type="checkbox" id="V_G_C_Swtich" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="V_G_C_Swtich"></label></div>
-<div id="wb_BBTT_FFZ_label" style="position:absolute;left:13px;top:281px;width:164px;height:27px;z-index:29;">
+<div id="wb_BBTT_FFZ_label" style="position:absolute;left:13px;top:281px;width:164px;height:27px;z-index:27;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">BTTV / FFZ Emotes <br></span><span style="color:#FFFFFF;font-family:Arial;font-size:11px;">(Easy)</span></div>
-<div id="wb_BTT_FFZ_MED_label" style="position:absolute;left:13px;top:316px;width:159px;height:27px;z-index:30;">
+<div id="wb_BTT_FFZ_MED_label" style="position:absolute;left:13px;top:316px;width:159px;height:27px;z-index:28;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">BTTV / FFZ Emotes </span><span style="color:#FFFFFF;font-family:Arial;font-size:11px;">(Medium)</span></div>
-<div id="wb_BTT_FFZ_Switch" style="position:absolute;left:187px;top:283px;width:20px;height:20px;z-index:31;">
+<div id="wb_BTT_FFZ_Switch" style="position:absolute;left:187px;top:283px;width:20px;height:20px;z-index:29;">
 <input type="checkbox" id="BTT_FFZ_Switch" onclick="p.call(this);" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="BTT_FFZ_Switch"></label></div>
-<div id="wb_BTT_FFZ__Med_Switch" style="position:absolute;left:187px;top:318px;width:20px;height:20px;z-index:32;">
+<div id="wb_BTT_FFZ__Med_Switch" style="position:absolute;left:187px;top:318px;width:20px;height:20px;z-index:30;">
 <input type="checkbox" id="BTT_FFZ__Med_Switch" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="BTT_FFZ__Med_Switch"></label></div>
-<div id="wb_Super_hero_label" style="position:absolute;left:13px;top:353px;width:164px;height:15px;z-index:33;">
+<div id="wb_Super_hero_label" style="position:absolute;left:13px;top:353px;width:164px;height:15px;z-index:31;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Superheroes</span></div>
-<div id="wb_Super_Hero_Swtich" style="position:absolute;left:187px;top:351px;width:20px;height:20px;z-index:34;">
+<div id="wb_Super_Hero_Swtich" style="position:absolute;left:187px;top:351px;width:20px;height:20px;z-index:32;">
 <input type="checkbox" id="Super_Hero_Swtich" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="Super_Hero_Swtich"></label></div>
-<label for="" id="Label9" style="position:absolute;left:12px;top:384px;width:118px;height:16px;line-height:16px;z-index:35;">Timer (Sec):</label>
+<label for="" id="Label9" style="position:absolute;left:12px;top:466px;width:118px;height:16px;line-height:16px;z-index:33;">Timer (Sec):</label>
+<input type="submit" id="Button1" onclick="location.reload();" name="" value="Reset" style="position:absolute;left:141px;top:624px;width:72px;height:25px;z-index:34;">
+<div id="wb_timer_Spinner" style="position:absolute;left:147px;top:466px;width:60px;height:24px;z-index:35;">
+<input type="text" id="timer_Spinner" style="width:100%;height:16px;line-height:16px;" name="Spinner1" value="50"></div>
+<div id="wb_Animals_Label" style="position:absolute;left:13px;top:374px;width:164px;height:15px;z-index:36;">
+<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Animals </span></div>
+<div id="wb_Animals_Swtich" style="position:absolute;left:187px;top:373px;width:20px;height:20px;z-index:37;">
+<input type="checkbox" id="Animals_Swtich" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="Animals_Swtich"></label></div>
+<div id="wb_Emoji_Swtich" style="position:absolute;left:187px;top:417px;width:20px;height:20px;z-index:38;">
+<input type="checkbox" id="Emoji_Swtich" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="Emoji_Swtich"></label></div>
+<div id="wb_Text8" style="position:absolute;left:12px;top:395px;width:164px;height:15px;z-index:39;">
+<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Classic Memes</span></div>
+<div id="wb_Text10" style="position:absolute;left:13px;top:417px;width:164px;height:15px;z-index:40;">
+<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Emojis </span><span style="color:#FFFFFF;font-family:Arial;font-size:11px;">(Easy)</span></div>
+<div id="wb_Memes_Swtich" style="position:absolute;left:187px;top:395px;width:20px;height:20px;z-index:41;">
+<input type="checkbox" id="Memes_Swtich" onclick="p.call(this);" name="Checkbox1" value="on" style="position:absolute;left:0;top:0;"><label for="Memes_Swtich"></label></div>
 </div>
-<input type="submit" id="word_hidder_btn" onclick="WordNotGuessed();" name="" value="Reveal Word" style="position:absolute;left:894px;top:667px;width:91px;height:19px;z-index:52;">
-<label for="" id="timer_ouput" style="position:absolute;left:567px;top:657px;width:164px;height:72px;line-height:72px;z-index:53;">00:00</label>
-<label for="" id="theWord" style="position:absolute;left:306px;top:240px;width:682px;height:62px;line-height:62px;z-index:54;">???</label>
-<div id="wb_error_msg_box" style="position:absolute;left:557px;top:794px;width:189px;height:15px;text-align:center;z-index:55;" class="Error_MSG">
+<input type="submit" id="word_hidder_btn" onclick="WordNotGuessed();" name="" value="Reveal Word" style="position:absolute;left:894px;top:667px;width:91px;height:19px;z-index:58;">
+<label for="" id="timer_ouput" style="position:absolute;left:567px;top:657px;width:164px;height:72px;line-height:72px;z-index:59;">00:00</label>
+<label for="" id="theWord" style="position:absolute;left:306px;top:240px;width:682px;height:62px;line-height:62px;z-index:60;">???</label>
+<div id="wb_error_msg_box" style="position:absolute;left:557px;top:794px;width:189px;height:15px;text-align:center;z-index:61;" class="Error_MSG">
 &nbsp;</div>
-<div id="wb_Text2" style="position:absolute;left:525px;top:310px;width:247px;height:19px;text-align:center;z-index:56;">
+<div id="wb_Text2" style="position:absolute;left:525px;top:310px;width:247px;height:19px;text-align:center;z-index:62;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:17px;"><strong>Chat</strong></span></div>
-<div id="wb_instruct" style="position:absolute;left:9px;top:196px;width:189px;height:363px;z-index:57;">
+<div id="wb_instruct" style="position:absolute;left:9px;top:132px;width:189px;height:363px;z-index:63;">
 <p style="font-size:16px;line-height:18px;color:#FFFFFF;"><span style="text-decoration:underline;font-weight:bold;">How To Play</span></p>
 <p style="font-size:13px;line-height:16px;">&nbsp;</p>
 <p style="font-size:13px;line-height:16px;color:#FFFFFF;">1. Make sure to allow pop ups, if prompted!</p>
@@ -178,13 +191,13 @@ $(document).ready(function()
 <p style="font-size:13px;line-height:16px;">&nbsp;</p>
 <p style="font-size:13px;line-height:16px;">&nbsp;</p>
 <p style="font-size:13px;line-height:16px;">&nbsp;</p></div>
-<div id="word_image_placeholder" style="position:absolute;text-align:left;left:578px;top:102px;width:150px;height:150px;z-index:58;">
-<div id="wb_ClipArt1" style="position:absolute;left:28px;top:30px;width:90px;height:90px;opacity:0.10;z-index:36;">
+<div id="word_image_placeholder" style="position:absolute;text-align:left;left:578px;top:102px;width:150px;height:150px;z-index:64;">
+<div id="wb_ClipArt1" style="position:absolute;left:28px;top:30px;width:90px;height:90px;opacity:0.10;z-index:42;">
 <img src="images/img0002.png" id="ClipArt1" alt="" style="width:90px;height:90px;"></div>
 </div>
-<div id="wb_tiny_arrow" style="position:absolute;left:40px;top:1232px;width:13px;height:10px;z-index:59;">
+<div id="wb_tiny_arrow" style="position:absolute;left:40px;top:1232px;width:13px;height:10px;z-index:65;">
 <a href="#" onclick="dev_module_show_btn();"><img src="images/img0001.png" id="tiny_arrow" alt="" style="width:13px;height:10px;"></a></div>
-<div id="wb_Dev_Notes" style="position:absolute;left:23px;top:865px;width:335px;height:313px;visibility:hidden;z-index:60;">
+<div id="wb_Dev_Notes" style="position:absolute;left:23px;top:865px;width:335px;height:313px;visibility:hidden;z-index:66;">
 <p style="font-size:12px;line-height:13.5px;font-weight:bold;color:#FFFFFF;"><span style="text-decoration:underline;font-size:16px;line-height:18px;">Dev Notes:</span></p>
 <p style="font-size:12px;line-height:13.5px;font-weight:bold;">&nbsp;</p>
 <p style="font-size:12px;line-height:13.5px;color:#FFFFFF;">Congrats on finding this!</p>
@@ -204,7 +217,7 @@ $(document).ready(function()
 <p style="font-size:12px;line-height:13.5px;color:#FFFFFF;">Bugs:</p>
 <p style="font-size:12px;line-height:13.5px;color:#FFFFFF;">-My footer and content scaling -.-"</p>
 <p style="font-size:12px;line-height:13.5px;">&nbsp;</p></div>
-<div id="wb_Patch_Notes_DropDown" style="position:absolute;left:1079px;top:761px;width:224px;height:385px;z-index:61;">
+<div id="wb_Patch_Notes_DropDown" style="position:absolute;left:1086px;top:794px;width:224px;height:385px;z-index:67;">
 <div id="Patch_Notes_DropDown" class="panel-group" role="tablist">
 <div class="panel panel-default">
    <div class="panel-heading" role="tab">
@@ -214,16 +227,17 @@ $(document).ready(function()
    </div>
    <div id="Patch_Notes_DropDown-collapse1" class="panel-collapse collapse" role="tabpanel">
       <div class="panel-body">
-<textarea name="patch_notes_scroll_box" id="TextArea1" style="position:absolute;left:14px;top:6px;width:198px;height:246px;z-index:37;" rows="16" cols="22" disabled spellcheck="false">Version 1.4 (Future)
+<textarea name="patch_notes_scroll_box" id="TextArea1" style="position:absolute;left:14px;top:6px;width:198px;height:246px;z-index:43;" rows="16" cols="22" disabled spellcheck="false">Version 1.4 (Mar, 03, 2020)
 
--Add in one or more categories
--Maybe add in more words to existing categories
--???
+-Added Animals
+-Added Classic Memes
+-Added Emojis
+-Added already seen word indicator in word popout. This will save even when you close your browser, but if you clear your browser cache it will forget your seen words.
 
 Version 1.3.1 (Feb, 28, 2020)
 
 -Reworked next word randomizer system.You will not get repeats so early, untill you saw everything in your category selections.
-You will get it ealry tho if you add / remove a category.
+You will get it ealry tho if you add / remove a category mid game.
 
 Version 1.3 (Feb, 25, 2020)
 
@@ -254,13 +268,13 @@ Version 1.1 (Feb, 20, 2020)
 <div class="panel panel-default">
    <div class="panel-heading" role="tab">
       <h4 class="panel-title">
-         <a role="button" data-toggle="collapse" data-parent="#Patch_Notes_DropDown" href="#Patch_Notes_DropDown-collapse2" aria-controls="Patch_Notes_DropDown-collapse2" aria-expanded="false"><span class="panel-icon"></span>Word Count</a>
+         <a role="button" data-toggle="collapse" data-parent="#Patch_Notes_DropDown" href="#Patch_Notes_DropDown-collapse2" aria-controls="Patch_Notes_DropDown-collapse2" aria-expanded="false"><span class="panel-icon"></span>Word Counts</a>
       </h4>
    </div>
    <div id="Patch_Notes_DropDown-collapse2" class="panel-collapse collapse" role="tabpanel">
       <div class="panel-body">
-<div id="wb_Text5" style="position:absolute;left:12px;top:19px;width:193px;height:210px;z-index:38;">
-<span style="color:#DCDCDC;font-family:Arial;font-size:13px;">Games : 92 <br>Twtich Emotes: 95<br>Movies: 134<br>Actions: 141<br>Actors / Signers: 78<br>TV Shows: 90<br>Live Streamers: 98<br>Youtube Channels: 46<br>BBTV / FFZ (Easy): 125<br>BBTV / FFZ (Medium): 147<br>Pokémon: 78<br>Video Game Characters: 105<br>Superheroes: 65<br></span></div>
+<div id="wb_Text5" style="position:absolute;left:9px;top:11px;width:193px;height:255px;z-index:44;">
+<span style="color:#DCDCDC;font-family:Arial;font-size:13px;">Games : 92 <br>Twtich Emotes: 95<br>Movies: 134<br>Actions: 141<br>Actors / Signers: 78<br>TV Shows: 90<br>Live Streamers: 98<br>Youtube Channels: 46<br>BBTV / FFZ (Easy): 125<br>BBTV / FFZ (Medium): 147<br>Pokémon: 78<br>Video Game Characters: 105<br>Superheroes: 65<br>Animals: 87<br>Classic Memes: 70<br>Emojis (Easy): 105<br></span></div>
       </div>
    </div>
 </div>
@@ -272,14 +286,14 @@ Version 1.1 (Feb, 20, 2020)
    </div>
    <div id="Patch_Notes_DropDown-collapse3" class="panel-collapse collapse" role="tabpanel">
       <div class="panel-body">
-<div id="wb_Text7" style="position:absolute;left:13px;top:13px;width:167px;height:134px;z-index:39;">
+<div id="wb_Text7" style="position:absolute;left:13px;top:13px;width:167px;height:134px;z-index:45;">
 <span style="color:#DCDCDC;font-family:Arial;font-size:13px;"><u>Small Code Fixes<br></u>- Sotif<br><br><u>Word Bank<br></u>- ThotProcess<br>- TheFinalSoul<br><br><u>Confetti Script<br></u>- mathusummut</span></div>
       </div>
    </div>
 </div>
 </div>
 </div>
-<div id="wb_donatros_acc" style="position:absolute;left:9px;top:581px;width:211px;height:168px;z-index:62;">
+<div id="wb_donatros_acc" style="position:absolute;left:9px;top:517px;width:211px;height:168px;z-index:68;">
 <div id="donatros_acc" class="panel-group" role="tablist">
 <div class="panel panel-default">
    <div class="panel-heading" role="tab">
@@ -289,37 +303,37 @@ Version 1.1 (Feb, 20, 2020)
    </div>
    <div id="donatros_acc-collapse1" class="panel-collapse collapse" role="tabpanel">
       <div class="panel-body">
-<div id="wb_Text9" style="position:absolute;left:9px;top:22px;width:193px;height:119px;z-index:40;">
+<div id="wb_Text9" style="position:absolute;left:9px;top:22px;width:193px;height:119px;z-index:46;">
 <span style="color:#FFFFFF;font-family:Arial;font-size:13px;"><u>Thank You<br></u><br>- Pokelawls<br>- Rulba<br><em><br><br><br></em></span></div>
       </div>
    </div>
 </div>
 </div>
 </div>
-<input type="submit" id="hide_all_tabs_btn" onclick="HideAllTabs();" name="" value="Hide All" style="position:absolute;left:319px;top:667px;width:81px;height:19px;visibility:hidden;z-index:63;">
+<input type="submit" id="hide_all_tabs_btn" onclick="HideAllTabs();" name="" value="Hide All" style="position:absolute;left:319px;top:667px;width:81px;height:19px;visibility:hidden;z-index:69;">
 </div>
-<div id="PageHeader1" style="position:fixed;text-align:left;left:0;top:0;right:0;height:84px;z-index:7777;">
-<div id="wb_Image1" style="position:absolute;left:600px;top:27px;width:28px;height:25px;z-index:0;">
+<div id="PageHeader1" style="position:fixed;text-align:left;left:0;top:0;right:0;height:69px;z-index:7777;">
+<div id="wb_Image1" style="position:absolute;left:439px;top:16px;width:22px;height:20px;z-index:0;">
 <img src="images/icon.png" id="Image1" alt=""></div>
-<img src="images/img0003.png" id="title" alt="" style="position:absolute;left:151px;top:9px;width:486px;height:59px;z-index:1;">
+<img src="images/img0003.png" id="title" alt="" style="position:absolute;left:40px;top:14px;width:487px;height:46px;z-index:1;">
 
-<div id="wb_Text1" style="position:absolute;left:593px;top:54px;width:42px;height:30px;text-align:center;z-index:3;">
-<span style="color:#A9A9A9;font-family:Arial;font-size:13px;">v1.3.1</span><span style="color:#C0C0C0;font-family:Arial;font-size:13px;"><br></span></div>
+<div id="wb_Text1" style="position:absolute;left:439px;top:42px;width:42px;height:27px;text-align:center;z-index:3;">
+<span style="color:#A9A9A9;font-family:Arial;font-size:11px;">v1.4</span><span style="color:#C0C0C0;font-family:Arial;font-size:13px;"><br></span></div>
 </div>
-<div id="PageFooter1" style="position:absolute;overflow:hidden;text-align:center;left:0px;top:1242px;width:100%;height:84px;z-index:64;">
+<div id="PageFooter1" style="position:absolute;overflow:hidden;text-align:center;left:0px;top:1242px;width:100%;height:84px;z-index:70;">
 <div id="PageFooter1_Container" style="width:1302px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
-<div id="wb_made_by" style="position:absolute;left:536px;top:10px;width:247px;height:15px;text-align:center;z-index:41;">
+<div id="wb_made_by" style="position:absolute;left:536px;top:10px;width:247px;height:15px;text-align:center;z-index:47;">
 <span style="color:#808080;font-family:Arial;font-size:13px;">Made By: Lejara (Leption, darkll)</span></div>
-<div id="wb_Text6" style="position:absolute;left:18px;top:57px;width:246px;height:12px;z-index:42;">
+<div id="wb_Text6" style="position:absolute;left:18px;top:57px;width:246px;height:12px;z-index:48;">
 <span style="color:#A9A9A9;font-family:Arial;font-size:11px;">Any donations will help support future growth</span></div>
 <a href="#" onclick="window.location.href='https://www.paypal.com/paypalme2/lejara';">
-<picture id="wb_Donate" style="position:absolute;left:9px;top:2px;width:160px;height:62px;z-index:43">
+<picture id="wb_Donate" style="position:absolute;left:9px;top:2px;width:160px;height:62px;z-index:49">
 <img src="images/paypal-do-button.png" id="Donate" alt="">
 </picture>
 </a>
-<div id="wb_Text3" style="position:absolute;left:579px;top:39px;width:160px;height:13px;text-align:center;z-index:44;">
+<div id="wb_Text3" style="position:absolute;left:579px;top:39px;width:160px;height:13px;text-align:center;z-index:50;">
 <span style="color:#808080;font-family:Arial;font-size:12px;">Any Bugs / Ideas?</span></div>
-<div id="wb_Text4" style="position:absolute;left:536px;top:52px;width:247px;height:12px;opacity:0.35;text-align:center;z-index:45;" onclick="window.location.href='https://github.com/lejara/Da-Twitch-Charades/issues';">
+<div id="wb_Text4" style="position:absolute;left:536px;top:52px;width:247px;height:12px;opacity:0.35;text-align:center;z-index:51;" onclick="window.location.href='https://github.com/lejara/Da-Twitch-Charades/issues';">
 <span style="color:#A9A9A9;font-family:Arial;font-size:11px;">Post Here</span></div>
 </div>
 </div>

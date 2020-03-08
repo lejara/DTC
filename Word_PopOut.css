@@ -92,3 +92,43 @@ body
    background-color: transparent;
    background-image: none;
 }
+#wb_seen_eye
+{
+   transform: rotate(0deg);
+   transform-origin: 50% 50%;
+}
+#seen_eye
+{
+   border-width: 0;
+   vertical-align: top;
+}
+#wb_not_seen_eye
+{
+   transform: rotate(0deg);
+   transform-origin: 50% 50%;
+}
+#not_seen_eye
+{
+   border-width: 0;
+   vertical-align: top;
+}
+.ToolTip1
+{
+   background-image: none;
+   background-color: #FFFFFF;
+   border: 1px #CCCCCC solid !important;
+   border-radius: 0px;
+   padding: 4px 4px 4px 4px;
+   box-shadow: none;
+   text-align: left;
+}
+.ToolTip2
+{
+   background-image: none;
+   background-color: #FFFFFF;
+   border: 1px #CCCCCC solid !important;
+   border-radius: 0px;
+   padding: 4px 4px 4px 4px;
+   box-shadow: none;
+   text-align: left;
+}
