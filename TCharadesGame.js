@@ -335,3 +335,15 @@ function HideAllTabs() {
   tabs_hide = !tabs_hide;
 
 }
+
+var dev_show = false;
+
+function dev_module_show_btn() {
+
+  if (!dev_show) {
+    document.getElementById("wb_Dev_Notes").style.visibility = "visible";
+  } else {
+    document.getElementById("wb_Dev_Notes").style.visibility = "hidden";
+  }
+  dev_show = !dev_show;
+}
