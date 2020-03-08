@@ -3,8 +3,34 @@
 <head>
 <meta charset="utf-8">
 <title>Da Twtich Charades Word Window</title>
+<link href="base/jquery-ui.min.css" rel="stylesheet">
 <link href="TS.css" rel="stylesheet">
 <link href="Word_PopOut.css" rel="stylesheet">
+<script src="jquery-1.12.4.min.js"></script>
+<script src="jquery-ui.min.js"></script>
+<script>
+$(document).ready(function()
+{
+   $("#wb_seen_eye").tooltip(
+   {
+      hide: true,
+      show: true,
+      content: "<span style=\"color:#000000;font-family:'MS Shell Dlg';font-size:11px;\">You have seen this word before.</span>",
+      items: '#wb_seen_eye',
+      position: { my: "right top", at: "left bottom", collision: "flipfit" },
+      classes: { 'ui-tooltip' : 'ToolTip1' }
+   });
+   $("#wb_not_seen_eye").tooltip(
+   {
+      hide: true,
+      show: true,
+      content: "<span style=\"color:#000000;font-family:'MS Shell Dlg';font-size:11px;\">You have not seen this word before.</span>",
+      items: '#wb_not_seen_eye',
+      position: { my: "right top", at: "left bottom", collision: "flipfit" },
+      classes: { 'ui-tooltip' : 'ToolTip2' }
+   });
+});
+</script>
 <!-- Insert Google Analytics code here -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158713868-1"></script>
@@ -47,5 +73,11 @@ function word_module_show_btn(){
 
 <div id="word_image_placeholder_pop" style="position:absolute;text-align:left;visibility:hidden;left:206px;top:148px;width:150px;height:150px;z-index:7;">
 </div>
+<div id="wb_seen_eye" style="position:absolute;left:43px;top:146px;width:30px;height:19px;visibility:hidden;z-index:8;">
+<img src="images/img0004.png" id="seen_eye" alt="" style="width:30px;height:19px;"></div>
+<div id="wb_not_seen_eye" style="position:absolute;left:43px;top:146px;width:30px;height:19px;visibility:hidden;z-index:9;">
+<img src="images/img0005.png" id="not_seen_eye" alt="" style="width:30px;height:19px;"></div>
+
+
 </body>
 </html>
