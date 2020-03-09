@@ -1,3 +1,76 @@
+//TODO: Fix button scaling when it goes small
+//TODO: maybe fix Height of the container to it always fill the screen, but they can still scroll
 //overrides
+//TODO: fix the moving of content when word images size are different
+//TODO: have chat output scale the font size when there is too much ( NO more cutting!)
+//TODO: get footer workin
+$body-bg: #1F1F23;
+$body-color: rgba(255, 255, 255, 0.904);
+$primary: green;
 @import "node_modules/bootstrap/scss/bootstrap";
-//Normal css
+//Normal scss
+$max_image-height: 200px;
+.my-container {
+    border: 1px solid green;
+}
+
+.my-row {
+    border: 1px solid red;
+    margin: 5px;
+}
+
+.my_col {
+    border: 1px dotted blue;
+}
+
+.chat_output {
+    border: 1px solid white;
+    height: 20em;
+    margin: 5px;
+    font-size: 20px;
+}
+
+.start_game_btn {
+    width: 10em;
+    font-size: 25px;
+}
+
+.image_placeHolder {
+    max-width: 200px;
+    max-height: $max_image-height;
+    width: auto;
+    height: auto;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
+    margin: auto;
+}
+
+.image_div_placeHolder {
+    height: $max_image-height;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.con-wrap {
+    min-height: 100%;
+}
+
+.main-content {
+    overflow: auto;
+    padding-bottom: 150px;
+    /* this needs to be bigger than footer height*/
+}
+
+.footer {
+    position: relative;
+    margin-top: -150px;
+    /* negative value of footer height */
+    height: 150px;
+    clear: both;
+    padding-top: 20px;
+}
