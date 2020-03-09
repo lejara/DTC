@@ -1,56 +1,17 @@
-//TODO: Fix button scaling when it goes small
+//TODO: Fix overall scale down , have chat outpout, and buttons scale smaller
 //TODO: maybe fix Height of the container to it always fill the screen, but they can still scroll
 //overrides
 //TODO: fix the moving of content when word images size are different
 //TODO: have chat output scale the font size when there is too much ( NO more cutting!)
-//TODO: get footer workin
 $body-bg: #1F1F23;
 $body-color: rgba(255, 255, 255, 0.904);
 $primary: green;
+$enable-responsive-font-sizes: true;
+$component-active-color: rgb(7, 70, 7);
 @import "node_modules/bootstrap/scss/bootstrap";
 //Normal scss
-$max_image-height: 200px;
-.my-container {
-    border: 1px solid green;
-}
-
-.my-row {
-    border: 1px solid red;
-    margin: 5px;
-}
-
-.my_col {
-    border: 1px dotted blue;
-}
-
-.chat_output {
-    border: 1px solid white;
-    height: 20em;
-    margin: 5px;
-    font-size: 20px;
-}
-
-.start_game_btn {
-    width: 10em;
-    font-size: 25px;
-}
-
-.image_placeHolder {
-    max-width: 200px;
-    max-height: $max_image-height;
-    width: auto;
-    height: auto;
-    // top: 0;
-    // left: 0;
-    // right: 0;
-    // bottom: 0;
-    margin: auto;
-}
-
-.image_div_placeHolder {
-    height: $max_image-height;
-}
-
+$max_image-size: 8rem;
+$footer-height: 50px;
 html,
 body {
     height: 100%;
@@ -62,15 +23,75 @@ body {
 
 .main-content {
     overflow: auto;
-    padding-bottom: 150px;
+    padding-bottom: $footer-height;
     /* this needs to be bigger than footer height*/
+}
+
+.my-container {
+    border: 1px solid green;
+}
+
+.my-row {
+    border: 1px solid red;
+    margin: 0.1rem;
+}
+
+.my_col {
+    border: 1px dotted blue;
+}
+
+.chat_output {
+    border: 1px solid white;
+    height: 25rem; //mobile do 14rem
+    font-size: 1.1rem;
+    margin: 0.1rem;
+}
+
+.image_placeHolder {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.image_div_placeHolder {
+    // fix this shit
+    margin-left: auto;
+    margin-right: auto;
+    width: $max_image-size;
+}
+
+.start_game_btn {
+    width: 10em;
+    font-size: 25px;
+}
+
+.hide_all_btn {
+    padding: 0.2rem 0.50rem;
+    font-size: 0.8rem;
+}
+
+.reveal_btn {
+    padding: 0.2rem 0.50rem;
+    font-size: 0.8rem;
+}
+
+.custom_flip_swtich {
+    height: 2rem;
+    width: 2rem;
+    margin-left: 5rem;
+}
+
+.custom_label_swtich {
+    font-size: 1.1rem;
+    margin-left: 5rem;
 }
 
 .footer {
     position: relative;
-    margin-top: -150px;
+    background-color: rgb(37, 37, 37);
+    margin-top: calc($footer-height * -1);
     /* negative value of footer height */
-    height: 150px;
+    height: $footer-height;
     clear: both;
-    padding-top: 20px;
+    padding-top: 10px;
 }
