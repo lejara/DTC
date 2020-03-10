@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="popout_word.css" rel="stylesheet">
+
+    <title>Da Twtich Charades Word Window</title>
+</head>
+
+<body onload="opener.SetPopOut(this);">
+
+
+    <div class="container-fluid my-container">
+
+        <div class="row my-row">
+            <div class="col-2 my_col align-self-center text-center">
+
+                <input type="button" class="btn btn-info hide_show_btn" id="show_hide_theword_btn" onclick="word_module_show_btn();" value="Show">
+                <img id="image_seen_not" class="img-fluid" src="" data-toggle="tooltip" data-placement="bottom" title="">
+            </div>
+            <div class="col-10 my_col">
+                <div class="row my-row justify-content-center mt-4">
+                    <h1 class="title">Your Word</h1>
+                </div>
+                <div class="row my-row justify-content-center">
+                    <h3 id="theword_ouput">???</h3>
+                </div>
+
+                <div class="row my-row image_div_placeHolder">
+                    <img id="word_image_placeholder_pop" class="img-fluid image_placeHolder" onerror="this.onerror=null;this.src='images/blank.png';" src="">
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-row font-italic">
+            <h8>Don't Show this window on your stream</h8>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="TWord_Popout.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158713868-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-158713868-1');
+    </script>
+</body>
+
+</html>

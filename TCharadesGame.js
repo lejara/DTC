@@ -20,6 +20,9 @@ $(".input").ready(function() {
   for (var cate in list_of_categories) {
     list_of_categories[cate].state = document.getElementById(list_of_categories[cate].id).checked
   };
+
+  document.getElementById("timer_Spinner").addEventListener('input', timer_slider_num_show, false);
+
   Setup_Shuffle_Words();
 })
 
@@ -106,8 +109,6 @@ function StartTimer(duration) {
   var runner = function() {
     minutes = parseInt(timer / 60, 10)
     seconds = parseInt(timer % 60, 10);
-    // console.log(pop_window);
-    minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     document.getElementById("timer_ouput").innerHTML = minutes + ":" + seconds;
 
@@ -336,14 +337,10 @@ function HideAllTabs() {
 
 }
 
-var dev_show = false;
-
-function dev_module_show_btn() {
-
-  if (!dev_show) {
-    document.getElementById("wb_Dev_Notes").style.visibility = "visible";
-  } else {
-    document.getElementById("wb_Dev_Notes").style.visibility = "hidden";
-  }
-  dev_show = !dev_show;
+function timer_slider_num_show() {
+  time = document.getElementById("timer_Spinner").value * 4
+  minutes = parseInt(time / 60, 10)
+  seconds = parseInt(time % 60, 10);
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+  document.getElementById("time_slide_display").innerHTML = minutes + ":" + seconds;
 }

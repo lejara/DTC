@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/lejara/Da-Twitch-Charades#readme",
   "dependencies": {
-    "bootstrap": "^4.4.1",
-    "bootstrap4-toggle": "^3.6.1"
+    "bootstrap": "^4.4.1"
   }
 }
