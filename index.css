@@ -9946,7 +9946,7 @@ body {
 
 .my-row {
   border: 1px solid red;
-  margin: 0.1rem;
+  margin: 0.05rem;
 }
 
 .my_col {
@@ -9987,13 +9987,8 @@ body {
   font-size: 0.8rem;
 }
 
-.custom_flip_swtich {
-  height: 2rem;
-  width: 2rem;
-}
-
 .custom_label_swtich {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
 }
 
 .footer {
