@@ -222,11 +222,11 @@ var p = function() {
     }
   }
   if (number_of_trues == 1 && list_of_categories[this_Category_Key].state == true) {
-    document.getElementById(this.id).checked = true;
+    $('#' + this.id).bootstrapToggle('on', true);
   } else {
     list_of_categories[this_Category_Key].state = !list_of_categories[this_Category_Key].state;
-    document.getElementById(this.id).checked = list_of_categories[this_Category_Key].state;
     Setup_Shuffle_Words();
+
   }
 };
 
