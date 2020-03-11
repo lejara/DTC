@@ -31,7 +31,7 @@
 
                     <div class="col-xl-8 my_col order-1 order-xl-2">
                         <div id="image_place" class="row my-row">
-                            <img height="130" class="image_div_placeHolder" src="images/blank.png">
+                            <img height="130" class="margin_center" src="images/blank.png">
                         </div>
                         <div class="row my-row justify-content-center font-weight-bold">
                             <h4 id="the_word">???</h4>
@@ -195,12 +195,19 @@
                             <input type="range" class="custom-range" value="12.5" min="1" max="100‬" step="0.25" id="timer_Spinner" onchange="timer_slider_num_show();">
                         </div>
 
-                        <div class=" row my-row justify-content-center mt-4 ">
+                        <div class=" row my-row justify-content-center mt-4">
                             Channel Name
                         </div>
-                        <div class="row my-row text-center justify-content-center ">
+                        <div class="row my-row w-50 margin_center">
                             <input type="text " id="channelName" class="form-control" placeholder="Channel Name " aria-label="Channel Name ">
                         </div>
+                        <div class="row my-row mt-4 justify-content-center">
+                            <input type="button" onclick="PopOutWord();" class="btn btn-outline-secondary" value="Open Word Window">
+                        </div>
+                        <div class="row my-row mt-4 justify-content-center">
+                            <input type="button" onclick="location.reload();" class="btn btn-outline-danger reveal_btn" value="Reset Game">
+                        </div>
+
 
                         <div style="visibility: hidden;" id="wb_error_msg_box" class="alert alert-danger mt-1" role="alert">
                             <strong>Oh no!</strong> <span id="error_msg">Change a few things up and try submitting again.</span>

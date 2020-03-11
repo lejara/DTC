@@ -4,8 +4,10 @@
 //TODO: fix centering of popout window
 //TODO: download scripts that are need in bootstrap
 //TODO: do an npm build script for sass stuff, and makit do the minify stuff for my scripts (and get confetti minify)
-//TODO: add reset button, and popout btn
-//TODO: remove npm_modules folder
+//TODO: remove npm_modules folder, add to git ignore
+//TODO: do test when the local storage cannot be access
+//TODO: finish footer
+//TODO: fix the miss algin on word picture when window width is small
 $body-bg: #1F1F23;
 $body-color: rgba(255, 255, 255, 0.904);
 $primary: green;
@@ -51,7 +53,7 @@ body {
     overflow: hidden;
 }
 
-.image_div_placeHolder {
+.margin_center {
     margin-left: auto;
     margin-right: auto;
 }
