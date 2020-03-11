@@ -49,7 +49,7 @@ $(document).ready(function() {
   img_word.onerror = function() {
     this.src = 'images/blank.png';
   }
-  img_word.classList.add("image_div_placeHolder");
+  img_word.classList.add("margin_center");
 
   Setup_Shuffle_Words();
 })
@@ -103,7 +103,7 @@ function ConnectTwtichChat() {
           if (!wordFound && message.message != null) {
             if (!gameFailed) {
               var clean_message = DOMPurify.sanitize(message.message, { ALLOWED_TAGS: ['b'] })
-              document.getElementById("wb_output").innerHTML = ("<strong style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + clean_message);
+              document.getElementById("wb_output").innerHTML = ("<strong class=\"font_pop\" style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + clean_message);
               if (clean_message.toLowerCase().search("^" + chosenWord) != -1) {
                 WordGuessed();
               }

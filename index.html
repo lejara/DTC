@@ -29,14 +29,14 @@
 
                 <div class="row my-row">
 
-                    <div class="col-xl-8 my_col order-1 order-xl-2">
+                    <div class="col-xl-8 my_col order-1 order-xl-2 justify-content-center">
                         <div id="image_place" class="row my-row">
                             <img height="130" class="margin_center" src="images/blank.png">
                         </div>
                         <div class="row my-row justify-content-center font-weight-bold">
                             <h4 id="the_word">???</h4>
                         </div>
-                        <div class="row chat_output text-center align-content-center justify-content-center text-break p-4">
+                        <div id="chat_div_output" class="row chat_output text-center align-content-center justify-content-center text-break p-2">
                             <span id="wb_output">...</span>
                         </div>
                         <div class="row my-row justify-content-center">
@@ -57,7 +57,7 @@
                     </div>
 
                     <div id="categories_settings" class="col-xl-4 my_col order-2 order-xl-3">
-                        <div class="row my-row justify-content-center mt-4">
+                        <div class="row my-row justify-content-center mt-4 mb-4">
                             <h2>Categories</h2>
                         </div>
 
@@ -182,7 +182,10 @@
                             </div>
                         </div>
 
-                        <div class="row my-row  mt-4">
+                        <div class="row my-row justify-content-center mt-4">
+                            <h2>Settings</h2>
+                        </div>
+                        <div class="row my-row  mt-2">
                             <div class="col-10 text-center my_col">
                                 Time
                             </div>
@@ -191,20 +194,20 @@
                             </div>
 
                         </div>
-                        <div class="row my-row justify-content-center">
+                        <div class="row my-row justify-content-center p-1">
                             <input type="range" class="custom-range" value="12.5" min="1" max="100‬" step="0.25" id="timer_Spinner" onchange="timer_slider_num_show();">
                         </div>
 
-                        <div class=" row my-row justify-content-center mt-4">
+                        <div class=" row my-row justify-content-center mt-2">
                             Channel Name
                         </div>
                         <div class="row my-row w-50 margin_center">
                             <input type="text " id="channelName" class="form-control" placeholder="Channel Name " aria-label="Channel Name ">
                         </div>
-                        <div class="row my-row mt-4 justify-content-center">
+                        <div class="row my-row mt-2 justify-content-center">
                             <input type="button" onclick="PopOutWord();" class="btn btn-outline-secondary" value="Open Word Window">
                         </div>
-                        <div class="row my-row mt-4 justify-content-center">
+                        <div class="row my-row mt-2 justify-content-center">
                             <input type="button" onclick="location.reload();" class="btn btn-outline-danger reveal_btn" value="Reset Game">
                         </div>
 
@@ -215,37 +218,37 @@
 
                     </div>
                 </div>
+                <div id="note_notes" class="row my-row mt-4 p-2">
+                    <div class="col-xl-6 my_col ">
+                        <h5>How To Play</h5>
+                        <p>1. Make sure to allow pop ups, if prompted!</p>
+                        <p>2. To play, just enter your channel name, then press "Start Game " </p>
+                    </div>
+                    <div class="col-xl-6 ">
+                        <h5>Side Notes</h5>
+                        <p>- Words Must Be at the beginning of a guess.
+                            <p>
+                                <p>- Making sound affects is allowed. But its up to you.</p>
+                                <p>- You don't have to reset the game if you change any of the settings, except the channel name.</p>
+                    </div>
 
+                </div>
 
             </div>
-            <div id="note_notes" class="row my-row mt-4">
-                <div class="col-xl-6 my_col ">
-                    <h5>How To Play</h5>
-                    <p>1. Make sure to allow pop ups, if prompted!</p>
-                    <p>2. To play, just enter your channel name, then press "Start Game " </p>
-                </div>
-                <div class="col-xl-6 ">
-                    <h5>Side Notes</h5>
-                    <p>- Words Must Be at the beginning of a guess.
-                        <p>
-                            <p>- Making sound affects is allowed. But its up to you.</p>
-                            <p>- You don't have to reset the game if you change any of the settings, except the channel name.</p>
-                </div>
 
-            </div>
         </div>
     </div>
     </div>
     <footer class="footer ">
-        <div class="container-fluid text-center text-center ">
-            <div class="row ">
-                <div class="col-2 ">
+        <div class="container-fluid text-center text-center">
+            <div class="row my-row">
+                <div class="col-2 my_col">
                     Donate
                 </div>
-                <div class="col-8 text-muted ">
+                <div class="col-8 text-muted my_col">
                     Made By: lejara
                 </div>
-                <div class="col-2 ">
+                <div class="col-2 my_col">
 
                 </div>
             </div>

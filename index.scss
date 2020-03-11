@@ -1,8 +1,5 @@
-//TODO: have chat output scale the font size when there is too much ( NO more cutting!)
-//TODO: add chat message animation
 //TODO; add your tabs
 //TODO: fix centering of popout window
-//TODO: download scripts that are need in bootstrap
 //TODO: do an npm build script for sass stuff, and makit do the minify stuff for my scripts (and get confetti minify)
 //TODO: remove npm_modules folder, add to git ignore
 //TODO: do test when the local storage cannot be access
@@ -17,6 +14,20 @@ $component-active-color: rgb(7, 70, 7);
 //Normal scss
 $max_image-size: 8rem;
 $footer-height: 50px;
+$chat_font_size: 1.0rem;
+//Debug: layout outline
+.my-container {
+    border: 1px solid green;
+}
+
+.my-row {
+    border: 1px solid red;
+}
+
+.my_col {
+    border: 1px dotted blue;
+}
+
 html,
 body {
     height: 100%;
@@ -29,28 +40,61 @@ body {
 .main-content {
     overflow: auto;
     padding-bottom: $footer-height;
-    /* this needs to be bigger than footer height*/
 }
 
-.my-container {
-    border: 1px solid green;
+@mixin no-margin-sm {
+    @media only screen and (min-width: 890px) {
+        margin: 0.005rem;
+    }
 }
 
 .my-row {
-    border: 1px solid red;
-    margin: 0.05rem;
+    @include no-margin-sm;
 }
 
-.my_col {
-    border: 1px dotted blue;
+@mixin chat-output-scale {
+    @media only screen and (max-width: 890px) {
+        font-size: 0.70rem;
+        height: 20rem;
+    }
+}
+
+.font_pop {
+    -webkit-animation: font_pop 0.05s ease-in both;
+    animation: font_pop 0.05s ease-in both;
+}
+
+@-webkit-keyframes font_pop {
+    0% {
+        font-size: $chat_font_size;
+    }
+    25% {
+        font-size: calc(#{$chat_font_size} + 0.3rem);
+    }
+    100% {
+        font-size: $chat_font_size;
+    }
+}
+
+@keyframes font_pop {
+    0% {
+        font-size: $chat_font_size;
+    }
+    25% {
+        font-size: calc(#{$chat_font_size} + 0.2rem);
+    }
+    100% {
+        font-size: $chat_font_size;
+    }
 }
 
 .chat_output {
-    border: 1px solid white;
-    height: 25rem; //mobile do 14rem
-    font-size: 1.1rem;
-    margin: 0.1rem;
-    overflow: hidden;
+    border: 1px solid rgb(150, 106, 106);
+    height: 26rem;
+    font-size: $chat_font_size;
+    margin: 0.001rem;
+    overflow: auto;
+    @include chat-output-scale;
 }
 
 .margin_center {
@@ -80,8 +124,7 @@ body {
 .footer {
     position: relative;
     background-color: rgb(37, 37, 37);
-    margin-top: calc($footer-height * -1);
-    /* negative value of footer height */
+    margin-top: calc( #{$footer-height} * -1);
     height: $footer-height;
     clear: both;
     padding-top: 10px;

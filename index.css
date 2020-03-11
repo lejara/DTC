@@ -9925,6 +9925,18 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.my-container {
+  border: 1px solid green;
+}
+
+.my-row {
+  border: 1px solid red;
+}
+
+.my_col {
+  border: 1px dotted blue;
+}
+
 html,
 body {
   height: 100%;
@@ -9937,28 +9949,53 @@ body {
 .main-content {
   overflow: auto;
   padding-bottom: 50px;
-  /* this needs to be bigger than footer height*/
 }
 
-.my-container {
-  border: 1px solid green;
+@media only screen and (min-width: 890px) {
+  .my-row {
+    margin: 0.005rem;
+  }
 }
 
-.my-row {
-  border: 1px solid red;
-  margin: 0.05rem;
+.font_pop {
+  -webkit-animation: font_pop 0.05s ease-in both;
+  animation: font_pop 0.05s ease-in both;
 }
 
-.my_col {
-  border: 1px dotted blue;
+@-webkit-keyframes font_pop {
+  0% {
+    font-size: 1rem;
+  }
+  25% {
+    font-size: calc(1rem + 0.3rem);
+  }
+  100% {
+    font-size: 1rem;
+  }
 }
-
+@keyframes font_pop {
+  0% {
+    font-size: 1rem;
+  }
+  25% {
+    font-size: calc(1rem + 0.2rem);
+  }
+  100% {
+    font-size: 1rem;
+  }
+}
 .chat_output {
-  border: 1px solid white;
-  height: 25rem;
-  font-size: 1.1rem;
-  margin: 0.1rem;
-  overflow: hidden;
+  border: 1px solid #966a6a;
+  height: 26rem;
+  font-size: 1rem;
+  margin: 0.001rem;
+  overflow: auto;
+}
+@media only screen and (max-width: 890px) {
+  .chat_output {
+    font-size: 0.7rem;
+    height: 20rem;
+  }
 }
 
 .margin_center {
@@ -9988,8 +10025,7 @@ body {
 .footer {
   position: relative;
   background-color: #252525;
-  margin-top: calc($footer-height * -1);
-  /* negative value of footer height */
+  margin-top: calc( 50px * -1);
   height: 50px;
   clear: both;
   padding-top: 10px;
