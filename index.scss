@@ -1,8 +1,12 @@
-//TODO: Fix overall scale down , have chat outpout, and buttons scale smaller
-//TODO: maybe fix Height of the container to it always fill the screen, but they can still scroll
-//overrides
-//TODO: fix the moving of content when word images size are different
 //TODO: have chat output scale the font size when there is too much ( NO more cutting!)
+//TODO: add chat message animation
+//TODO; add your tabs
+//TODO: do the hide all feature
+//TODO: fix centering of popout window
+//TODO: download scripts that are need in bootstrap
+//TODO: test a image no load error
+//TODO: do an npm build script for sass stuff
+//TODO: add reset button, and popout btn
 $body-bg: #1F1F23;
 $body-color: rgba(255, 255, 255, 0.904);
 $primary: green;
@@ -45,19 +49,12 @@ body {
     height: 25rem; //mobile do 14rem
     font-size: 1.1rem;
     margin: 0.1rem;
-}
-
-.image_placeHolder {
-    display: block;
-    width: 100%;
-    height: auto;
+    overflow: hidden;
 }
 
 .image_div_placeHolder {
-    // fix this shit
     margin-left: auto;
     margin-right: auto;
-    width: $max_image-size;
 }
 
 .start_game_btn {

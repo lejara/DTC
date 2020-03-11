@@ -9925,17 +9925,8 @@ h3 {
     border-color: #dee2e6;
   }
 }
-.my-container {
-  border: 1px solid green;
-}
-
 .my-row {
-  border: 1px solid red;
   margin: 0.05rem;
-}
-
-.my_col {
-  border: 1px dotted blue;
 }
 
 .hide_show_btn {
@@ -9943,16 +9934,9 @@ h3 {
   font-size: 0.8rem;
 }
 
-.image_placeHolder {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .image_div_placeHolder {
   margin-left: auto;
   margin-right: auto;
-  width: 8rem;
   visibility: hidden;
 }
 

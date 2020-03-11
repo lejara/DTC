@@ -30,27 +30,27 @@
                 <div class="row my-row ">
 
                     <div class="col-xl-8 my_col order-1 order-xl-2">
-                        <div class="row my-row image_div_placeHolder">
-                            <img class="img-fluid image_placeHolder" onerror="this.onerror=null;this.src='images/blank.png';" src="https://static-cdn.jtvnw.net/emoticons/v1/864205/3.0">
+                        <div id="image_place" class="row my-row">
+                            <img height="130" class="image_div_placeHolder" src="images/blank.png">
                         </div>
                         <div class="row my-row justify-content-center font-weight-bold">
-                            <h4 id="the_word">TombRaid</h4>
+                            <h4 id="the_word">???</h4>
                         </div>
-                        <div class="row chat_output text-center align-content-center text-break p-4">
-                            Worder: wordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswordswords
+                        <div class="row chat_output text-center align-content-center justify-content-center text-break p-4">
+                            <span id="wb_output">...</span>
                         </div>
                         <div class="row my-row justify-content-center">
-                            <h2>0:00</h2>
+                            <h2 id="timer_ouput">0:00</h2>
                         </div>
                         <div class="row my-row">
                             <div class="col-xl-2 my_col order-xl-1 order-3 text-xl-left text-center ">
-                                <input type="button" class="btn btn-info hide_all_btn" value="Hide All">
+                                <input onclick="HideAllTabs();" type="button" class="btn btn-info hide_all_btn" value="Hide All">
                             </div>
                             <div class="col-xl-8 my_col order-xl-2 order-1 text-center ">
-                                <input type="button" class="btn btn-primary start_game_btn" onclick="StartGame();" value="Start Game">
+                                <input id="main_btn" type="button" class="btn btn-primary start_game_btn" value="Start Game">
                             </div>
                             <div class="col-xl-2 my_col order-xl-3 order-2 text-xl-right text-center">
-                                <input type="button" class="btn btn-danger reveal_btn" value="Reveal Word">
+                                <input type="button" onclick="WordNotGuessed();" class="btn btn-danger reveal_btn" value="Reveal Word">
                             </div>
 
                         </div>
@@ -195,11 +195,15 @@
                             <input type="range" class="custom-range" value="12.5" min="1" max="100‬" step="0.25" id="timer_Spinner" onchange="timer_slider_num_show();">
                         </div>
 
-                        <div class=" row my-row text-center mt-4 ">
+                        <div class=" row my-row justify-content-center mt-4 ">
                             Channel Name
                         </div>
                         <div class="row my-row text-center justify-content-center ">
-                            <input type="text " id="channelName " class="form-control " placeholder="Channel Name " aria-label="Channel Name ">
+                            <input type="text " id="channelName" class="form-control" placeholder="Channel Name " aria-label="Channel Name ">
+                        </div>
+
+                        <div style="visibility: hidden;" id="wb_error_msg_box" class="alert alert-danger mt-1" role="alert">
+                            <strong>Oh no!</strong> <span id="error_msg">Change a few things up and try submitting again.</span>
                         </div>
 
                     </div>
@@ -253,10 +257,21 @@
     <script src="purify.min.js "></script>
     <script src="TCat.js "></script>
     <script src="TCharadesGame.js "></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158713868-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    <audio id="kids_hooray "><source src="sounds/children-hooray.wav " type="audio/wav "> </audio>
-    <audio id="btn_click "><source src="sounds/button_click.wav " type="audio/wav "> </audio>
-    <audio id="lose_s "><source src="sounds/loseSound.wav " type="audio/wav "> </audio>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-158713868-1');
+    </script>
+
+    <audio id="kids_hooray"><source src="sounds/children-hooray.wav " type="audio/wav "> </audio>
+    <audio id="btn_click_s"><source src="sounds/button_click.wav " type="audio/wav "> </audio>
+    <audio id="lose_s"><source src="sounds/loseSound.wav " type="audio/wav "> </audio>
 </body>
 
 </html>

@@ -9958,18 +9958,12 @@ body {
   height: 25rem;
   font-size: 1.1rem;
   margin: 0.1rem;
-}
-
-.image_placeHolder {
-  display: block;
-  width: 100%;
-  height: auto;
+  overflow: hidden;
 }
 
 .image_div_placeHolder {
   margin-left: auto;
   margin-right: auto;
-  width: 8rem;
 }
 
 .start_game_btn {

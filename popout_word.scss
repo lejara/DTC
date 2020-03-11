@@ -1,39 +1,28 @@
-//TODO: button overflows when the width is max small
-//TODO: Make sure to test seen image, and the word set
 $body-bg: #1F1F23;
 $body-color: rgba(255, 255, 255, 0.904);
 $primary: green;
 $enable-responsive-font-sizes: true;
 @import "node_modules/bootstrap/scss/bootstrap";
 $max_image-size: 8rem;
-.my-container {
-    border: 1px solid green;
-}
-
+// .my-container {
+//     // border: 1px solid green;
+// }
 .my-row {
-    border: 1px solid red;
+    // border: 1px solid red;
     margin: 0.05rem;
 }
 
-.my_col {
-    border: 1px dotted blue;
-}
-
+// .my_col {
+//     border: 1px dotted blue;
+// }
 .hide_show_btn {
     padding: 0.2rem 0.50rem;
     font-size: 0.8rem;
 }
 
-.image_placeHolder {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
 .image_div_placeHolder {
     margin-left: auto;
     margin-right: auto;
-    width: $max_image-size;
     visibility: hidden;
 }
 

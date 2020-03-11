@@ -1,9 +1,10 @@
 var isConnected = false;
 var connectedChannel = ""
 
+var time_Slider_Value = 1;
 var display_ChosenWord = "--Game Has Not Started--";
 var chosenWord = "";
-var image_ChosenWord = "";
+var image_src_link = "";
 var wordFound = false;
 var intervalTimer = null;
 var gameFailed;
@@ -13,15 +14,42 @@ var word_cur_index = 0;
 var canDoLocalStorage = true;
 var hasSeenWord = false;
 
+
+var clickSound;
+var winSound;
+var img_height = 130;
+var img_word = new Image();
 var pop_window = null;
 
 //Awake Function
-$(".input").ready(function() {
+$(document).ready(function() {
   for (var cate in list_of_categories) {
     list_of_categories[cate].state = document.getElementById(list_of_categories[cate].id).checked
   };
 
   document.getElementById("timer_Spinner").addEventListener('input', timer_slider_num_show, false);
+
+  clickSound = document.getElementById("btn_click_s");
+  clickSound.volume = 0.2;
+  winSound = document.getElementById("lose_s");
+  winSound.volume = 0.9;
+
+  time_Slider_Value = document.getElementById("timer_Spinner").value * 4;
+
+  document.getElementById("main_btn").addEventListener("click", StartGame)
+
+  //image setup
+  img_word.onload = function() {
+    var aspectRatio = (this.width / this.height)
+    this.width = (img_height * aspectRatio);
+    var p_img = document.getElementById("image_place");
+    p_img.innerHTML = ""
+    p_img.appendChild(this);
+  }
+  img_word.onerror = function() {
+    this.src = 'images/blank.png';
+  }
+  img_word.classList.add("image_div_placeHolder");
 
   Setup_Shuffle_Words();
 })
@@ -37,19 +65,25 @@ function StartGame() {
   ConnectTwtichChat();
 };
 
+function Game_Started() {
+  //Change main button to next word btn
+  document.getElementById("main_btn").value = "Next Word";
+  document.getElementById("main_btn").classList.remove("btn-primary");
+  document.getElementById("main_btn").classList.add("btn-secondary");
+  document.getElementById("main_btn").removeEventListener("click", StartGame);
+  document.getElementById("main_btn").addEventListener("click", NextRound);
+  NextRound();
+}
+
 function NextRound() {
   gameFailed = false;
   PickWord();
   StopTimer();
   PopOutWord();
-  StartTimer(document.getElementById("timer_Spinner").value);
-  document.getElementById("NextWord_btn").style.visibility = "visible";
-  document.getElementById("StartGame_btn").style.visibility = "hidden";
-  document.getElementById("wb_error_msg_box").innerHTML = "";
+  StartTimer(time_Slider_Value);
   document.getElementById("timer_ouput").style.color = "#4682B4";
-  document.getElementById("word_image_placeholder").innerHTML = "";
-  var clickSound = document.getElementById("btn_click");
-  clickSound.volume = 0.2;
+  img_word.style.visibility = "hidden";
+  Error_Notify("", "", true)
   clickSound.play();
 }
 
@@ -87,20 +121,26 @@ function ConnectTwtichChat() {
       chat.join(channel).then(() => {
         isConnected = true;
         connectedChannel = channel;
-        NextRound();
-        HideAllTabs();
-        document.getElementById("hide_all_tabs_btn").style.visibility = "visible";
+        Game_Started();
       }).catch(function(err) {
-        console.log(err);
-        document.getElementById("wb_error_msg_box").innerHTML = "Error: Make Sure Channel Name Is Filled Correctly.";
+        Error_Notify("Make Sure Channel Name Is Filled Correctly.", err, false);
       })
     }).catch(function(err) {
-      console.log(err);
-      document.getElementById("wb_error_msg_box").innerHTML = "Error: Could Not Connect To Twtich API.";
+      Error_Notify("Could Not Connect To Twtich API.", err, false);
     });
 
   }
 };
+
+function Error_Notify(err_msg, err, do_clear = false) {
+  if (!do_clear) {
+    document.getElementById("wb_error_msg_box").style.visibility = "visible";
+    document.getElementById("error_msg").innerHTML = err_msg;
+    console.log(err);
+  } else {
+    document.getElementById("wb_error_msg_box").style.visibility = "hidden";
+  }
+}
 
 function StartTimer(duration) {
   var timer = duration,
@@ -143,13 +183,16 @@ function PickWord() {
   wordFound = false;
 
   chosenWord = random_word_list_keys[word_cur_index];
-  image_ChosenWord = word_obj_concat[chosenWord];
+  image_src_link = word_obj_concat[chosenWord];
   word_cur_index++;
   if (word_cur_index == random_word_list_keys.length) {
     Setup_Shuffle_Words();
   }
-
-  document.getElementById("theWord").innerHTML = "???";
+  if (image_src_link == "") {
+    image_src_link = "images/blank.png"
+  }
+  img_word.src = image_src_link;
+  document.getElementById("the_word").innerHTML = "???";
   display_ChosenWord = chosenWord;
   Check_Seen_Word(chosenWord);
   updatePopoutWord();
@@ -194,8 +237,6 @@ function WordNotGuessed() {
     gameFailed = true;
     document.getElementById("timer_ouput").style.color = "red";
     document.getElementById("wb_output").innerHTML = "...";
-    var winSound = document.getElementById("lose_s");
-    winSound.volume = 0.9;
     winSound.play();
 
     GameEnd();
@@ -204,9 +245,8 @@ function WordNotGuessed() {
 
 function GameEnd() {
   StopTimer();
-  document.getElementById("theWord").innerHTML = display_ChosenWord;
-  document.getElementById("word_image_placeholder").innerHTML = "<img style=\"display: block;max-width:150px;max-height:150px;width: auto;height: auto; top:0;left:0; right:0; bottom:0; position:absolute; margin:auto\" src=\"" + image_ChosenWord + "\"></img>"
-
+  document.getElementById("the_word").innerHTML = display_ChosenWord;
+  img_word.style.visibility = "visible";
 }
 
 //Categories All Swtiches Off Prevention, and Selection
@@ -235,7 +275,7 @@ var p = function() {
 //Popout window for word
 function PopOutWord() {
   if (pop_window == null || pop_window.closed) {
-    pop_window = window.open('Word_PopOut.html', 'PopUpWindow_TCharadesGame', 'height=340,width=550,left=100,top=100,menubar=no,location=no,directories=no, status=yes');
+    pop_window = window.open('popout_word.html', 'PopUpWindow_TCharadesGame', 'height=300,width=550,left=100,top=100,menubar=no,location=no,directories=no, status=yes');
   } else {
     pop_window.focus();
   }
@@ -261,27 +301,7 @@ function updatePopoutWord() {
 }
 
 function SetPopOutValues() {
-  pop_window.document.getElementById("word_image_placeholder_pop").innerHTML = "<img style=\"display: block;max-width:150px;max-height:150px;width: auto;height: auto; top:0;left:0; right:0; bottom:0; position:absolute; margin:auto\" src=\"" + image_ChosenWord + "\"></img>"
-  pop_window.document.getElementById("theword_ouput").innerHTML = display_ChosenWord;
-  Set_Seen_Word_Popout_Indicator();
-
-}
-
-function Set_Seen_Word_Popout_Indicator() {
-  if (canDoLocalStorage) {
-    if (hasSeenWord) {
-      pop_window.document.getElementById("seen_eye").style.visibility = "visible";
-      pop_window.document.getElementById("not_seen_eye").style.visibility = "hidden";
-    } else {
-      pop_window.document.getElementById("seen_eye").style.visibility = "hidden";
-      pop_window.document.getElementById("not_seen_eye").style.visibility = "visible";
-    }
-
-  } else {
-    pop_window.document.getElementById("seen_eye").style.visibility = "hidden";
-    pop_window.document.getElementById("not_seen_eye").style.visibility = "hidden";
-  }
-
+  pop_window.Set_Word(display_ChosenWord, image_src_link, canDoLocalStorage ? hasSeenWord : null)
 }
 
 function Check_Seen_Word(word) {
@@ -311,6 +331,7 @@ function Clear_Seen_all() {
 var tabs_hide = false;
 
 function HideAllTabs() {
+  //TODO: needs rewrite
   if (!tabs_hide) {
     var elements = document.getElementsByClassName("visible_tab")
     while (elements.length > 0) {
@@ -337,10 +358,11 @@ function HideAllTabs() {
 
 }
 
+
 function timer_slider_num_show() {
-  time = document.getElementById("timer_Spinner").value * 4
-  minutes = parseInt(time / 60, 10)
-  seconds = parseInt(time % 60, 10);
+  time_Slider_Value = document.getElementById("timer_Spinner").value * 4;
+  minutes = parseInt(time_Slider_Value / 60, 10)
+  seconds = parseInt(time_Slider_Value % 60, 10);
   seconds = seconds < 10 ? "0" + seconds : seconds;
   document.getElementById("time_slide_display").innerHTML = minutes + ":" + seconds;
 }
