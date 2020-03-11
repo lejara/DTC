@@ -1,12 +1,11 @@
 //TODO: have chat output scale the font size when there is too much ( NO more cutting!)
 //TODO: add chat message animation
 //TODO; add your tabs
-//TODO: do the hide all feature
 //TODO: fix centering of popout window
 //TODO: download scripts that are need in bootstrap
-//TODO: test a image no load error
-//TODO: do an npm build script for sass stuff
+//TODO: do an npm build script for sass stuff, and makit do the minify stuff for my scripts (and get confetti minify)
 //TODO: add reset button, and popout btn
+//TODO: remove npm_modules folder
 $body-bg: #1F1F23;
 $body-color: rgba(255, 255, 255, 0.904);
 $primary: green;
@@ -84,4 +83,16 @@ body {
     height: $footer-height;
     clear: both;
     padding-top: 10px;
+}
+
+.visible_tab {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.hidden_tab {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.4s, opacity 0.4s ease-in-out;
 }

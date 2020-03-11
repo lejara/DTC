@@ -9995,4 +9995,16 @@ body {
   padding-top: 10px;
 }
 
+.visible_tab {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.hidden_tab {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.4s, opacity 0.4s ease-in-out;
+}
+
 /*# sourceMappingURL=index.css.map */

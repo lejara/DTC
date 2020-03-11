@@ -27,7 +27,7 @@
         <div class="main-content">
             <div class="container-fluid my-container justify-content-around">
 
-                <div class="row my-row ">
+                <div class="row my-row">
 
                     <div class="col-xl-8 my_col order-1 order-xl-2">
                         <div id="image_place" class="row my-row">
@@ -44,7 +44,7 @@
                         </div>
                         <div class="row my-row">
                             <div class="col-xl-2 my_col order-xl-1 order-3 text-xl-left text-center ">
-                                <input onclick="HideAllTabs();" type="button" class="btn btn-info hide_all_btn" value="Hide All">
+                                <input id="hide_all_tabs_btn" onclick="HideAllTabs();" type="button" class="btn btn-info hide_all_btn" value="Hide All">
                             </div>
                             <div class="col-xl-8 my_col order-xl-2 order-1 text-center ">
                                 <input id="main_btn" type="button" class="btn btn-primary start_game_btn" value="Start Game">
@@ -56,7 +56,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 my_col order-2 order-xl-3">
+                    <div id="categories_settings" class="col-xl-4 my_col order-2 order-xl-3">
                         <div class="row my-row justify-content-center mt-4">
                             <h2>Categories</h2>
                         </div>
@@ -211,7 +211,7 @@
 
 
             </div>
-            <div class="row my-row mt-4">
+            <div id="note_notes" class="row my-row mt-4">
                 <div class="col-xl-6 my_col ">
                     <h5>How To Play</h5>
                     <p>1. Make sure to allow pop ups, if prompted!</p>
@@ -248,9 +248,9 @@
 
 
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js " integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n " crossorigin="anonymous "></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js " integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6 " crossorigin="anonymous "></script>
+    <script src="jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js "></script>
     <script src="bootstrap4-toggle.min.js "></script>
     <script src="confetti.js "></script>
