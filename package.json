@@ -4,7 +4,12 @@
   "description": "Fun litte Web App for streamers to play charades with their chat!",
   "main": "TCharadesGame.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sass:index": "sass index.scss index.css",
+    "sass:popout": "sass popout_word.scss popout_word.css",
+    "uglify:tcat": "uglifyjs -o dist/js/TCat.min.js TCat.js",
+    "uglify:tcg": "uglifyjs -o dist/js/TCharadesGame.min.js TCharadesGame.js",
+    "uglify:tpopout": "uglifyjs -o dist/js/TWord_Popout.min.js TWord_Popout.js",
+    "build": "npm run sass:index && npm run sass:popout && npm run uglify:tcat && npm run uglify:tcg && npm run uglify:tpopout"
   },
   "repository": {
     "type": "git",
@@ -25,6 +30,7 @@
   },
   "homepage": "https://github.com/lejara/Da-Twitch-Charades#readme",
   "dependencies": {
-    "bootstrap": "^4.4.1"
+    "bootstrap": "^4.4.1",
+    "imagemin": "^7.0.1"
   }
 }
