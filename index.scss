@@ -1,21 +1,19 @@
-//TODO: finish footer
-//TODO: change channel input to the same bg as slider
-//TODO: test mobile look
-//TODO: do a full final test, and live dry test
-//TODO: Test npm fully installs what you need, and it build right. On a fresh clone
 $body-bg: #1F1F23;
 $body-color: rgba(255, 255, 255, 0.904);
 $primary: white;
 $secondary: #281e3e8a;
-$custom-range-track-bg: #542d46;
+$tri_colour: #2b274b;
+$input-bg: $tri_colour;
+$input-color: white;
+$custom-range-track-bg: $tri_colour;
 $enable-responsive-font-sizes: true;
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootstrap/scss/_custom-forms.scss";
 //Normal scss
 $max_image-size: 8rem;
-$footer-height: 50px;
+$footer-height: 7rem;
 $chat_font_size: 1.0rem;
-//Debug: layout outline
+// Debug: layout outline
 // .my-container {
 //     border: 1px solid green;
 // }
@@ -37,16 +35,6 @@ body {
 .main-content {
     overflow: auto;
     padding-bottom: $footer-height;
-}
-
-@mixin no-margin-sm {
-    @media only screen and (min-width: 890px) {
-        // margin: 0.005rem;
-    }
-}
-
-.my-row {
-    @include no-margin-sm;
 }
 
 @mixin chat-output-scale {
@@ -124,6 +112,7 @@ body {
     margin-top: calc( #{$footer-height} * -1);
     height: $footer-height;
     clear: both;
+    font-size: 0.9rem;
     padding-top: 10px;
 }
 
@@ -131,21 +120,26 @@ body {
     visibility: visible;
     opacity: 1;
     transition: opacity 0.2s ease-in-out;
+    right: 0;
+    transition: 0.5s;
 }
 
 .hidden_tab {
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s 0.4s, opacity 0.4s ease-in-out;
+    transition: visibility 0s 0.8s, opacity 0.4s ease-in-out;
+    right: -50rem;
+    transition: 1.5s;
 }
 
-$Second_back_colour: rgba(59, 9, 88, 0.753);
 .navbar {
-    background-color: $Second_back_colour;
+    background-color: rgba(59, 9, 88, 0.753);
 }
 
 #categories_settings {
     background-color: $secondary;
+    // box-shadow: 0 50px 2.2px rgba(0, 0, 0, 0.034), 0 50px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
 hr {
@@ -167,17 +161,38 @@ hr {
 .note_tabs {
     margin-top: 1rem;
     margin-bottom: 1rem;
+    // box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
 .tooltip.in {
     opacity: 1;
 }
 
-.donate_btn {
-    font-size: 1rem;
-    color: #d4af37;
+.donate_btn_text {
+    font-size: 0.7rem;
+    color: #d4af378c;
 }
 
-.donate_btn:hover {
-    color: #d4af37;
+.dono_btn {
+    height: 3rem;
+    width: 7rem;
+}
+
+.form-control {
+    text-align: center;
+    border: 0;
+}
+
+.toggle {
+    border: 0;
+    margin-bottom: 0.4rem;
+}
+
+.toggle-off {
+    background-color: $tri_colour;
+}
+
+nav {
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }

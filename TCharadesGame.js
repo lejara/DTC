@@ -69,8 +69,6 @@ function StartGame() {
 function Game_Started() {
   //Change main button to next word btn
   document.getElementById("main_btn").value = "Next Word";
-  document.getElementById("main_btn").classList.remove("btn-primary");
-  document.getElementById("main_btn").classList.add("btn-secondary");
   document.getElementById("main_btn").removeEventListener("click", StartGame);
   document.getElementById("main_btn").addEventListener("click", NextRound);
   NextRound();

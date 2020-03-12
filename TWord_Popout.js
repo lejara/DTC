@@ -40,14 +40,14 @@ function Set_Word(word, img, has_seen) {
     document.getElementById("image_seen_not").style.visibility = "visible";
     if (has_seen) {
       document.getElementById("image_seen_not").src = image_seen_src;
-      document.getElementById("image_seen_not").title = "You have seen this word before.";
+      $("#image_seen_not").tooltip().attr('data-original-title', "You have seen this word before.");
     } else {
       document.getElementById("image_seen_not").src = image_not_seen_src;
-      document.getElementById("image_seen_not").title = "You have not seen this word before.";
+      $("#image_seen_not").tooltip().attr('data-original-title', "You have not seen this word before.");
     }
   } else {
     document.getElementById("image_seen_not").src = "";
-    document.getElementById("image_seen_not").title = "";
+    $("#image_seen_not").tooltip().attr('data-original-title', "");
     document.getElementById("image_seen_not").style.visibility = "hidden";
   }
 
