@@ -23,6 +23,7 @@ var pop_window = null;
 
 //Awake Function
 $(document).ready(function() {
+  $('[data-toggle="tooltip"]').tooltip();
   for (var cate in list_of_categories) {
     list_of_categories[cate].state = document.getElementById(list_of_categories[cate].id).checked
   };
@@ -362,7 +363,8 @@ function timer_slider_num_show() {
   minutes = parseInt(time_Slider_Value / 60, 10)
   seconds = parseInt(time_Slider_Value % 60, 10);
   seconds = seconds < 10 ? "0" + seconds : seconds;
-  document.getElementById("time_slide_display").innerHTML = minutes + ":" + seconds;
+  $("#div_spinner_time").tooltip('show');
+  $("#div_spinner_time").tooltip().attr('data-original-title', (minutes + ":" + seconds));
 }
 
 function openInNewTab(url) {

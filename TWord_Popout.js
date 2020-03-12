@@ -7,6 +7,7 @@ var img_word_p = new Image();
 
 //Awake Function
 $(document).ready(function() {
+  $('[data-toggle="tooltip"]').tooltip();
   //Image setup
   img_word_p.onload = function() {
     var aspectRatio = (this.width / this.height)

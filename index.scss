@@ -1,13 +1,14 @@
-//TODO: make slider look better
 //TODO: finish footer
+//TODO: change channel input to the same bg as slider
 //TODO: test mobile look
 //TODO: do a full final test, and live dry test
 //TODO: Test npm fully installs what you need, and it build right. On a fresh clone
 $body-bg: #1F1F23;
 $body-color: rgba(255, 255, 255, 0.904);
-$secondary: rgb(43, 43, 46);
+$primary: white;
+$secondary: #281e3e8a;
+$custom-range-track-bg: #542d46;
 $enable-responsive-font-sizes: true;
-// $component-active-color: rgb(7, 70, 7);
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootstrap/scss/_custom-forms.scss";
 //Normal scss
@@ -147,10 +148,6 @@ $Second_back_colour: rgba(59, 9, 88, 0.753);
     background-color: $secondary;
 }
 
-.my_slider {
-    background: #343a40;
-}
-
 hr {
     height: 1px;
     border: 0;
@@ -170,6 +167,10 @@ hr {
 .note_tabs {
     margin-top: 1rem;
     margin-bottom: 1rem;
+}
+
+.tooltip.in {
+    opacity: 1;
 }
 
 .donate_btn {
