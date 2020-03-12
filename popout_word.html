@@ -14,15 +14,13 @@
 
 
     <div class="container-fluid my-container">
+        <div class="row my-row mt-4 justify-content-center">
+            <input type="button" class="btn btn-info hide_show_btn" id="show_hide_theword_btn" onclick="word_module_show_btn();" value="Show">
+        </div>
 
         <div class="row my-row">
-            <div class="col-2 my_col align-self-center text-center">
-
-                <input type="button" class="btn btn-info hide_show_btn" id="show_hide_theword_btn" onclick="word_module_show_btn();" value="Show">
-                <img id="image_seen_not" class="img-fluid" src="" data-toggle="tooltip" data-placement="bottom" title="">
-            </div>
-            <div class="col-10 my_col">
-                <div class="row my-row justify-content-center mt-4">
+            <div class="col my_col">
+                <div class="row my-row justify-content-center mt-2">
                     <h1 class="title">Your Word</h1>
                 </div>
                 <div class="row my-row justify-content-center">
@@ -33,6 +31,9 @@
                     <img id="word_image_pop" height="130" class="image_div_placeHolder" src="images/blank.png">
                 </div>
             </div>
+        </div>
+        <div class="row my-row justify-content-center m-4">
+            <img id="image_seen_not" class="img-fluid" src="" data-toggle="tooltip" data-placement="bottom" title="">
         </div>
 
         <div class="row my-row font-italic">

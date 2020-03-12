@@ -23,8 +23,6 @@ $(document).ready(function() {
   }
   img_word_p.classList.add("image_div_placeHolder");
   img_word_p.id = "word_image_pop";
-
-  document.getElementById("image_seen_not").style.visibility = "hidden";
 });
 
 function Set_Word(word, img, has_seen) {

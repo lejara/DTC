@@ -9,6 +9,8 @@
     "uglify:tcat": "uglifyjs -o dist/js/TCat.min.js TCat.js",
     "uglify:tcg": "uglifyjs -o dist/js/TCharadesGame.min.js TCharadesGame.js",
     "uglify:tpopout": "uglifyjs -o dist/js/TWord_Popout.min.js TWord_Popout.js",
+    "build:popout": "npm run sass:popout && npm run uglify:tpopout",
+    "build:index": "npm run sass:index && npm run uglify:tcat && npm run uglify:tcg",
     "build": "npm run sass:index && npm run sass:popout && npm run uglify:tcat && npm run uglify:tcg && npm run uglify:tpopout"
   },
   "repository": {

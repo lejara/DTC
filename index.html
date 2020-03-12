@@ -20,16 +20,16 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light">
-        <h1>Da Twitch Charades</h1>
+        <h1>Da Twitch Charades<sub class="text-muted version"> 1.5.0 </sub></h1>
     </nav>
 
     <div class="con-wrap">
         <div class="main-content">
             <div class="container-fluid my-container justify-content-around">
 
-                <div class="row my-row">
+                <div class="row my-row mb-4">
 
-                    <div class="col-xl-8 my_col order-1 order-xl-2 justify-content-center">
+                    <div class="col-xl-8 my_col order-1 order-xl-2 justify-content-center mb-4">
                         <div id="image_place" class="row my-row">
                             <img height="130" class="margin_center" src="images/blank.png">
                         </div>
@@ -43,13 +43,13 @@
                             <h2 id="timer_ouput">0:00</h2>
                         </div>
                         <div class="row my-row">
-                            <div class="col-xl-2 my_col order-xl-1 order-3 text-xl-left text-center ">
+                            <div class="col-xl-2 my_col order-xl-1 order-3 text-xl-left text-center mt-2">
                                 <input id="hide_all_tabs_btn" onclick="HideAllTabs();" type="button" class="btn btn-info hide_all_btn" value="Hide All">
                             </div>
                             <div class="col-xl-8 my_col order-xl-2 order-1 text-center ">
-                                <input id="main_btn" type="button" class="btn btn-primary start_game_btn" value="Start Game">
+                                <input id="main_btn" type="button" class="btn btn-success start_game_btn" value="Start Game">
                             </div>
-                            <div class="col-xl-2 my_col order-xl-3 order-2 text-xl-right text-center">
+                            <div class="col-xl-2 my_col order-xl-3 order-2 text-xl-right text-center mt-2">
                                 <input type="button" onclick="WordNotGuessed();" class="btn btn-danger reveal_btn" value="Reveal Word">
                             </div>
 
@@ -57,124 +57,124 @@
                     </div>
 
                     <div id="categories_settings" class="col-xl-4 my_col order-2 order-xl-3">
-                        <div class="row my-row justify-content-center mt-4 mb-4">
+                        <div class="row my-row justify-content-center mb-2 mt-2">
                             <h2>Categories</h2>
                         </div>
-
-                        <div class="row my-row">
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                        <hr/>
+                        <div class="row my-row ml-2">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Games
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="Game_Switch" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
 
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Twtich Emotes
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="Twitch_Emotes_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
                         </div>
-                        <div class="row my-row">
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                        <div class="row my-row ml-2">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Movies
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="Movies_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
 
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Actions
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="Actions_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
                         </div>
-                        <div class="row my-row">
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                        <div class="row my-row ml-2">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Actors / Signers
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="Actors_Sing_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
 
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 TV Shows
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="TV_Shows_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
                         </div>
-                        <div class="row my-row">
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                        <div class="row my-row ml-2">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Live Streamers
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="Live_Streamers_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
 
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Youtube Channels
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="Youtube_Channels_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
                         </div>
-                        <div class="row my-row">
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                        <div class="row my-row ml-2">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Pokémon
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="Pokemon_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
 
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Video Game Characters
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="V_G_C_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
                         </div>
-                        <div class="row my-row">
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                        <div class="row my-row ml-2">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 BTTV / FFZ Emotes (Easy)
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="BTT_FFZ_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
 
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 BTTV / FFZ Emotes (Medium)
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="BTT_FFZ__Med_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
                         </div>
-                        <div class="row my-row">
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                        <div class="row my-row ml-2">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Superheroes
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="Super_Hero_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
 
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Animals
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="Animals_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
                         </div>
-                        <div class="row my-row">
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                        <div class="row my-row ml-2">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Classic Memes
                             </div>
                             <div class="col-2 my_col align-self-center">
                                 <input id="Memes_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
                             </div>
 
-                            <div class="col-4 my_col custom_label_swtich ustify-content-center align-self-center">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Emojis (Easy)
                             </div>
                             <div class="col-2 my_col align-self-center">
@@ -182,20 +182,21 @@
                             </div>
                         </div>
 
-                        <div class="row my-row justify-content-center mt-4">
+                        <div class="row my-row justify-content-center mt-3">
                             <h2>Settings</h2>
                         </div>
-                        <div class="row my-row  mt-2">
-                            <div class="col-10 text-center my_col">
+                        <hr/>
+                        <div class="row my-row">
+                            <div class="col-8 text-center my_col">
                                 Time
                             </div>
-                            <div class="col-2 my_col" id="time_slide_display">
+                            <div class="col-4 my_col" id="time_slide_display">
                                 0:50
                             </div>
 
                         </div>
-                        <div class="row my-row justify-content-center p-1">
-                            <input type="range" class="custom-range" value="12.5" min="1" max="100‬" step="0.25" id="timer_Spinner" onchange="timer_slider_num_show();">
+                        <div class="row my-row justify-content-center margin_center w-75">
+                            <input type="range" class="custom-range my_slider" value="12.5" min="1" max="100‬" step="0.25" id="timer_Spinner" onchange="timer_slider_num_show();">
                         </div>
 
                         <div class=" row my-row justify-content-center mt-2">
@@ -204,7 +205,7 @@
                         <div class="row my-row w-50 margin_center">
                             <input type="text " id="channelName" class="form-control" placeholder="Channel Name " aria-label="Channel Name ">
                         </div>
-                        <div class="row my-row mt-2 justify-content-center">
+                        <div class="row my-row mt-4 justify-content-center">
                             <input type="button" onclick="PopOutWord();" class="btn btn-outline-secondary" value="Open Word Window">
                         </div>
                         <div class="row my-row mt-2 justify-content-center">
@@ -212,32 +213,90 @@
                         </div>
 
 
-                        <div style="visibility: hidden;" id="wb_error_msg_box" class="alert alert-danger mt-1" role="alert">
-                            <strong>Oh no!</strong> <span id="error_msg">Change a few things up and try submitting again.</span>
+                        <div style="visibility: hidden;" id="wb_error_msg_box" class="alert alert-danger mt-4" role="alert">
+                            <strong>Uh...Error</strong> <span id="error_msg">Change a few things up and try submitting again.</span>
                         </div>
 
                     </div>
                 </div>
-                <div id="note_notes" class="row my-row mt-4 p-2">
-                    <div class="col-xl-6 my_col ">
+
+
+                <div id="note_notes" class="row my-row">
+                    <div class="col-xl-6 my_col">
                         <h5>How To Play</h5>
-                        <p>1. Make sure to allow pop ups, if prompted!</p>
-                        <p>2. To play, just enter your channel name, then press "Start Game " </p>
+                        <p>1. Make sure to allow pop ups, if prompted! </p>
+                        <p>2. To play, just enter your channel name, then press "Start Game"</p>
+
                     </div>
-                    <div class="col-xl-6 ">
+
+                    <div class="col-xl-6 my_col">
                         <h5>Side Notes</h5>
-                        <p>- Words Must Be at the beginning of a guess.
-                            <p>
-                                <p>- Making sound affects is allowed. But its up to you.</p>
-                                <p>- You don't have to reset the game if you change any of the settings, except the channel name.</p>
+                        <p>- Words Must Be at the beginning of a guess.</p>
+                        <p>- Making sound affects is allowed. But its up to you.</p>
+                        <p>- You don't have to reset the game if you change any of the settings, except the channel name.</p>
+
+                    </div>
+                </div>
+                <div id="note_notes" class="row my-row">
+                    <div class="col-xl-6 my_col mb-4">
+                        <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#collapsePatchNotes" aria-expanded="false">
+                            <h5>Patch Notes</h5>
+                          </button>
+                        <div class="collapse collapse_tabs text-center" id="collapsePatchNotes">
+
+                            <h8>Version 1.5(???)</h8>
+                            </br>
+                            -Website refresh, now uses bootstrap</br>
+                            </br>
+                            Version 1.4 (Mar, 03, 2020)</h8>
+                            </br>
+                            -Added Animals</br>
+                            -Added Classic Memes</br>
+                            -Added Emojis</br>
+                            -Added already seen word indicator in word popout. This will save even when you close your browser, but if you clear your browser cache it will forget your seen words.</br>
+                            </br>
+                            <h8>Version 1.3.1 (Feb, 28, 2020)</h8>
+                            </br>
+                            -Reworked next word randomizer system.You will not get repeats so early, untill you saw everything in your category selections.</br>
+                            You will get it ealry tho if you add / remove a category mid game.</br>
+                            </br>
+                            <h8>Version 1.3 (Feb, 25, 2020)</h8>
+                            </br>
+                            -Added Pokémon</br>
+                            -Added Video Game Characters</br>
+                            -Added Superheroes</br>
+                            </br>
+                            <h8>Version 1.2 (Feb, 23 , 2020)</h8>
+                            </br>
+                            -Redid T.V Shows</br>
+                            -Added Youtube Channels</br>
+                            -Added BTTV / FFZ Emotes (Med)</br>
+                            -Adjusted Games, Actions</br>
+                            -17 More Words to B / F (Easy)</br>
+                            -Fixed Major Security Hole</br>
+                            </br>
+                            <h8>Version 1.1 (Feb, 20, 2020)</h8>
+                            </br>
+                            -Added live Streamers</br>
+                            -Redid Movies</br>
+                            -Redid Actors, and Renamed to Actors / Singers</br>
+                            -Small Bug Fixes</br>
+                            </br>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xl-6 my_col mb-4">
+
                     </div>
 
                 </div>
 
-            </div>
 
+
+
+            </div>
         </div>
-    </div>
     </div>
     <footer class="footer ">
         <div class="container-fluid text-center text-center">
@@ -262,8 +321,8 @@
     <script src="popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js "></script>
-    <script src="bootstrap4-toggle.min.js "></script>
-    <script src="dist/js/confetti.min.js "></script>
+    <script src="bootstrap4-toggle.min.js"></script>
+    <script src="dist/js/confetti.min.js"></script>
     <script src="purify.min.js "></script>
     <script src="dist/js/TCat.min.js "></script>
     <script src="dist/js/TCharadesGame.min.js "></script>

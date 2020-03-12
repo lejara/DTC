@@ -1,33 +1,31 @@
 //TODO; add your tabs
-//TODO: fix centering of popout window
-//TODO: do an npm build script for sass stuff, and makit do the minify stuff for my scripts (and get confetti minify)
-//TODO: remove npm_modules folder, add to git ignore
+//TODO: maybe fix slider
 //TODO: do test when the local storage cannot be access
 //TODO: finish footer
-//TODO: fix the miss algin on word picture when window width is small
+//TODO: test mobile look
+//TODO: test a long ass word in popout
+//TODO: do a full final test, and live dry test
+//TODO: Test npm fully installs what you need, and it build right. On a fresh clone
 $body-bg: #1F1F23;
 $body-color: rgba(255, 255, 255, 0.904);
-$primary: green;
+// $secondary: rgb(43, 43, 48);
 $enable-responsive-font-sizes: true;
-$component-active-color: rgb(7, 70, 7);
+// $component-active-color: rgb(7, 70, 7);
 @import "node_modules/bootstrap/scss/bootstrap";
 //Normal scss
 $max_image-size: 8rem;
 $footer-height: 50px;
 $chat_font_size: 1.0rem;
 //Debug: layout outline
-.my-container {
-    border: 1px solid green;
-}
-
-.my-row {
-    border: 1px solid red;
-}
-
-.my_col {
-    border: 1px dotted blue;
-}
-
+// .my-container {
+//     border: 1px solid green;
+// }
+// .my-row {
+//     border: 1px solid red;
+// }
+// .my_col {
+//     border: 1px dotted blue;
+// }
 html,
 body {
     height: 100%;
@@ -44,7 +42,7 @@ body {
 
 @mixin no-margin-sm {
     @media only screen and (min-width: 890px) {
-        margin: 0.005rem;
+        // margin: 0.005rem;
     }
 }
 
@@ -89,7 +87,7 @@ body {
 }
 
 .chat_output {
-    border: 1px solid rgb(150, 106, 106);
+    border: 1px solid rgba(255, 255, 255, 0.644);
     height: 26rem;
     font-size: $chat_font_size;
     margin: 0.001rem;
@@ -140,4 +138,31 @@ body {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s 0.4s, opacity 0.4s ease-in-out;
+}
+
+$Second_back_colour: rgb(51, 31, 63);
+.navbar {
+    background-color: $Second_back_colour;
+}
+
+#categories_settings {
+    // border: 1px solid rgb(150, 106, 106);
+    background-color: $Second_back_colour;
+}
+
+.my_slider {
+    background: #343a40;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.192);
+}
+
+.version {
+    font-size: 0.8rem;
+}
+
+.collapse_tabs {
+    border: 1px solid rgba(255, 255, 255, 0.192);
 }

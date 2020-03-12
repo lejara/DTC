@@ -275,7 +275,7 @@ var p = function() {
 //Popout window for word
 function PopOutWord() {
   if (pop_window == null || pop_window.closed) {
-    pop_window = window.open('popout_word.html', 'PopUpWindow_TCharadesGame', 'height=300,width=550,left=100,top=100,menubar=no,location=no,directories=no, status=yes');
+    pop_window = window.open('popout_word.html', 'PopUpWindow_TCharadesGame', 'height=380,width=680,left=100,top=100,menubar=no,location=no,directories=no, status=yes');
   } else {
     pop_window.focus();
   }

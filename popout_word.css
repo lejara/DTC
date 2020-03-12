@@ -9944,4 +9944,8 @@ h3 {
   text-decoration: underline;
 }
 
+#image_seen_not {
+  visibility: hidden;
+}
+
 /*# sourceMappingURL=popout_word.css.map */
