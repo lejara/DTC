@@ -27,40 +27,42 @@
         <div class="main-content">
             <div class="container-fluid my-container justify-content-around">
 
-                <div class="row my-row mb-4">
+                <div class="row my-row">
 
-                    <div class="col-xl-8 my_col order-1 order-xl-2 justify-content-center mb-4">
+                    <div class="col-xl-8 my_col order-1 order-xl-2 justify-content-center mt-5">
                         <div id="image_place" class="row my-row">
-                            <img height="130" class="margin_center" src="images/blank.png">
+                            <img height="140" class="margin_center" src="images/blank.png">
                         </div>
-                        <div class="row my-row justify-content-center font-weight-bold">
-                            <h4 id="the_word">???</h4>
+                        <div class="row my-row justify-content-center font-weight-bold mt-4">
+                            <h2 id="the_word">???</h2>
                         </div>
                         <div id="chat_div_output" class="row chat_output text-center align-content-center justify-content-center text-break p-2">
                             <span id="wb_output">...</span>
                         </div>
-                        <div class="row my-row justify-content-center">
+                        <div class="row my-row justify-content-center mt-3 mb-3">
                             <h2 id="timer_ouput">0:00</h2>
                         </div>
                         <div class="row my-row">
-                            <div class="col-xl-2 my_col order-xl-1 order-3 text-xl-left text-center mt-2">
+                            <div class="col-xl-2 my_col order-xl-1 order-3 text-xl-left text-center mb-2">
                                 <input id="hide_all_tabs_btn" onclick="HideAllTabs();" type="button" class="btn btn-info hide_all_btn" value="Hide All">
                             </div>
-                            <div class="col-xl-8 my_col order-xl-2 order-1 text-center ">
-                                <input id="main_btn" type="button" class="btn btn-success start_game_btn" value="Start Game">
+                            <div class="col-xl-8 my_col order-xl-2 order-1 text-center">
+                                <input id="main_btn" type="button" class="btn btn-success start_game_btn mb-2" value="Start Game">
                             </div>
-                            <div class="col-xl-2 my_col order-xl-3 order-2 text-xl-right text-center mt-2">
+                            <div class="col-xl-2 my_col order-xl-3 order-2 text-xl-right text-center mb-2">
                                 <input type="button" onclick="WordNotGuessed();" class="btn btn-danger reveal_btn" value="Reveal Word">
                             </div>
 
                         </div>
                     </div>
 
-                    <div id="categories_settings" class="col-xl-4 my_col order-2 order-xl-3">
-                        <div class="row my-row justify-content-center mb-2 mt-2">
-                            <h2>Categories</h2>
+                    <div id="categories_settings" class="col-xl-4 my_col order-2 order-xl-3 mt-5">
+                        <div class="row my-row justify-content-center mb-2 mt-4">
+                            <h2>Categories
+                                <hr/>
+                            </h2>
                         </div>
-                        <hr/>
+
                         <div class="row my-row ml-2">
                             <div class="col-4 my_col custom_label_swtich align-self-center">
                                 Games
@@ -183,30 +185,30 @@
                         </div>
 
                         <div class="row my-row justify-content-center mt-3">
-                            <h2>Settings</h2>
-                        </div>
-                        <hr/>
-                        <div class="row my-row">
-                            <div class="col-8 text-center my_col">
-                                Time
-                            </div>
-                            <div class="col-4 my_col" id="time_slide_display">
-                                0:50
-                            </div>
+                            <h2>Settings
+                                <hr/>
+                            </h2>
 
+                        </div>
+
+                        <div class="row my-row justify-content-center">
+                            <h6>Time</h6>
+                        </div>
+                        <div class="row my-row justify-content-center" id="time_slide_display">
+                            0:50
                         </div>
                         <div class="row my-row justify-content-center margin_center w-75">
                             <input type="range" class="custom-range my_slider" value="12.5" min="1" max="100‬" step="0.25" id="timer_Spinner" onchange="timer_slider_num_show();">
                         </div>
 
                         <div class=" row my-row justify-content-center mt-2">
-                            Channel Name
+                            <h6>Channel Name</h6>
                         </div>
                         <div class="row my-row w-50 margin_center">
-                            <input type="text " id="channelName" class="form-control" placeholder="Channel Name " aria-label="Channel Name ">
+                            <input type="text" id="channelName" class="form-control" placeholder="Channel Name" aria-label="Channel Name">
                         </div>
                         <div class="row my-row mt-4 justify-content-center">
-                            <input type="button" onclick="PopOutWord();" class="btn btn-outline-secondary" value="Open Word Window">
+                            <input type="button" onclick="PopOutWord();" class="btn btn-outline-info" value="Open Word Window">
                         </div>
                         <div class="row my-row mt-2 justify-content-center">
                             <input type="button" onclick="location.reload();" class="btn btn-outline-danger reveal_btn" value="Reset Game">
@@ -220,95 +222,111 @@
                     </div>
                 </div>
 
+                <div id="note_notes">
 
-                <div id="note_notes" class="row my-row">
-                    <div class="col-xl-6 my_col">
-                        <h5>How To Play</h5>
-                        <p>1. Make sure to allow pop ups, if prompted! </p>
-                        <p>2. To play, just enter your channel name, then press "Start Game"</p>
 
-                    </div>
+                    <div class="row my-row">
 
-                    <div class="col-xl-6 my_col">
-                        <h5>Side Notes</h5>
-                        <p>- Words Must Be at the beginning of a guess.</p>
-                        <p>- Making sound affects is allowed. But its up to you.</p>
-                        <p>- You don't have to reset the game if you change any of the settings, except the channel name.</p>
+                        <div class="col-xl-8 my_col justify-content-center text-center">
+                            <hr class="mt-5 mb-5 w-75">
+                            <h5>How To Play</h5>
+                            <p>1. Make sure to allow pop ups, if prompted! </p>
+                            <p>2. To play, just enter your channel name, then press "Start Game"</p>
+                            <h5>Side Notes</h5>
+                            <p>- Words Must Be at the beginning of a guess.</p>
+                            <p>- Making sound affects is allowed. But its up to you.</p>
+                            <p>- You don't have to reset the game if you change any of the settings, except the channel name.</p>
+                            <hr class="mt-5 mb-5 w-75">
+                        </div>
 
-                    </div>
-                </div>
-                <div id="note_notes" class="row my-row">
-                    <div class="col-xl-6 my_col mb-4">
-                        <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#collapsePatchNotes" aria-expanded="false">
-                            <h5>Patch Notes</h5>
+                        <div class="col-xl-4 my_col justify-content-center text-center">
+
+
+                            <button class="btn btn-secondary btn-block note_tabs margin_center" type="button" data-toggle="collapse" data-target="#collapseDono" aria-expanded="false">
+                                <h5>Donators</h5>
+                              </button>
+                            <div class="collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapseDono">
+                                <h5>Thank You</h5>
+                                <p> - Pokelawls<br/> - Rulba</p>
+                            </div>
+
+                            <button class="btn btn-secondary btn-block note_tabs margin_center" type="button" data-toggle="collapse" data-target="#collapseWordCount" aria-expanded="false">
+                                <h5>Word Counts</h5>
+                              </button>
+                            <div class="collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapseWordCount">
+                                Games : 92</br>
+                                Twtich Emotes: 95</br>
+                                Movies: 134</br>
+                                Actions: 141</br>
+                                Actors / Signers: 78</br>
+                                TV Shows: 90</br>
+                                Live Streamers: 98</br>
+                                Youtube Channels: 46</br>
+                                BBTV / FFZ (Easy): 125</br>
+                                BBTV / FFZ (Medium): 147</br>
+                                Pokémon: 78</br>
+                                Video Game Characters: 105</br>
+                                Superheroes: 65</br>
+                                Animals: 87</br>
+                                Classic Memes: 70</br>
+                                Emojis (Easy): 105</br>
+
+                            </div>
+
+                            <button class="btn btn-secondary btn-block note_tabs margin_center" type="button" data-toggle="collapse" data-target="#collapsePatchNotes" aria-expanded="false">
+                                <h5>Patch Notes</h5>
+                              </button>
+                            <div class="collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapsePatchNotes">
+                                <h5>Version 1.5 (???)</h5>
+                                -Website rewrite</br>
+                                </br>
+                                <h5>Before Version 1.5</h5>
+                                -Added Animals</br>
+                                -Added Classic Memes</br>
+                                -Added Emojis</br>
+                                -Added seen word indicator in word popout.</br>
+                                -Added Pokémon</br>
+                                -Added Video Game Characters</br>
+                                -Added Superheroes</br>
+                                -Redid T.V Shows</br>
+                                -Added Youtube Channels</br>
+                                -Added BTTV / FFZ Emotes (Med)</br>
+                                -Adjusted Games, Actions</br>
+                                -17 More Words to B / F (Easy)</br>
+                                -Fixed Major Security Hole</br>
+                                -Added live Streamers</br>
+                                -Redid Movies</br>
+                                -Redid Actors, and Renamed to Actors / Singers</br>
+                            </div>
+
+                            <button class="btn btn-secondary btn-block note_tabs margin_center" type="button" data-toggle="collapse" data-target="#collapseContr" aria-expanded="false">
+                            <h5>Contributors / Credit</h5>
                           </button>
-                        <div class="collapse collapse_tabs text-center" id="collapsePatchNotes">
-
-                            <h8>Version 1.5(???)</h8>
-                            </br>
-                            -Website refresh, now uses bootstrap</br>
-                            </br>
-                            Version 1.4 (Mar, 03, 2020)</h8>
-                            </br>
-                            -Added Animals</br>
-                            -Added Classic Memes</br>
-                            -Added Emojis</br>
-                            -Added already seen word indicator in word popout. This will save even when you close your browser, but if you clear your browser cache it will forget your seen words.</br>
-                            </br>
-                            <h8>Version 1.3.1 (Feb, 28, 2020)</h8>
-                            </br>
-                            -Reworked next word randomizer system.You will not get repeats so early, untill you saw everything in your category selections.</br>
-                            You will get it ealry tho if you add / remove a category mid game.</br>
-                            </br>
-                            <h8>Version 1.3 (Feb, 25, 2020)</h8>
-                            </br>
-                            -Added Pokémon</br>
-                            -Added Video Game Characters</br>
-                            -Added Superheroes</br>
-                            </br>
-                            <h8>Version 1.2 (Feb, 23 , 2020)</h8>
-                            </br>
-                            -Redid T.V Shows</br>
-                            -Added Youtube Channels</br>
-                            -Added BTTV / FFZ Emotes (Med)</br>
-                            -Adjusted Games, Actions</br>
-                            -17 More Words to B / F (Easy)</br>
-                            -Fixed Major Security Hole</br>
-                            </br>
-                            <h8>Version 1.1 (Feb, 20, 2020)</h8>
-                            </br>
-                            -Added live Streamers</br>
-                            -Redid Movies</br>
-                            -Redid Actors, and Renamed to Actors / Singers</br>
-                            -Small Bug Fixes</br>
-                            </br>
-
-
+                            <div class="collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapseContr">
+                                <h6>Small Code Fixes</h6>
+                                <p>- Sotif</p>
+                                <h6>Word Bank Help</h6>
+                                <p>- ThotProcess</br>- TheFinalSoul</p>
+                                <h6>Confetti Script</h6>
+                                <p>- mathusummut</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-xl-6 my_col mb-4">
-
-                    </div>
-
                 </div>
-
-
-
-
             </div>
         </div>
     </div>
-    <footer class="footer ">
+    <footer class="footer">
         <div class="container-fluid text-center text-center">
             <div class="row my-row">
                 <div class="col-2 my_col">
-                    Donate
+                    <h5><a href="" class="donate_btn" onclick="openInNewTab('https://www.paypal.com/paypalme2/lejara')">Donate</a></h5>
                 </div>
                 <div class="col-8 text-muted my_col">
                     Made By: lejara
                 </div>
                 <div class="col-2 my_col">
-
+                    Bugs / Ideas: <a href="" onclick="openInNewTab('https://github.com/lejara/Da-Twitch-Charades/issues');">Post Here</a>
                 </div>
             </div>
         </div>
@@ -320,12 +338,14 @@
     <script src="jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js "></script>
+    <script src="https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js"></script>
     <script src="bootstrap4-toggle.min.js"></script>
     <script src="dist/js/confetti.min.js"></script>
-    <script src="purify.min.js "></script>
-    <script src="dist/js/TCat.min.js "></script>
-    <script src="dist/js/TCharadesGame.min.js "></script>
+    <script src="purify.min.js"></script>
+    <script src="dist/js/TCat.min.js"></script>
+    <script src="dist/js/TCharadesGame.min.js"></script>
+    <!-- <script src="TCat.js"></script>  -->
+    <!-- <script src="TCharadesGame.js"></script> -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158713868-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -338,9 +358,9 @@
         gtag('config', 'UA-158713868-1');
     </script>
 
-    <audio id="kids_hooray"><source src="sounds/children-hooray.wav " type="audio/wav "> </audio>
-    <audio id="btn_click_s"><source src="sounds/button_click.wav " type="audio/wav "> </audio>
-    <audio id="lose_s"><source src="sounds/loseSound.wav " type="audio/wav "> </audio>
+    <audio id="kids_hooray"><source src="sounds/children-hooray.wav" type="audio/wav"> </audio>
+    <audio id="btn_click_s"><source src="sounds/button_click.wav" type="audio/wav"> </audio>
+    <audio id="lose_s"><source src="sounds/loseSound.wav" type="audio/wav"> </audio>
 </body>
 
 </html>

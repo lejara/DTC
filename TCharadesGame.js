@@ -17,12 +17,12 @@ var hasSeenWord = false;
 
 var clickSound;
 var winSound;
-var img_height = 130;
+var img_height = 140;
 var img_word = new Image();
 var pop_window = null;
 
 //Awake Function
-$(document).ready(function() {
+$(".input").ready(function() {
   for (var cate in list_of_categories) {
     list_of_categories[cate].state = document.getElementById(list_of_categories[cate].id).checked
   };
@@ -336,10 +336,8 @@ function HideAllTabs() {
     while (elements.length > 0) {
       elements[0].classList.remove("visible_tab");
     }
-    // document.getElementById("donatros_acc").classList.add("hidden_tab");
     document.getElementById("note_notes").classList.add("hidden_tab");
     document.getElementById("categories_settings").classList.add("hidden_tab");
-    // document.getElementById("Patch_Notes_DropDown").classList.add("hidden_tab");
     document.getElementById("hide_all_tabs_btn").value = "Show All";;
 
 
@@ -348,10 +346,9 @@ function HideAllTabs() {
     while (elements.length > 0) {
       elements[0].classList.remove("hidden_tab");
     }
-    // document.getElementById("donatros_acc").classList.add("visible_tab");
+
     document.getElementById("note_notes").classList.add("visible_tab");
     document.getElementById("categories_settings").classList.add("visible_tab");
-    // document.getElementById("Patch_Notes_DropDown").classList.add("visible_tab");
     document.getElementById("hide_all_tabs_btn").value = "Hide All";
 
   }
@@ -366,4 +363,9 @@ function timer_slider_num_show() {
   seconds = parseInt(time_Slider_Value % 60, 10);
   seconds = seconds < 10 ? "0" + seconds : seconds;
   document.getElementById("time_slide_display").innerHTML = minutes + ":" + seconds;
+}
+
+function openInNewTab(url) {
+  var win = window.open(url, '_blank');
+  win.focus();
 }

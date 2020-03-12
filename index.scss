@@ -1,5 +1,3 @@
-//TODO; add your tabs
-//TODO: maybe fix slider
 //TODO: do test when the local storage cannot be access
 //TODO: finish footer
 //TODO: test mobile look
@@ -8,7 +6,7 @@
 //TODO: Test npm fully installs what you need, and it build right. On a fresh clone
 $body-bg: #1F1F23;
 $body-color: rgba(255, 255, 255, 0.904);
-// $secondary: rgb(43, 43, 48);
+$secondary: rgb(43, 43, 46);
 $enable-responsive-font-sizes: true;
 // $component-active-color: rgb(7, 70, 7);
 @import "node_modules/bootstrap/scss/bootstrap";
@@ -121,7 +119,7 @@ body {
 
 .footer {
     position: relative;
-    background-color: rgb(37, 37, 37);
+    background-color: #2a2a3d;
     margin-top: calc( #{$footer-height} * -1);
     height: $footer-height;
     clear: both;
@@ -140,14 +138,13 @@ body {
     transition: visibility 0s 0.4s, opacity 0.4s ease-in-out;
 }
 
-$Second_back_colour: rgb(51, 31, 63);
+$Second_back_colour: rgba(59, 9, 88, 0.753);
 .navbar {
     background-color: $Second_back_colour;
 }
 
 #categories_settings {
-    // border: 1px solid rgb(150, 106, 106);
-    background-color: $Second_back_colour;
+    background-color: $secondary;
 }
 
 .my_slider {
@@ -155,6 +152,7 @@ $Second_back_colour: rgb(51, 31, 63);
 }
 
 hr {
+    height: 1px;
     border: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.192);
 }
@@ -164,5 +162,21 @@ hr {
 }
 
 .collapse_tabs {
-    border: 1px solid rgba(255, 255, 255, 0.192);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.192);
+    border-left: 1px solid rgba(255, 255, 255, 0.192);
+    border-right: 1px solid rgba(255, 255, 255, 0.192);
+}
+
+.note_tabs {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.donate_btn {
+    font-size: 1rem;
+    color: #d4af37;
+}
+
+.donate_btn:hover {
+    color: #d4af37;
 }
