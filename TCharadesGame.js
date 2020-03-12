@@ -22,7 +22,7 @@ var img_word = new Image();
 var pop_window = null;
 
 //Awake Function
-$(".input").ready(function() {
+$(document).ready(function() {
   for (var cate in list_of_categories) {
     list_of_categories[cate].state = document.getElementById(list_of_categories[cate].id).checked
   };

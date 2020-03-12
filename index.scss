@@ -1,7 +1,6 @@
-//TODO: do test when the local storage cannot be access
+//TODO: make slider look better
 //TODO: finish footer
 //TODO: test mobile look
-//TODO: test a long ass word in popout
 //TODO: do a full final test, and live dry test
 //TODO: Test npm fully installs what you need, and it build right. On a fresh clone
 $body-bg: #1F1F23;
@@ -10,6 +9,7 @@ $secondary: rgb(43, 43, 46);
 $enable-responsive-font-sizes: true;
 // $component-active-color: rgb(7, 70, 7);
 @import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap/scss/_custom-forms.scss";
 //Normal scss
 $max_image-size: 8rem;
 $footer-height: 50px;
