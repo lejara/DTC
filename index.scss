@@ -1,0 +1,198 @@
+$body-bg: #1F1F23;
+$body-color: rgba(255, 255, 255, 0.904);
+$primary: white;
+$secondary: #281e3e8a;
+$tri_colour: #2b274b;
+$input-bg: $tri_colour;
+$input-color: white;
+$custom-range-track-bg: $tri_colour;
+$enable-responsive-font-sizes: true;
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap/scss/_custom-forms.scss";
+//Normal scss
+$max_image-size: 8rem;
+$footer-height: 7rem;
+$chat_font_size: 1.0rem;
+// Debug: layout outline
+// .my-container {
+//     border: 1px solid green;
+// }
+// .my-row {
+//     border: 1px solid red;
+// }
+// .my_col {
+//     border: 1px dotted blue;
+// }
+html,
+body {
+    height: 100%;
+}
+
+.con-wrap {
+    min-height: 100%;
+}
+
+.main-content {
+    overflow: auto;
+    padding-bottom: $footer-height;
+}
+
+@mixin chat-output-scale {
+    @media only screen and (max-width: 890px) {
+        font-size: 0.70rem;
+        height: 20rem;
+    }
+}
+
+.font_pop {
+    -webkit-animation: font_pop 0.05s ease-in both;
+    animation: font_pop 0.05s ease-in both;
+}
+
+@-webkit-keyframes font_pop {
+    0% {
+        font-size: $chat_font_size;
+    }
+    25% {
+        font-size: calc(#{$chat_font_size} + 0.3rem);
+    }
+    100% {
+        font-size: $chat_font_size;
+    }
+}
+
+@keyframes font_pop {
+    0% {
+        font-size: $chat_font_size;
+    }
+    25% {
+        font-size: calc(#{$chat_font_size} + 0.2rem);
+    }
+    100% {
+        font-size: $chat_font_size;
+    }
+}
+
+.chat_output {
+    border: 1px solid rgba(255, 255, 255, 0.644);
+    height: 26rem;
+    font-size: $chat_font_size;
+    margin: 0.001rem;
+    overflow: auto;
+    @include chat-output-scale;
+}
+
+.margin_center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.start_game_btn {
+    width: 10em;
+    font-size: 25px;
+}
+
+.hide_all_btn {
+    padding: 0.2rem 0.50rem;
+    font-size: 0.8rem;
+}
+
+.reveal_btn {
+    padding: 0.2rem 0.50rem;
+    font-size: 0.8rem;
+}
+
+.custom_label_swtich {
+    font-size: 0.8rem;
+}
+
+.footer {
+    position: relative;
+    background-color: #2a2a3d;
+    margin-top: calc( #{$footer-height} * -1);
+    height: $footer-height;
+    clear: both;
+    font-size: 0.9rem;
+    padding-top: 10px;
+}
+
+.visible_tab {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    right: 0;
+    transition: 0.5s;
+}
+
+.hidden_tab {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.8s, opacity 0.4s ease-in-out;
+    right: -50rem;
+    transition: 1.5s;
+}
+
+.navbar {
+    background-color: rgba(59, 9, 88, 0.753);
+}
+
+#categories_settings {
+    background-color: $secondary;
+    // box-shadow: 0 50px 2.2px rgba(0, 0, 0, 0.034), 0 50px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+hr {
+    height: 1px;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.192);
+}
+
+.version {
+    font-size: 0.8rem;
+}
+
+.collapse_tabs {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.192);
+    border-left: 1px solid rgba(255, 255, 255, 0.192);
+    border-right: 1px solid rgba(255, 255, 255, 0.192);
+}
+
+.note_tabs {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    // box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.tooltip.in {
+    opacity: 1;
+}
+
+.donate_btn_text {
+    font-size: 0.7rem;
+    color: #d4af378c;
+}
+
+.dono_btn {
+    height: 3rem;
+    width: 7rem;
+}
+
+.form-control {
+    text-align: center;
+    border: 0;
+}
+
+.toggle {
+    border: 0;
+    margin-bottom: 0.4rem;
+}
+
+.toggle-off {
+    background-color: $tri_colour;
+}
+
+nav {
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
