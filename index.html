@@ -357,6 +357,23 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-158713868-1');
+
+        //save existing body onload
+        var _onload_fn = document.body.onload;
+
+        document.body.onload = function() {
+
+            if (_onload_fn) {
+                _onload_fn();
+            }
+
+            if (!ga || (ga && ga.name != "Z")) {
+
+                console.log("GA not loaded");
+            } else {
+                console.log("GA Loaded");
+            }
+        }
     </script>
 
     <audio id="kids_hooray"><source src="sounds/children-hooray.wav" type="audio/wav"> </audio>
