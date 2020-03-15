@@ -53,7 +53,73 @@ $(document).ready(function() {
   img_word.classList.add("margin_center");
 
   Setup_Shuffle_Words();
+  Test_Emotes_get();
 })
+
+
+
+
+function Test_Emotes_get() {
+  //Game client id: gcxxg3g0lghqxl0d4zhttv11sobtf8
+  //Help: https://discuss.dev.twitch.tv/t/how-to-get-emotes-badges-object/18916/2
+  //xqcow room id : 71092938
+  //Get all emotes only ids/ needs to know channel id : https://api.twitchemotes.com/api/v4/channels/71092938
+  //https://api.twitch.tv/helix/users?login=xqcow?Client-ID=gcxxg3g0lghqxl0d4zhttv11sobtf8
+
+
+  //Working------------------------------
+  // $.when(
+  //   $.ajax("https://api.twitch.tv/helix/users?login=xqcow", {
+  //     beforeSend: function(hrObj) {
+  //       hrObj.setRequestHeader("Client-ID", "gcxxg3g0lghqxl0d4zhttv11sobtf8")
+  //     }
+  //   })
+  // ).done(function(res) {
+  //   var channel_id = res.data[0].id;
+  //   console.log("Got channel id");
+  //   console.log(res)
+  //   $.when(
+  //     $.ajax("https://api.twitchemotes.com/api/v4/channels/" + channel_id)
+  //   ).done(function(res) {
+  //     console.log("got emotes")
+  //     console.log(res)
+  //   })
+
+  // }).fail(function(err) {
+  //   console.log("error ran");
+  //   console.log(err);
+
+
+  // });
+
+
+  $.when(
+    $.ajax("https://api.twitch.tv/kraken/chat/emoticons", {
+      beforeSend: function(hrObj) {
+        hrObj.setRequestHeader("Client-ID", "gcxxg3g0lghqxl0d4zhttv11sobtf8")
+        hrObj.setRequestHeader("Access-Control-Allow-Origin", "*")
+      }
+    })
+  ).done(function(res) {
+    var channel_id = res.data[0].id;
+    console.log("Got channel id");
+    console.log(res)
+    $.when(
+      $.ajax("https://api.twitchemotes.com/api/v4/channels/" + channel_id)
+    ).done(function(res) {
+      console.log("got emotes")
+      console.log(res)
+    })
+
+  }).fail(function(err) {
+    console.log("error ran");
+    console.log(err);
+
+
+  });
+
+
+}
 
 const {
   chat,
@@ -117,7 +183,8 @@ function ConnectTwtichChat() {
 
     // Connect ...
     chat.connect().then(() => {
-      chat.join(channel).then(() => {
+      chat.join(channel).then(({ roomState }) => {
+        console.log(roomState.roomId)
         isConnected = true;
         connectedChannel = channel;
         Game_Started();
