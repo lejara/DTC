@@ -23,23 +23,27 @@ var pop_window = null;
 
 //Awake Function
 $(document).ready(function() {
+  //Set tooltip on
   $('[data-toggle="tooltip"]').tooltip();
+  //Sync categoires swtiches state
   for (var cate in list_of_categories) {
     list_of_categories[cate].state = document.getElementById(list_of_categories[cate].id).checked
   };
 
+  //Time Slider Init
   document.getElementById("timer_Spinner").addEventListener('input', timer_slider_num_show, false);
+  time_Slider_Value = document.getElementById("timer_Spinner").value * 4;
 
+  //Sounds Init
   clickSound = document.getElementById("btn_click_s");
   clickSound.volume = 0.2;
   winSound = document.getElementById("lose_s");
   winSound.volume = 0.9;
 
-  time_Slider_Value = document.getElementById("timer_Spinner").value * 4;
-
+  //Main Button add onclick event
   document.getElementById("main_btn").addEventListener("click", StartGame)
 
-  //image setup
+  //Word image setup
   img_word.onload = function() {
     var aspectRatio = (this.width / this.height)
     this.width = (img_height * aspectRatio);
@@ -53,73 +57,7 @@ $(document).ready(function() {
   img_word.classList.add("margin_center");
 
   Setup_Shuffle_Words();
-  Test_Emotes_get();
 })
-
-
-
-
-function Test_Emotes_get() {
-  //Game client id: gcxxg3g0lghqxl0d4zhttv11sobtf8
-  //Help: https://discuss.dev.twitch.tv/t/how-to-get-emotes-badges-object/18916/2
-  //xqcow room id : 71092938
-  //Get all emotes only ids/ needs to know channel id : https://api.twitchemotes.com/api/v4/channels/71092938
-  //https://api.twitch.tv/helix/users?login=xqcow?Client-ID=gcxxg3g0lghqxl0d4zhttv11sobtf8
-
-
-  //Working------------------------------
-  // $.when(
-  //   $.ajax("https://api.twitch.tv/helix/users?login=xqcow", {
-  //     beforeSend: function(hrObj) {
-  //       hrObj.setRequestHeader("Client-ID", "gcxxg3g0lghqxl0d4zhttv11sobtf8")
-  //     }
-  //   })
-  // ).done(function(res) {
-  //   var channel_id = res.data[0].id;
-  //   console.log("Got channel id");
-  //   console.log(res)
-  //   $.when(
-  //     $.ajax("https://api.twitchemotes.com/api/v4/channels/" + channel_id)
-  //   ).done(function(res) {
-  //     console.log("got emotes")
-  //     console.log(res)
-  //   })
-
-  // }).fail(function(err) {
-  //   console.log("error ran");
-  //   console.log(err);
-
-
-  // });
-
-
-  $.when(
-    $.ajax("https://api.twitch.tv/kraken/chat/emoticons", {
-      beforeSend: function(hrObj) {
-        hrObj.setRequestHeader("Client-ID", "gcxxg3g0lghqxl0d4zhttv11sobtf8")
-        hrObj.setRequestHeader("Access-Control-Allow-Origin", "*")
-      }
-    })
-  ).done(function(res) {
-    var channel_id = res.data[0].id;
-    console.log("Got channel id");
-    console.log(res)
-    $.when(
-      $.ajax("https://api.twitchemotes.com/api/v4/channels/" + channel_id)
-    ).done(function(res) {
-      console.log("got emotes")
-      console.log(res)
-    })
-
-  }).fail(function(err) {
-    console.log("error ran");
-    console.log(err);
-
-
-  });
-
-
-}
 
 const {
   chat,
@@ -184,7 +122,6 @@ function ConnectTwtichChat() {
     // Connect ...
     chat.connect().then(() => {
       chat.join(channel).then(({ roomState }) => {
-        console.log(roomState.roomId)
         isConnected = true;
         connectedChannel = channel;
         Game_Started();
@@ -436,3 +373,34 @@ function openInNewTab(url) {
   var win = window.open(url, '_blank');
   win.focus();
 }
+
+
+// function Test_Emotes_get() {
+//   //Game client id: gcxxg3g0lghqxl0d4zhttv11sobtf8
+//   //Working------------------------------
+//   $.when(
+//     $.ajax("https://api.twitch.tv/helix/users?login=xqcow", {
+//       beforeSend: function(hrObj) {
+//         hrObj.setRequestHeader("Client-ID", "gcxxg3g0lghqxl0d4zhttv11sobtf8")
+//       }
+//     })
+//   ).done(function(res) {
+//     var channel_id = res.data[0].id;
+//     console.log("Got channel id");
+//     $.when(
+//       $.ajax("https://api.twitchemotes.com/api/v4/channels/" + channel_id)
+//     ).done(function(res) {
+//       console.log("got emotes")
+//       for (var ctr in res["emotes"]) {
+//         //res["emotes"][ctr].code
+//         console.log("https://static-cdn.jtvnw.net/emoticons/v1/" + res["emotes"][ctr].id + "/3.0")
+//         img_word.src = "https://static-cdn.jtvnw.net/emoticons/v1/" + res["emotes"][ctr].id + "/3.0";
+//       }
+//       // img_word.src
+
+//     })
+
+//   }).fail(function(err) {
+//     console.log(err);
+//   });
+// }
