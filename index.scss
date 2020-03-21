@@ -172,9 +172,16 @@ hr {
     opacity: 1;
 }
 
+@mixin text-dono-scale {
+    @media only screen and (max-width: 490px) {
+        font-size: 0.55rem;
+    }
+}
+
 .donate_btn_text {
     font-size: 0.7rem;
     color: #d4af378c;
+    @include text-dono-scale
 }
 
 .dono_btn {
