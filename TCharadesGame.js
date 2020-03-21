@@ -1,7 +1,5 @@
-//TODO: fix image reflow on main page! use inner html this time
 //TODO: do more testing on custom words input
 //TODO: check local storage error for custom words, and again for seen word
-//TODO: change exmaple
 const MAX_WORD_CHAR_COUNT = 45;
 var isConnected = false;
 var connectedChannel = ""
@@ -51,15 +49,13 @@ $(document).ready(function() {
   //Word image setup
   img_word.onload = function() {
     var aspectRatio = (this.width / this.height)
-    this.width = (img_height * aspectRatio);
+    var new_width = (img_height * aspectRatio);
     var p_img = document.getElementById("image_place");
-    p_img.innerHTML = ""
-    p_img.appendChild(this);
+    p_img.innerHTML = "<img id=\"word_image_main\" class=\"margin_center\" src=\"" + img_word.src + "\" height=\"" + img_height + "\" width=\"" + new_width + "\" style=\"visibility: hidden;\">";
   }
   img_word.onerror = function() {
     this.src = 'images/blank.png';
-  }
-  img_word.classList.add("margin_center");
+  };
 
   Setup_Shuffle_Words();
 })
@@ -90,7 +86,7 @@ function NextRound() {
   PopOutWord();
   StartTimer(time_Slider_Value);
   document.getElementById("timer_ouput").style.color = "#4682B4";
-  img_word.style.visibility = "hidden";
+  document.getElementById("word_image_main").style.visibility = "hidden";
   Error_Notify("", "", true)
   clickSound.play();
 }
@@ -269,7 +265,7 @@ function WordNotGuessed() {
 function GameEnd() {
   StopTimer();
   document.getElementById("the_word").innerHTML = display_ChosenWord;
-  img_word.style.visibility = "visible";
+  document.getElementById("word_image_main").style.visibility = "visible";
 }
 
 //Categories All Swtiches Off Prevention, and Selection
