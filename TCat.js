@@ -108,9 +108,6 @@ list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModa
 
     }
   }
-  if (Object.keys(processedWord).length === 0) {
-    return -1;
-  }
   // Try to save textfield data to local storage
   if (canDoLocalStorage) {
     try {
@@ -119,6 +116,9 @@ list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModa
       console.log(err);
       canDoLocalStorage = false;
     }
+  }
+  if (Object.keys(processedWord).length === 0) {
+    return -1;
   }
   return processedWord;
 }, null, function() {
