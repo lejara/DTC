@@ -46,8 +46,7 @@ class Dynamic_Category extends Category {
           this.state = true;
           Setup_Shuffle_Words();
         } else {
-          $('#' + this.id).bootstrapToggle('off', true);
-          this.state = false;
+          $('#' + this.id).bootstrapToggle('off', false);
         }
         $('#' + this.id_modal).modal('hide');
       }
@@ -85,20 +84,21 @@ list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModa
 
   for (var index in word_line) {
     if (word_line[index] == "" || word_line[index] == "\n") {
-      word_line.splice(index, 1);
+      word_line.splice(index, 0);
     } else {
 
       var split_line = word_line[index].split(">");
 
       var word = split_line[0].trim();
 
-      if (word !== "") {
+      var clean_word = DOMPurify.sanitize(word);
+
+      if (clean_word !== "") {
         var img_link = "";
 
         if (split_line[1] != null) {
           img_link = split_line[1].trim();
         }
-        var clean_word = DOMPurify.sanitize(word);
         var clean_img = DOMPurify.sanitize(img_link);
         if (clean_word.length > MAX_WORD_CHAR_COUNT) {
           clean_word = clean_word.substring(0, MAX_WORD_CHAR_COUNT)
@@ -108,7 +108,6 @@ list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModa
 
     }
   }
-  // console.log(processedWord)
   if (Object.keys(processedWord).length === 0) {
     return -1;
   }

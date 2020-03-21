@@ -1,5 +1,3 @@
-//TODO: do more testing on custom words input
-//TODO: check local storage error for custom words, and again for seen word
 const MAX_WORD_CHAR_COUNT = 45;
 var isConnected = false;
 var connectedChannel = ""
@@ -64,7 +62,7 @@ const {
   chat,
   api
 } = new TwitchJs({
-  log: { enabled: false },
+  log: { enabled: false, clientId: "gcxxg3g0lghqxl0d4zhttv11sobtf8" },
 });
 
 function StartGame() {
