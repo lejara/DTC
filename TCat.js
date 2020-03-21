@@ -1,5 +1,4 @@
 var list_of_categories = [];
-var list_of_dynamic_categories = [];
 
 //Warpper Object for tracking categories
 class Category {
@@ -10,24 +9,58 @@ class Category {
   }
 }
 
-//Warpper for Dynamic Categories, anything that fetches words real time
-//request must be a function: 
-// return array of populated word for Category.words or -1 if fetch fails
+//Dynamic Categories, anything that fetches words real time
+//request must be a function:
+//   -getting user data must be done in the request function 
+//   -must return an array of populated word for Category.words or -1 if fetch fails
 // getWords() must be called when getting the words
+// it is assumed that Dynamic_Category is used with a bootstrap modal
+// modal must have an id, and a save button name called name="save_btn"
+// Dynamic_Category must be given the category's label name
+//Note : Dynamic_Category is not ready to support web api requests. This will be added in a future update
 class Dynamic_Category extends Category {
-  constructor(p_id, p_words, re) {
+  constructor(p_id, id_m, name, p_words, re, submit = null, initCode = null) {
     super(p_id, p_words);
 
+    this.id_modal = id_m;
+    this.cat_name = name;
     this.isLoaded = false;
+    var self = this;
 
     this.request = re;
 
+    $(document).ready(function() {
+      var save_btn = document.querySelector('#' + id_m).querySelector('button[name="save_btn"]');
+      save_btn.addEventListener('click', function() {
+        self.user_submit()
+      })
+      if (initCode != null) {
+        initCode();
+      }
+    })
+
+    if (submit == null) {
+      this.user_submit = function() {
+        if (this.refresh(true) != -1) {
+          $('#' + this.id).bootstrapToggle('on', true);
+          this.state = true;
+          Setup_Shuffle_Words();
+        } else {
+          $('#' + this.id).bootstrapToggle('off', true);
+          this.state = false;
+        }
+        $('#' + this.id_modal).modal('hide');
+      }
+    } else {
+      this.user_submit = submit;
+    }
+
     this.refresh = function(forceRefresh = false) {
-      if (!this.isLoaded || forceRefresh === true) {
+      if (!this.isLoaded || forceRefresh == true) {
         var returnValue = this.request();
         if (returnValue != -1) {
           this.words = returnValue;
-          isLoaded = true;
+          this.isLoaded = true;
         } else {
           return returnValue;
         }
@@ -38,8 +71,77 @@ class Dynamic_Category extends Category {
     this.getWords = function() {
       return this.refresh();
     };
+
+    this.show_modal = function() {
+      $('#' + this.id_modal).modal('show');
+    }
   }
 }
+
+list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModal", "Custom Words", {}, function() {
+  var data = document.getElementById("customWords_textarea").value;
+  var word_line = data.split("::");
+  var processedWord = {};
+
+  for (var index in word_line) {
+    if (word_line[index] == "" || word_line[index] == "\n") {
+      word_line.splice(index, 1);
+    } else {
+
+      var split_line = word_line[index].split(">");
+
+      var word = split_line[0].trim();
+
+      if (word !== "") {
+        var img_link = "";
+
+        if (split_line[1] != null) {
+          img_link = split_line[1].trim();
+        }
+        var clean_word = DOMPurify.sanitize(word);
+        var clean_img = DOMPurify.sanitize(img_link);
+        if (clean_word.length > MAX_WORD_CHAR_COUNT) {
+          clean_word = clean_word.substring(0, MAX_WORD_CHAR_COUNT)
+        }
+        processedWord[clean_word] = clean_img;
+      }
+
+    }
+  }
+  // console.log(processedWord)
+  if (Object.keys(processedWord).length === 0) {
+    return -1;
+  }
+  // Try to save textfield data to local storage
+  if (canDoLocalStorage) {
+    try {
+      localStorage.setItem("custom_word_text_data", data);
+    } catch (err) {
+      console.log(err);
+      canDoLocalStorage = false;
+    }
+  }
+  return processedWord;
+}, null, function() {
+
+  var populate_textfield = function(e) {
+    if (canDoLocalStorage) {
+      try {
+        var pop_textfield = localStorage.getItem("custom_word_text_data");
+        if (pop_textfield != null) {
+          document.getElementById("customWords_textarea").value = pop_textfield;
+        }
+
+      } catch (err) {
+        console.log(err);
+        canDoLocalStorage = false;
+      }
+    }
+  }
+
+  $('#Cus_WordModal').on('show.bs.modal', populate_textfield);
+
+}));
 
 list_of_categories.push(new Category("Game_Switch", { "Pong": "", "Space Invaders": "", "Pac Man": "", "Donkey Kong": "", "Tetris": "", "Super Mario Bros": "", "Contra": "", "Punch Out": "", "Mega Man": "", "Prince of Persia": "", "SimCity": "", "Monkey Island": "", "Civilization": "", "Lemmings": "", "Sonic": "", "Street Fighter": "", "Mortal Kombat": "", "Wolfenstein": "", "Doom": "", "NBA Jam": "", "Star Fox": "", "Syndicate": "", "EarthBound": "", "Super Metroid": "", "Chrono Trigger": "", "Duke Nukem": "", "Final Fantasy": "", "Pokemon": "", "Quake": "", "Resident Evil": "", "Tomb Raider": "", "Castlevania": "", "GoldenEye 007": "", "Gran Turismo": "", "Tekken": "", "Fallout": "", "Half Life": "", "Metal Gear": "", "SoulCalibur": "", "StarCraft": "", "Age of Empires": "", "Homeworld": "", "Unreal Tournament": "", "Counter Strike": "", "Deus Ex": "", "Diablo": "", "The Sims": "", "Animal Crossing": "", "Grand Theft Auto": "", "Max Payne": "", "Silent Hill": "", "Super Smash Bros": "", "Kingdom Hearts": "", "Metroid Prime": "", "World of Warcraft": "", "God of War": "", "Guitar Hero": "", "Shadow of the Colossus": "", "The Elder Scrolls": "", "Gears of War": "", "Hitman": "", "Wii Sports": "", "BioShock": "", "Call of Duty": "", "Halo": "", "Portal": "", "Super Mario Galaxy": "", "Team Fortress 2": "", "Fortnite": "", "Dead Space": "", "Left 4 Dead": "", "Persona 4": "", "Assassin's Creed": "", "Uncharted": "", "Limbo": "", "Red Dead Redemption": "", "Rock Band": "", "StarCraft II": "", "Super Meat Boy": "", "Dark Souls": "", "Minecraft": "", "Portal 2": "", "The Walking Dead": "", "Dota 2": "", "The Last of Us": "", "Bloodborne": "", "The Witcher 3": "", "Inside": "", "Overwatch": "", "The Legend of Zelda": "", "League Of Legends": "", "Madden": "" }));
 list_of_categories.push(new Category("Twitch_Emotes_Switch", { "4Head": "https://static-cdn.jtvnw.net/emoticons/v1/354/3.0", "ANELE": "https://static-cdn.jtvnw.net/emoticons/v1/3792/3.0", "BabyRage": "https://static-cdn.jtvnw.net/emoticons/v1/22639/3.0", "BibleThump": "https://static-cdn.jtvnw.net/emoticons/v1/86/3.0", "BlessRNG": "https://static-cdn.jtvnw.net/emoticons/v1/153556/3.0", "BloodTrail": "https://static-cdn.jtvnw.net/emoticons/v1/69/3.0", "BOP": "https://static-cdn.jtvnw.net/emoticons/v1/301428702/3.0", "BrokeBack": "https://static-cdn.jtvnw.net/emoticons/v1/4057/3.0", "cmonBruh": "https://static-cdn.jtvnw.net/emoticons/v1/84608/3.0", "CoolCat": "https://static-cdn.jtvnw.net/emoticons/v1/58127/3.0", "CoolStoryBob": "https://static-cdn.jtvnw.net/emoticons/v1/123171/3.0", "CurseLit": "https://static-cdn.jtvnw.net/emoticons/v1/116625/3.0", "DansGame": "https://static-cdn.jtvnw.net/emoticons/v1/33/3.0", "DarkMode": "https://static-cdn.jtvnw.net/emoticons/v1/461298/3.0", "DatSheffy": "https://static-cdn.jtvnw.net/emoticons/v1/111700/3.0", "DoritosChip": "https://static-cdn.jtvnw.net/emoticons/v1/102242/3.0", "duDudu": "https://static-cdn.jtvnw.net/emoticons/v1/62834/3.0", "EleGiggle": "https://static-cdn.jtvnw.net/emoticons/v1/4339/3.0", "FailFish": "https://static-cdn.jtvnw.net/emoticons/v1/360/3.0", "FBCatch": "https://static-cdn.jtvnw.net/emoticons/v1/1441281/3.0", "FBPass": "https://static-cdn.jtvnw.net/emoticons/v1/1441271/3.0", "FBRun": "https://static-cdn.jtvnw.net/emoticons/v1/1441261/3.0", "FBSpiral": "https://static-cdn.jtvnw.net/emoticons/v1/1441273/3.0", "FBtouchdown": "https://static-cdn.jtvnw.net/emoticons/v1/626795/3.0", "FrankerZ": "https://static-cdn.jtvnw.net/emoticons/v1/65/3.0", "FutureMan": "https://static-cdn.jtvnw.net/emoticons/v1/98562/3.0", "GivePLZ": "https://static-cdn.jtvnw.net/emoticons/v1/112291/3.0", "GunRun": "https://static-cdn.jtvnw.net/emoticons/v1/1584743/3.0", "HeyGuys": "https://static-cdn.jtvnw.net/emoticons/v1/30259/3.0", "HolidaySanta": "https://static-cdn.jtvnw.net/emoticons/v1/1713822/3.0", "HolidayTree": "https://static-cdn.jtvnw.net/emoticons/v1/1713825/3.0", "HotPokket": "https://static-cdn.jtvnw.net/emoticons/v1/357/3.0", "imGlitch": "https://static-cdn.jtvnw.net/emoticons/v1/112290/3.0", "ItsBoshyTime": "https://static-cdn.jtvnw.net/emoticons/v1/133468/3.0", "Jebaited": "https://static-cdn.jtvnw.net/emoticons/v1/114836/3.0", "KAPOW": "https://static-cdn.jtvnw.net/emoticons/v1/133537/3.0", "Kappa": "https://static-cdn.jtvnw.net/emoticons/v1/25/3.0", "KappaClaus": "https://static-cdn.jtvnw.net/emoticons/v1/74510/3.0", "KappaPride": "https://static-cdn.jtvnw.net/emoticons/v1/55338/3.0", "KappaRoss": "https://static-cdn.jtvnw.net/emoticons/v1/70433/3.0", "KappaWealth": "https://static-cdn.jtvnw.net/emoticons/v1/81997/3.0", "Kappu": "https://static-cdn.jtvnw.net/emoticons/v1/160397/3.0", "Keepo": "https://static-cdn.jtvnw.net/emoticons/v1/1902/3.0", "KonCha": "https://static-cdn.jtvnw.net/emoticons/v1/160400/3.0", "Kreygasm": "https://static-cdn.jtvnw.net/emoticons/v1/41/3.0", "LUL": "https://static-cdn.jtvnw.net/emoticons/v1/425618/3.0", "Mau5": "https://static-cdn.jtvnw.net/emoticons/v1/30134/3.0", "mcaT": "https://static-cdn.jtvnw.net/emoticons/v1/35063/3.0", "MercyWing1": "https://static-cdn.jtvnw.net/emoticons/v1/1003187/3.0", "MercyWing2": "https://static-cdn.jtvnw.net/emoticons/v1/1003189/3.0", "MingLee": "https://static-cdn.jtvnw.net/emoticons/v1/68856/3.0", "MorphinTime": "https://static-cdn.jtvnw.net/emoticons/v1/156787/3.0", "MrDestructoid": "https://static-cdn.jtvnw.net/emoticons/v1/28/3.0", "NinjaGrumpy": "https://static-cdn.jtvnw.net/emoticons/v1/138325/3.0", "NotLikeThis": "https://static-cdn.jtvnw.net/emoticons/v1/58765/3.0", "OpieOP": "https://static-cdn.jtvnw.net/emoticons/v1/100590/3.0", "PartyHat": " https://static-cdn.jtvnw.net/emoticons/v1/965738/3.0", "PartyTime": "https://static-cdn.jtvnw.net/emoticons/v1/135393/3.0", "PinkMercy": "https://static-cdn.jtvnw.net/emoticons/v1/1003190/3.0", "PipeHype": "https://static-cdn.jtvnw.net/emoticons/v1/4240/3.0", "PixelBob": "https://static-cdn.jtvnw.net/emoticons/v1/1547903/3.0", "PJSalt": "https://static-cdn.jtvnw.net/emoticons/v1/36/3.0", "PJSugar": "https://static-cdn.jtvnw.net/emoticons/v1/102556/3.0", "PogChamp": "https://static-cdn.jtvnw.net/emoticons/v1/88/3.0", "PopCorn": "https://static-cdn.jtvnw.net/emoticons/v1/724216/3.0", "PowerUpL": "https://static-cdn.jtvnw.net/emoticons/v1/425688/3.0", "PrimeMe": "https://static-cdn.jtvnw.net/emoticons/v1/115075/3.0", "PunchTrees": "https://static-cdn.jtvnw.net/emoticons/v1/47/3.0", "PunOko": "https://static-cdn.jtvnw.net/emoticons/v1/160401/3.0", "ResidentSleeper": "https://static-cdn.jtvnw.net/emoticons/v1/245/3.0", "riPepperonis": "https://static-cdn.jtvnw.net/emoticons/v1/62833/3.0", "SeemsGood": "https://static-cdn.jtvnw.net/emoticons/v1/64138/3.0", "SingsMic": "https://static-cdn.jtvnw.net/emoticons/v1/300116349/3.0", "SingsNote": "https://static-cdn.jtvnw.net/emoticons/v1/300116350/3.0", "SMOrc": "https://static-cdn.jtvnw.net/emoticons/v1/52/3.0", "Squid2": "https://static-cdn.jtvnw.net/emoticons/v1/191763/3.0", "Squid3": "https://static-cdn.jtvnw.net/emoticons/v1/191764/3.0", "Squid4": "https://static-cdn.jtvnw.net/emoticons/v1/191767/3.0", "SSSsss": "https://static-cdn.jtvnw.net/emoticons/v1/46/3.0", "StinkyCheese": "https://static-cdn.jtvnw.net/emoticons/v1/90076/3.0", "SwiftRage": "https://static-cdn.jtvnw.net/emoticons/v1/34/3.0", "TakeNRG": "https://static-cdn.jtvnw.net/emoticons/v1/112292/3.0", "TearGlove": "https://static-cdn.jtvnw.net/emoticons/v1/160403/3.0", "TheIlluminati": "https://static-cdn.jtvnw.net/emoticons/v1/145315/3.0", "TombRaid": "https://static-cdn.jtvnw.net/emoticons/v1/864205/3.0", "TriHard": "https://static-cdn.jtvnw.net/emoticons/v1/120232/3.0", "TwitchLit": "https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0", "twitchRaid": "https://static-cdn.jtvnw.net/emoticons/v1/62836/3.0", "TwitchRPG": "https://static-cdn.jtvnw.net/emoticons/v1/1220086/3.0", "TwitchSings": "https://static-cdn.jtvnw.net/emoticons/v1/300116344/3.0", "TwitchVotes": "https://static-cdn.jtvnw.net/emoticons/v1/479745/3.0", "VoHiYo": "https://static-cdn.jtvnw.net/emoticons/v1/81274/3.0", "VoteNay": "https://static-cdn.jtvnw.net/emoticons/v1/106294/3.0", "VoteYea": "https://static-cdn.jtvnw.net/emoticons/v1/106293/3.0", "WutFace": "https://static-cdn.jtvnw.net/emoticons/v1/28087/3.0" }));

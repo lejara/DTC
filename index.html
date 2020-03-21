@@ -183,7 +183,37 @@
                                 Emojis (Easy)
                             </div>
                             <div class="col-2 my_col align-self-center">
-                                <input id="Emoji_Swtich" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                <input id="Emoji_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                            </div>
+                        </div>
+                        <div class="row my-row ml-sm-2">
+                            <div class="col-4 my_col custom_label_swtich align-self-center">
+                                Custom Words
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#Cus_WordModal"><span class="fas fa-cog"></span></button>
+                            </div>
+                            <div class="col-2 my_col align-self-center">
+                                <input id="custom_word_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                            </div>
+
+                            <!-- Custom Words Modal -->
+                            <div class="modal fade" id="Cus_WordModal" tabindex="-1" role="dialog" aria-labelledby="CustomWordModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="CustomWordModalLabel">Custom Words</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>Add in your own words separated by <kbd>::</kbd> and the image by <kbd>></kbd></h6>
+                                            <p class="text-muted">- You can mix in a word with, or without an image link <br> - Each word has a max character limit of 45 <br> - Image links must be the direct link of the image </p>
+                                            <textarea class="form-control my_textarea" id="customWords_textarea" spellcheck="false" placeholder="DansGame :: Kappa :: FrankerZ &#10;&#10; --OR-- &#10;&#10; DansGame > https://static-cdn.jtvnw.net/emoticons/v1/33/3.0 :: &#10; Kappa :: &#10; FrankerZ > https://static-cdn.jtvnw.net/emoticons/v1/65/3.0"
+                                                rows="15"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" name="save_btn" class="btn btn-success">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -339,14 +369,15 @@
     <script src="jquery-3.4.1.min.js"></script>
     <script src="popper.min.js"></script>
     <script src="bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/6f4ae010e6.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js"></script>
     <script src="bootstrap4-toggle.min.js"></script>
     <script src="dist/js/confetti.min.js"></script>
     <script src="purify.min.js"></script>
-    <script src="dist/js/TCat.min.js"></script>
-    <script src="dist/js/TCharadesGame.min.js"></script>
-    <!-- <script src="TCat.js"></script> -->
-    <!-- <script src="TCharadesGame.js"></script> -->
+    <!-- <script src="dist/js/TCat.min.js"></script> -->
+    <!-- <script src="dist/js/TCharadesGame.min.js"></script> -->
+    <script src="TCat.js"></script>
+    <script src="TCharadesGame.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158713868-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];

@@ -1,3 +1,8 @@
+//TODO: fix image reflow on main page! use inner html this time
+//TODO: do more testing on custom words input
+//TODO: check local storage error for custom words, and again for seen word
+//TODO: change exmaple
+const MAX_WORD_CHAR_COUNT = 45;
 var isConnected = false;
 var connectedChannel = ""
 
@@ -176,7 +181,17 @@ function Setup_Shuffle_Words() {
   word_obj_concat = {};
   for (var key in list_of_categories) {
     if (list_of_categories[key].state == true) {
-      word_obj_concat = Object.assign(word_obj_concat, list_of_categories[key].words);
+      //Dynamic Category Addtion
+      if (list_of_categories[key] instanceof Dynamic_Category) {
+        var gotWords = list_of_categories[key].getWords();
+        if (gotWords != -1) {
+          word_obj_concat = Object.assign(word_obj_concat, gotWords);
+        }
+      } else {
+        //Normal Category Addtion
+        word_obj_concat = Object.assign(word_obj_concat, list_of_categories[key].words);
+      }
+
     }
   }
   random_word_list_keys = shuffleWords(Object.keys(word_obj_concat));
@@ -199,6 +214,7 @@ function PickWord() {
   display_ChosenWord = chosenWord;
   Check_Seen_Word(chosenWord);
   updatePopoutWord();
+  chosenWord = RegExp.escape(chosenWord);
   chosenWord = chosenWord.toLowerCase();
 }
 
@@ -212,6 +228,10 @@ function shuffleWords(a) {
   }
   return a;
 }
+
+RegExp.escape = function(s) {
+  return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+};
 
 function WordGuessed() {
   console.log("WORD GUEESED!");
@@ -268,9 +288,17 @@ var p = function() {
   if (number_of_trues == 1 && list_of_categories[this_Category_Key].state == true) {
     $('#' + this.id).bootstrapToggle('on', true);
   } else {
-    list_of_categories[this_Category_Key].state = !list_of_categories[this_Category_Key].state;
-    Setup_Shuffle_Words();
 
+    list_of_categories[this_Category_Key].state = !list_of_categories[this_Category_Key].state;
+
+    if (list_of_categories[this_Category_Key].state == true && list_of_categories[this_Category_Key] instanceof Dynamic_Category) {
+      $('#' + this.id).bootstrapToggle('off', true);
+      list_of_categories[this_Category_Key].state = false
+      list_of_categories[this_Category_Key].show_modal();
+
+    } else {
+      Setup_Shuffle_Words();
+    }
   }
 };
 

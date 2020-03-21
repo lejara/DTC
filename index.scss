@@ -7,6 +7,10 @@ $input-bg: $tri_colour;
 $input-color: white;
 $custom-range-track-bg: $tri_colour;
 $enable-responsive-font-sizes: true;
+$modal-content-bg: #1F1F23;
+$modal-content-border-color: rgb(36, 36, 36);
+$modal-header-border-color: rgb(61, 61, 61);
+$close-color: rgb(121, 120, 120);
 @import "node_modules/bootstrap/scss/bootstrap";
 //Normal scss
 $max_image-size: 8rem;
@@ -194,4 +198,8 @@ hr {
 
 nav {
     box-shadow: 0 1px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.my_textarea {
+    text-align: left;
 }
