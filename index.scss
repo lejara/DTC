@@ -1,12 +1,16 @@
 $body-bg: #1F1F23;
 $body-color: rgba(255, 255, 255, 0.904);
 $primary: white;
-$secondary: #281e3e8a;
+$secondary: #2e1d528a;
 $tri_colour: #2b274b;
 $input-bg: $tri_colour;
 $input-color: white;
 $custom-range-track-bg: $tri_colour;
 $enable-responsive-font-sizes: true;
+$modal-content-bg: #1F1F23;
+$modal-content-border-color: rgb(36, 36, 36);
+$modal-header-border-color: rgb(61, 61, 61);
+$close-color: rgb(121, 120, 120);
 @import "node_modules/bootstrap/scss/bootstrap";
 //Normal scss
 $max_image-size: 8rem;
@@ -113,6 +117,7 @@ body {
     clear: both;
     font-size: 0.9rem;
     padding-top: 10px;
+    box-shadow: 0 1px 50px rgba(0, 0, 0, 0.3), 0 0 50px rgba(0, 0, 0, 0.1) inset;
 }
 
 .visible_tab {
@@ -168,9 +173,16 @@ hr {
     opacity: 1;
 }
 
+@mixin text-dono-scale {
+    @media only screen and (max-width: 490px) {
+        font-size: 0.55rem;
+    }
+}
+
 .donate_btn_text {
     font-size: 0.7rem;
     color: #d4af378c;
+    @include text-dono-scale
 }
 
 .dono_btn {
@@ -194,4 +206,8 @@ hr {
 
 nav {
     box-shadow: 0 1px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.my_textarea {
+    text-align: left;
 }

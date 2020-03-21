@@ -1,3 +1,4 @@
+const MAX_WORD_CHAR_COUNT = 45;
 var isConnected = false;
 var connectedChannel = ""
 
@@ -23,34 +24,36 @@ var pop_window = null;
 
 //Awake Function
 $(document).ready(function() {
+  //Set tooltip on
   $('[data-toggle="tooltip"]').tooltip();
+  //Sync categoires swtiches state
   for (var cate in list_of_categories) {
     list_of_categories[cate].state = document.getElementById(list_of_categories[cate].id).checked
   };
 
+  //Time Slider Init
   document.getElementById("timer_Spinner").addEventListener('input', timer_slider_num_show, false);
+  time_Slider_Value = document.getElementById("timer_Spinner").value * 4;
 
+  //Sounds Init
   clickSound = document.getElementById("btn_click_s");
   clickSound.volume = 0.2;
   winSound = document.getElementById("lose_s");
   winSound.volume = 0.9;
 
-  time_Slider_Value = document.getElementById("timer_Spinner").value * 4;
-
+  //Main Button add onclick event
   document.getElementById("main_btn").addEventListener("click", StartGame)
 
-  //image setup
+  //Word image setup
   img_word.onload = function() {
     var aspectRatio = (this.width / this.height)
-    this.width = (img_height * aspectRatio);
+    var new_width = (img_height * aspectRatio);
     var p_img = document.getElementById("image_place");
-    p_img.innerHTML = ""
-    p_img.appendChild(this);
+    p_img.innerHTML = "<img id=\"word_image_main\" class=\"margin_center\" src=\"" + img_word.src + "\" height=\"" + img_height + "\" width=\"" + new_width + "\" style=\"visibility: hidden;\">";
   }
   img_word.onerror = function() {
     this.src = 'images/blank.png';
-  }
-  img_word.classList.add("margin_center");
+  };
 
   Setup_Shuffle_Words();
 })
@@ -59,7 +62,7 @@ const {
   chat,
   api
 } = new TwitchJs({
-  log: { enabled: false },
+  log: { enabled: false, clientId: "gcxxg3g0lghqxl0d4zhttv11sobtf8" },
 });
 
 function StartGame() {
@@ -81,7 +84,7 @@ function NextRound() {
   PopOutWord();
   StartTimer(time_Slider_Value);
   document.getElementById("timer_ouput").style.color = "#4682B4";
-  img_word.style.visibility = "hidden";
+  document.getElementById("word_image_main").style.visibility = "hidden";
   Error_Notify("", "", true)
   clickSound.play();
 }
@@ -117,7 +120,7 @@ function ConnectTwtichChat() {
 
     // Connect ...
     chat.connect().then(() => {
-      chat.join(channel).then(() => {
+      chat.join(channel).then(({ roomState }) => {
         isConnected = true;
         connectedChannel = channel;
         Game_Started();
@@ -172,7 +175,17 @@ function Setup_Shuffle_Words() {
   word_obj_concat = {};
   for (var key in list_of_categories) {
     if (list_of_categories[key].state == true) {
-      word_obj_concat = Object.assign(word_obj_concat, list_of_categories[key].words);
+      //Dynamic Category Addtion
+      if (list_of_categories[key] instanceof Dynamic_Category) {
+        var gotWords = list_of_categories[key].getWords();
+        if (gotWords != -1) {
+          word_obj_concat = Object.assign(word_obj_concat, gotWords);
+        }
+      } else {
+        //Normal Category Addtion
+        word_obj_concat = Object.assign(word_obj_concat, list_of_categories[key].words);
+      }
+
     }
   }
   random_word_list_keys = shuffleWords(Object.keys(word_obj_concat));
@@ -195,6 +208,7 @@ function PickWord() {
   display_ChosenWord = chosenWord;
   Check_Seen_Word(chosenWord);
   updatePopoutWord();
+  chosenWord = RegExp.escape(chosenWord);
   chosenWord = chosenWord.toLowerCase();
 }
 
@@ -208,6 +222,10 @@ function shuffleWords(a) {
   }
   return a;
 }
+
+RegExp.escape = function(s) {
+  return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+};
 
 function WordGuessed() {
   console.log("WORD GUEESED!");
@@ -245,7 +263,7 @@ function WordNotGuessed() {
 function GameEnd() {
   StopTimer();
   document.getElementById("the_word").innerHTML = display_ChosenWord;
-  img_word.style.visibility = "visible";
+  document.getElementById("word_image_main").style.visibility = "visible";
 }
 
 //Categories All Swtiches Off Prevention, and Selection
@@ -264,9 +282,17 @@ var p = function() {
   if (number_of_trues == 1 && list_of_categories[this_Category_Key].state == true) {
     $('#' + this.id).bootstrapToggle('on', true);
   } else {
-    list_of_categories[this_Category_Key].state = !list_of_categories[this_Category_Key].state;
-    Setup_Shuffle_Words();
 
+    list_of_categories[this_Category_Key].state = !list_of_categories[this_Category_Key].state;
+
+    if (list_of_categories[this_Category_Key].state == true && list_of_categories[this_Category_Key] instanceof Dynamic_Category) {
+      $('#' + this.id).bootstrapToggle('off', true);
+      list_of_categories[this_Category_Key].state = false
+      list_of_categories[this_Category_Key].show_modal();
+
+    } else {
+      Setup_Shuffle_Words();
+    }
   }
 };
 
@@ -369,3 +395,34 @@ function openInNewTab(url) {
   var win = window.open(url, '_blank');
   win.focus();
 }
+
+
+// function Test_Emotes_get() {
+//   //Game client id: gcxxg3g0lghqxl0d4zhttv11sobtf8
+//   //Working------------------------------
+//   $.when(
+//     $.ajax("https://api.twitch.tv/helix/users?login=xqcow", {
+//       beforeSend: function(hrObj) {
+//         hrObj.setRequestHeader("Client-ID", "gcxxg3g0lghqxl0d4zhttv11sobtf8")
+//       }
+//     })
+//   ).done(function(res) {
+//     var channel_id = res.data[0].id;
+//     console.log("Got channel id");
+//     $.when(
+//       $.ajax("https://api.twitchemotes.com/api/v4/channels/" + channel_id)
+//     ).done(function(res) {
+//       console.log("got emotes")
+//       for (var ctr in res["emotes"]) {
+//         //res["emotes"][ctr].code
+//         console.log("https://static-cdn.jtvnw.net/emoticons/v1/" + res["emotes"][ctr].id + "/3.0")
+//         img_word.src = "https://static-cdn.jtvnw.net/emoticons/v1/" + res["emotes"][ctr].id + "/3.0";
+//       }
+//       // img_word.src
+
+//     })
+
+//   }).fail(function(err) {
+//     console.log(err);
+//   });
+// }
