@@ -96,6 +96,8 @@ list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModa
       if (clean_word !== "") {
         var img_link = "";
 
+        clean_word = clean_word.replace(/\s+/g, " ");
+
         if (split_line[1] != null) {
           img_link = split_line[1].trim();
         }
