@@ -218,6 +218,17 @@
                                             <p class="text-muted">- You can mix in a word with, or without an image link <br> - Each word has a max character limit of 45 <br> - Image links must be the direct link of the image </p>
                                             <textarea class="form-control my_textarea" id="customWords_textarea" spellcheck="false" placeholder="DansGame :: Kappa :: FrankerZ &#10;&#10; --OR-- &#10;&#10;DansGame > https://static-cdn.jtvnw.net/emoticons/v1/33/3.0 :: &#10;Kappa :: &#10;FrankerZ > https://static-cdn.jtvnw.net/emoticons/v1/65/3.0"
                                                 rows="15"></textarea>
+                                            <div>
+                                                <button type="button" class="btn btn-outline-info btn-sm" data-toggle="collapse" data-target="#Cus_advanced_tools">Import from BTTV</button>
+                                                <form id="Cus_advanced_tools">
+                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                        <label class="btn btn-outline-info active">
+                                                            <input type="radio" name="bttvToggle" id="bttv_import_toggle" autocomplete="off" checked>Import from BTTV
+                                                        </label>
+                                                        <button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#BTTV_import">Import from BTTV</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" name="save_btn" class="btn btn-success">Save changes</button>
