@@ -66,7 +66,7 @@ const {
 });
 
 function StartGame() {
-  ConnectTwtichChat();
+  ConnectTwitchChat();
 };
 
 function Game_Started() {
@@ -89,7 +89,7 @@ function NextRound() {
   clickSound.play();
 }
 
-function ConnectTwtichChat() {
+function ConnectTwitchChat() {
   const channel = document.getElementById("channelName").value;
 
   if (isConnected) {
