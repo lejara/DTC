@@ -431,19 +431,25 @@ function openInNewTab(url) {
 // XHR
 function CustomWords_GetEmotes() {
   let xhr = new XMLHttpRequest();
+  const chat = new TwitchJs();
+  var channelName;
   var channelID;
-  // Requires OAuth thing
   
   if (document.getElementById("bttv_import_toggle").checked == true) {
-    channelID = document.getElementById("customwords_inputChannel_bttv").value; // has to be changed
+    channelName; = document.getElementById("customwords_inputChannel_bttv").value;
+    chat.join("channelName").then(function({roomState}) {channelID = roomState.roomId});
+    chat.disconnect();
     
     xhr.open("GET", "https://api.betterttv.net/3/cached/users/twitch/" + channelID, true);
   }
   else if (document.getElementById("ffz_import_toggle").checked == true) {
-   channelID = document.getElementById("customwords_inputChannel_bttv").value; // has to be changed
+    channelName; = document.getElementById("customwords_inputChannel_ffz").value;
+    chat.join("channelName").then(function({roomState}) {channelID = roomState.roomId});
+    chat.disconnect();
    
-   xhr.open("GET", "https://api.betterttv.net/3/cached/users/twitch/" + channelID, true); 
+   xhr.open("GET", "https://api.betterttv.net/3/cached/frankerfacez/users/twitch/" + channelID, true); 
   }
+  
   xhr.onreadystatechange = XHROnReadyStateChange;
   
   
@@ -461,6 +467,9 @@ function CustomWords_GetEmotes() {
         emotesData.sharedEmotes.forEach(function(data) { emotesText += data.code + " > " + "https://cdn.betterttv.net/emote/" + data.id + "/3x" + " ::" + "\n" })
         
         document.getElementById("customWords_textarea").value += "\n\n" + emotesText;
+      }
+      else if (document.getElementById("ffz_import_toggle").checked == true) {
+        console.log(e.target.response)
       }
         
       }
