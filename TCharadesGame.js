@@ -426,3 +426,50 @@ function openInNewTab(url) {
 //     console.log(err);
 //   });
 // }
+
+
+// XHR
+function CustomWords_GetEmotes() {
+  let xhr = new XMLHttpRequest();
+  var channelID;
+  // Requires OAuth thing
+  
+  if (document.getElementById("bttv_import_toggle").checked == true) {
+    channelID = document.getElementById("customwords_inputChannel_bttv").value; // has to be changed
+    
+    xhr.open("GET", "https://api.betterttv.net/3/cached/users/twitch/" + channelID, true);
+  }
+  else if (document.getElementById("ffz_import_toggle").checked == true) {
+   channelID = document.getElementById("customwords_inputChannel_bttv").value; // has to be changed
+   
+   xhr.open("GET", "https://api.betterttv.net/3/cached/users/twitch/" + channelID, true); 
+  }
+  xhr.onreadystatechange = XHROnReadyStateChange;
+  
+  
+  // Called whenever the readyState attribute in the XHR request changes.
+  function XHROnReadyStateChange(e) {
+    if (e.target.readyState == 4) {
+      
+      // if successful
+      if (e.target.status == 200) {
+        var emotesData = JSON.parse(e.target.response);
+        
+      if (document.getElementById("bttv_import_toggle").checked == true) {
+        let emotesText = "";
+        emotesData.channelEmotes.forEach(function(data) { emotesText += data.code + " > " + "https://cdn.betterttv.net/emote/" + data.id + "/3x" + " ::" + "\n" })
+        emotesData.sharedEmotes.forEach(function(data) { emotesText += data.code + " > " + "https://cdn.betterttv.net/emote/" + data.id + "/3x" + " ::" + "\n" })
+        
+        document.getElementById("customWords_textarea").value += "\n\n" + emotesText;
+      }
+        
+      }
+    }
+  }
+  
+  xhr.send()
+}
+
+
+// Custom words emote fetcher.
+document.getElementById("customwords_getEmotes_btn").addEventListener("click", CustomWords_GetEmotes)
