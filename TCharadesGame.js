@@ -78,6 +78,7 @@ function Game_Started() {
 }
 
 function NextRound() {
+  if (!isConnected) { ConnectTwitchChat(); } // This is required because, we use chat.join() to get the userID instead of using the API.
   gameFailed = false;
   PickWord();
   StopTimer();
