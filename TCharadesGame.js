@@ -432,27 +432,63 @@ function openInNewTab(url) {
 // }
 
 
-// XHR
+
+// Error Text handler
+function UpdateErrorText(error, textElementID, boolNotCustomError) {
+  elemTextToUpdate = document.getElementById(textElementID);
+  if (!elemTextToUpdate) {return false;}
+  var updateText = "";
+  
+  if (!boolNotCustomError) {
+   updateText = error; 
+  }
+  
+  elemTextToUpdate.innerText = updateText;
+  elemTextToUpdate.style.display = elemTextToUpdate.getAttribute("defaultdisplay");
+}
+
+
+// Uses XHR
 function CustomWords_GetEmotes() {
+  cus_ErrorText = document.getElementById("Cus_AdvancedTools_Emotes_ErrorText");
+  cus_ErrorText.value = ""; cus_ErrorText.style.display = "none"; // Reset Error
+  if (roundIsActive == true) {cus_ErrorText.innerText = "Please, wait until the current round timer is over, before using that."; 
+                              cus_ErrorText.style.display = "block"; 
+                              return false; }
+  
+  // XHR
   let xhr = new XMLHttpRequest();
   var customwords_channelName;
-  var channelID;
+  var customwords_channelID;
   
   xhr.onreadystatechange = XHROnReadyStateChange;
   
   if (document.getElementById("bttv_import_toggle").checked == true) {
     customwords_channelName = document.getElementById("customwords_inputChannel_bttv").value;
     
-    chat.join(customwords_channelName).then(function({roomState}) {channelID = roomState.roomId})
-    .then(function() { xhr.open("GET", "https://api.betterttv.net/3/cached/users/twitch/" + channelID, true);
-                       xhr.send(); }); // Sends when channelID is ready.
+    chat.connect().then(function() { 
+      chat.join(customwords_channelName).then(function({roomState}) { 
+        customwords_channelID = roomState.roomId;
+        chat.disconnect();
+        isConnected = false;
+        xhr.open("GET", "https://api.betterttv.net/3/cached/users/twitch/" + customwords_channelID, true);
+        xhr.send(); // Sends when channelID is ready.
+        
+      }).catch(function(error){UpdateErrorText("Error. Make sure that the channel name is correct!", "Cus_AdvancedTools_Emotes_ErrorText"); console.log(error)}); 
+    }).catch(function(error){UpdateErrorText("Could not connect to Twitch API.", "Cus_AdvancedTools_Emotes_ErrorText"); console.log(error)});
   }
   else if (document.getElementById("ffz_import_toggle").checked == true) {
     customwords_channelName = document.getElementById("customwords_inputChannel_ffz").value;
     
-    chat.join(customwords_channelName).then(function({roomState}) {channelID = roomState.roomId})
-    .then(function() { xhr.open("GET", "https://api.betterttv.net/3/cached/frankerfacez/users/twitch/" + channelID, true);
-                       xhr.send(); }); // Sends when channelID is ready.
+    chat.connect().then(function() { 
+      chat.join(customwords_channelName).then(function({roomState}) {
+        customwords_channelID = roomState.roomId;
+        chat.disconnect(); isConnected = false;
+        xhr.open("GET", "https://api.betterttv.net/3/cached/frankerfacez/users/twitch/" + customwords_channelID, true);
+        xhr.send(); // Sends when channelID is ready.
+        
+      }).catch(function(error){UpdateErrorText("Error. Make sure that the channel name is correct!", "Cus_AdvancedTools_Emotes_ErrorText"); console.log(error)}); 
+    }).catch(function(error){UpdateErrorText("Could not connect to Twitch API.", "Cus_AdvancedTools_Emotes_ErrorText"); console.log(error)});
   }
   
   // Called whenever the readyState attribute in the XHR request changes.
@@ -462,18 +498,49 @@ function CustomWords_GetEmotes() {
       // if successful
       if (e.target.status == 200) {
         var emotesData = JSON.parse(e.target.response);
+        if (emotesData.channelEmotes && emotesData.sharedEmotes) {
+          if (emotesData.channelEmotes.length == 0 && emotesData.sharedEmotes.length == 0) {UpdateErrorText("User has no emotes.", "Cus_AdvancedTools_Emotes_ErrorText"); return} // ment for BTTV
+        }
+        else if (emotesData.length == 0) {UpdateErrorText("User has no emotes.", "Cus_AdvancedTools_Emotes_ErrorText"); return} // mostly for FFZ
         
-      if (document.getElementById("bttv_import_toggle").checked == true) {
         let emotesText = "";
-        emotesData.channelEmotes.forEach(function(data) { emotesText += data.code + " > " + "https://cdn.betterttv.net/emote/" + data.id + "/3x" + " ::" + "\n" })
-        emotesData.sharedEmotes.forEach(function(data) { emotesText += data.code + " > " + "https://cdn.betterttv.net/emote/" + data.id + "/3x" + " ::" + "\n" })
+        if (document.getElementById("bttv_import_toggle").checked == true) {
+          emotesData.channelEmotes.forEach(function(data) { emotesText += data.code + " > " + "https://cdn.betterttv.net/emote/" + data.id + "/3x" + " ::" + "\n" })
+          emotesData.sharedEmotes.forEach(function(data) { emotesText += data.code + " > " + "https://cdn.betterttv.net/emote/" + data.id + "/3x" + " ::" + "\n" })
+          
+        }
+        else if (document.getElementById("ffz_import_toggle").checked == true) {
+          emotesData.forEach(function(data) { 
+            emotesText += data.code + " > "; 
+            if (data.images["4x"] != null) {
+              emotesText += data.images["4x"] + " ::" + "\n";
+            }
+            else if (data.images["2x"] != null) {
+              emotesText += data.images["2x"] + " ::" + "\n";
+            }
+            else if (data.images["1x"] != null) {
+              emotesText += data.images["1x"] + " ::" + "\n";
+            }
+          });
+                      
+        }
         
-        document.getElementById("customWords_textarea").value += "\n\n" + emotesText;
-      }
-      else if (document.getElementById("ffz_import_toggle").checked == true) {
-        console.log(e.target.response)
-      }
+        customWords_textarea = document.getElementById("customWords_textarea");
         
+        customWords_textarea.setSelectionRange(customWords_textarea.value.length,customWords_textarea.value.length);
+        customWords_textarea.focus();
+        
+        if ( (customWords_textarea.value[customWords_textarea.value.length - 1] == "\n" && customWords_textarea.value[customWords_textarea.value.length - 2] == "\n") || customWords_textarea.value == "") { // Don't create 2 new lines if there are already 2 empty lines or nothing at all
+          document.execCommand("insertText", false, emotesText);
+        }
+        else {
+          document.execCommand("insertText", false, "\n\n" + emotesText); // Insert text at the end of the textfield
+        }
+      }
+      
+      // if not found
+      if (e.target.status == 404) {
+        UpdateErrorText("Error: " + JSON.parse(e.target.response).message, "Cus_AdvancedTools_Emotes_ErrorText");
       }
     }
   }
@@ -483,3 +550,4 @@ function CustomWords_GetEmotes() {
 
 // Custom words emote fetcher.
 document.getElementById("customwords_getEmotes_btn").addEventListener("click", CustomWords_GetEmotes);
+
