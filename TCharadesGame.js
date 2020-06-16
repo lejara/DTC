@@ -9,6 +9,7 @@ var image_src_link = "";
 var wordFound = false;
 var intervalTimer = null;
 var gameFailed;
+var roundIsActive = false;
 var random_word_list_keys = [];
 var word_obj_concat = {};
 var word_cur_index = 0;
@@ -80,6 +81,7 @@ function Game_Started() {
 function NextRound() {
   if (!isConnected) { ConnectTwitchChat(); } // This is required because, we use chat.join() to get the userID instead of using the API.
   gameFailed = false;
+  roundIsActive = true;
   PickWord();
   StopTimer();
   PopOutWord();
@@ -265,6 +267,7 @@ function GameEnd() {
   StopTimer();
   document.getElementById("the_word").innerHTML = display_ChosenWord;
   document.getElementById("word_image_main").style.visibility = "visible";
+  roundIsActive = false;
 }
 
 //Categories All Swtiches Off Prevention, and Selection
