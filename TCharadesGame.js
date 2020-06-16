@@ -431,27 +431,25 @@ function openInNewTab(url) {
 // XHR
 function CustomWords_GetEmotes() {
   let xhr = new XMLHttpRequest();
-  const chat = new TwitchJs();
-  var channelName;
+  var customwords_channelName;
   var channelID;
-  
-  if (document.getElementById("bttv_import_toggle").checked == true) {
-    channelName; = document.getElementById("customwords_inputChannel_bttv").value;
-    chat.join("channelName").then(function({roomState}) {channelID = roomState.roomId});
-    chat.disconnect();
-    
-    xhr.open("GET", "https://api.betterttv.net/3/cached/users/twitch/" + channelID, true);
-  }
-  else if (document.getElementById("ffz_import_toggle").checked == true) {
-    channelName; = document.getElementById("customwords_inputChannel_ffz").value;
-    chat.join("channelName").then(function({roomState}) {channelID = roomState.roomId});
-    chat.disconnect();
-   
-   xhr.open("GET", "https://api.betterttv.net/3/cached/frankerfacez/users/twitch/" + channelID, true); 
-  }
   
   xhr.onreadystatechange = XHROnReadyStateChange;
   
+  if (document.getElementById("bttv_import_toggle").checked == true) {
+    customwords_channelName = document.getElementById("customwords_inputChannel_bttv").value;
+    
+    chat.join(customwords_channelName).then(function({roomState}) {channelID = roomState.roomId})
+    .then(function() { xhr.open("GET", "https://api.betterttv.net/3/cached/users/twitch/" + channelID, true);
+                       xhr.send(); }); // Sends when channelID is ready.
+  }
+  else if (document.getElementById("ffz_import_toggle").checked == true) {
+    customwords_channelName = document.getElementById("customwords_inputChannel_ffz").value;
+    
+    chat.join(customwords_channelName).then(function({roomState}) {channelID = roomState.roomId})
+    .then(function() { xhr.open("GET", "https://api.betterttv.net/3/cached/frankerfacez/users/twitch/" + channelID, true);
+                       xhr.send(); }); // Sends when channelID is ready.
+  }
   
   // Called whenever the readyState attribute in the XHR request changes.
   function XHROnReadyStateChange(e) {
@@ -476,9 +474,8 @@ function CustomWords_GetEmotes() {
     }
   }
   
-  xhr.send()
 }
 
 
 // Custom words emote fetcher.
-document.getElementById("customwords_getEmotes_btn").addEventListener("click", CustomWords_GetEmotes)
+document.getElementById("customwords_getEmotes_btn").addEventListener("click", CustomWords_GetEmotes);
