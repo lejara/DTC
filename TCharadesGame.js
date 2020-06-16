@@ -530,7 +530,7 @@ function CustomWords_GetEmotes() {
         customWords_textarea.setSelectionRange(customWords_textarea.value.length,customWords_textarea.value.length);
         customWords_textarea.focus();
         
-        if ( (customWords_textarea.value[customWords_textarea.value.length - 1] == "\n" && customWords_textarea.value[customWords_textarea.value.length - 2] == "\n") || customWords_textarea.value == "") { // Don't create 2 new lines if there are already 2 empty lines or nothing at all
+        if ( (customWords_textarea.value[customWords_textarea.value.length - 1] == "\n" && customWords_textarea.value[customWords_textarea.value.length - 2] == "\n") || customWords_textarea.value == "") { // Don't create 2 new lines if there are already 2 empty lines or nothing at all (issue is when there's a line break after a word followed by another)
           document.execCommand("insertText", false, emotesText);
         }
         else {
