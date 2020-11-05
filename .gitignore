@@ -18,6 +18,7 @@ builtwithwwb15.png
 
 node_modules/
 
+.vs
 
 # Optional npm cache directory
 .npm
