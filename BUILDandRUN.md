@@ -8,7 +8,7 @@ Simple workaround is to -disable-web-security, just for this instance!
 
 # How to Build
 ### Get / Do Once
-- install Sass on your machine
+- install Sass on your machine: "npm install -g sass"
 - run "npm Install"
 
 ### Full Build
