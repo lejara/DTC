@@ -26,7 +26,7 @@ $chat_font_size: 1.0rem;
 // .my_col {
 //     border: 1px dotted blue;
 // }
-html,
+// html,
 body {
     height: 100%;
 }
@@ -210,4 +210,15 @@ nav {
 
 .my_textarea {
     text-align: left;
+}
+
+
+  
+.opacity-40 {
+    opacity: 0.4; 
+}
+  
+  
+.opacity-100 {
+    opacity: 1; 
 }
