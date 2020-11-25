@@ -1,6 +1,7 @@
 const MAX_WORD_CHAR_COUNT = 45;
 var isConnected = false;
-var connectedChannel = ""
+var connectedChannelName = ""
+var connectedChannel_ID;
 
 var time_Slider_Value = 1;
 var display_ChosenWord = "--Game Has Not Started--";
@@ -14,7 +15,6 @@ var word_obj_concat = {};
 var word_cur_index = 0;
 var canDoLocalStorage = true;
 var hasSeenWord = false;
-
 
 var clickSound;
 var winSound;
@@ -55,6 +55,9 @@ $(document).ready(function() {
     this.src = 'images/blank.png';
   };
 
+  document.getElementById("Dynamic_Categories_Switches").classList.add("opacity-40");
+  //TODO: added in swtich disable state here
+
   Setup_Shuffle_Words();
 })
 
@@ -74,6 +77,9 @@ function Game_Started() {
   document.getElementById("main_btn").value = "Next Word";
   document.getElementById("main_btn").removeEventListener("click", StartGame);
   document.getElementById("main_btn").addEventListener("click", NextRound);
+  //Turn on Dynamic Categories
+  document.getElementById("Dynamic_Categories_Switches").classList.remove("opacity-40");
+  //TODO: added in swtich enable state here
   NextRound();
 }
 
@@ -89,50 +95,41 @@ function NextRound() {
   clickSound.play();
 }
 
+// Connect To Twtich Channel
 function ConnectTwtichChat() {
   const channel = document.getElementById("channelName").value;
-
-  if (isConnected) {
-    chat.reconnect().then(() => {
-      chat.part(connectedChannel);
-      chat.join(channel);
-      connectedChannel = channel;
-    })
-  } else {
-
-    const handleMessage = message => {
-        if (message.event === "PRIVMSG") {
-          if (!wordFound && message.message != null) {
-            if (!gameFailed) {
-              var clean_message = DOMPurify.sanitize(message.message, { ALLOWED_TAGS: ['b'] })
-              document.getElementById("wb_output").innerHTML = ("<strong class=\"font_pop\" style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + clean_message);
-              if (clean_message.toLowerCase().search("^" + chosenWord) != -1) {
-                WordGuessed();
-              }
-
-            }
-          }
-        };
-
-      }
-      // Listen for all events.
-    chat.on(TwitchJs.Chat.Events.ALL, handleMessage);
-
-    // Connect ...
-    chat.connect().then(() => {
-      chat.join(channel).then(({ roomState }) => {
-        isConnected = true;
-        connectedChannel = channel;
-        Game_Started();
-      }).catch(function(err) {
-        Error_Notify("Make Sure Channel Name Is Filled Correctly.", err, false);
-      })
+  
+  chat.connect().then(() => {
+    chat.join(channel).then(({ roomState }) => {
+      isConnected = true;
+      connectedChannel_ID = roomState.roomId;
+      connectedChannelName = channel;
+      Game_Started();
     }).catch(function(err) {
-      Error_Notify("Could Not Connect To Twtich API.", err, false);
-    });
+      Error_Notify("Make Sure Channel Name Is Filled Correctly.", err, false);
+    })
+  }).catch(function(err) {
+    Error_Notify("Could Not Connect To Twtich API.", err, false);
+  });
+
+  //Assign Chat Message Handler
+  const handleMessage = message => {
+    if (message.event === "PRIVMSG") {
+      if (!wordFound && message.message != null) {
+        if (!gameFailed) {
+          var clean_message = DOMPurify.sanitize(message.message, { ALLOWED_TAGS: ['b'] })
+          document.getElementById("wb_output").innerHTML = ("<strong class=\"font_pop\" style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + clean_message);
+          if (clean_message.toLowerCase().search("^" + chosenWord) != -1) {
+            WordGuessed();
+          }
+
+        }
+      }
+    };
 
   }
-};
+  chat.on(TwitchJs.Chat.Events.ALL, handleMessage);
+}
 
 function Error_Notify(err_msg, err, do_clear = false) {
   if (!do_clear) {
@@ -426,3 +423,105 @@ function openInNewTab(url) {
 //     console.log(err);
 //   });
 // }
+
+
+
+// Uses XHR
+function CustomWords_GetEmotes() {
+  cus_ErrorText = document.getElementById("Cus_AdvancedTools_Emotes_ErrorText");
+  cus_ErrorText.value = ""; cus_ErrorText.style.display = "none"; // Reset Error
+  if (roundIsActive == true) {cus_ErrorText.innerText = "Please, wait until the current round timer is over, before using that."; 
+                              cus_ErrorText.style.display = "block"; 
+                              return false; }
+
+  // XHR
+  let xhr = new XMLHttpRequest();
+  var customwords_channelName;
+  var customwords_channelID;
+
+  xhr.onreadystatechange = XHROnReadyStateChange;
+
+  //Get emotes list from either bbtv or frankerZ
+  if (document.getElementById("bttv_import_toggle").checked == true) {
+    customwords_channelName = document.getElementById("customwords_inputChannel_bttv").value;
+
+    chat.connect().then(function() { 
+      chat.join(customwords_channelName).then(function({roomState}) { 
+        customwords_channelID = roomState.roomId;
+        chat.disconnect();
+        isConnected = false;
+        xhr.open("GET", "https://api.betterttv.net/3/cached/users/twitch/" + customwords_channelID, true);
+        xhr.send(); // Sends when channelID is ready.
+
+      }).catch(function(error){UpdateErrorText("Error. Make sure that the channel name is correct!", "Cus_AdvancedTools_Emotes_ErrorText"); console.log(error)}); 
+    }).catch(function(error){UpdateErrorText("Could not connect to Twitch API.", "Cus_AdvancedTools_Emotes_ErrorText"); console.log(error)});
+  }
+  else if (document.getElementById("ffz_import_toggle").checked == true) {
+    customwords_channelName = document.getElementById("customwords_inputChannel_ffz").value;
+
+    chat.connect().then(function() { 
+      chat.join(customwords_channelName).then(function({roomState}) {
+        customwords_channelID = roomState.roomId;
+        chat.disconnect(); isConnected = false;
+        xhr.open("GET", "https://api.betterttv.net/3/cached/frankerfacez/users/twitch/" + customwords_channelID, true);
+        xhr.send(); // Sends when channelID is ready.
+
+      }).catch(function(error){UpdateErrorText("Error. Make sure that the channel name is correct!", "Cus_AdvancedTools_Emotes_ErrorText"); console.log(error)}); 
+    }).catch(function(error){UpdateErrorText("Could not connect to Twitch API.", "Cus_AdvancedTools_Emotes_ErrorText"); console.log(error)});
+  }
+
+  // Called whenever the readyState attribute in the XHR request changes.
+  function XHROnReadyStateChange(e) {
+    if (e.target.readyState == 4) {
+
+      // if successful
+      if (e.target.status == 200) {
+        var emotesData = JSON.parse(e.target.response);
+        if (emotesData.channelEmotes && emotesData.sharedEmotes) {
+          if (emotesData.channelEmotes.length == 0 && emotesData.sharedEmotes.length == 0) {UpdateErrorText("User has no emotes.", "Cus_AdvancedTools_Emotes_ErrorText"); return} // ment for BTTV
+        }
+        else if (emotesData.length == 0) {UpdateErrorText("User has no emotes.", "Cus_AdvancedTools_Emotes_ErrorText"); return} // mostly for FFZ
+
+        let emotesText = "";
+        if (document.getElementById("bttv_import_toggle").checked == true) {
+          emotesData.channelEmotes.forEach(function(data) { emotesText += data.code + " > " + "https://cdn.betterttv.net/emote/" + data.id + "/3x" + " ::" + "\n" })
+          emotesData.sharedEmotes.forEach(function(data) { emotesText += data.code + " > " + "https://cdn.betterttv.net/emote/" + data.id + "/3x" + " ::" + "\n" })
+
+        }
+        else if (document.getElementById("ffz_import_toggle").checked == true) {
+          emotesData.forEach(function(data) { 
+            emotesText += data.code + " > "; 
+            if (data.images["4x"] != null) {
+              emotesText += data.images["4x"] + " ::" + "\n";
+            }
+            else if (data.images["2x"] != null) {
+              emotesText += data.images["2x"] + " ::" + "\n";
+            }
+            else if (data.images["1x"] != null) {
+              emotesText += data.images["1x"] + " ::" + "\n";
+            }
+          });
+
+        }
+
+        customWords_textarea = document.getElementById("customWords_textarea");
+
+        customWords_textarea.setSelectionRange(customWords_textarea.value.length,customWords_textarea.value.length);
+        customWords_textarea.focus();
+
+        if ( (customWords_textarea.value[customWords_textarea.value.length - 1] == "\n" && customWords_textarea.value[customWords_textarea.value.length - 2] == "\n") || customWords_textarea.value == "") { // Don't create 2 new lines if there are already 2 empty lines or nothing at all (issue is when there's a line break after a word followed by another)
+          document.execCommand("insertText", false, emotesText);
+        }
+        else {
+          document.execCommand("insertText", false, "\n\n" + emotesText); // Insert text at the end of the textfield
+        }
+      }
+
+      // if not found
+      if (e.target.status == 404) {
+        UpdateErrorText("Error: " + JSON.parse(e.target.response).message, "Cus_AdvancedTools_Emotes_ErrorText");
+      }
+    }
+  }
+
+}

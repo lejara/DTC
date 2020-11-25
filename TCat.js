@@ -1,5 +1,5 @@
-//TODO: needs testing
-//TODO: need to rework request calling chain for web request. (maybe when it swtich on do the request, and withhin the function var have it call the the defualt user submit code)
+//TODO: needs edge testing 
+//TODO: inifine loop when theres an error in the BTTV request function
 var list_of_categories = [];
 
 //Warpper Object for Statics Categories
@@ -14,7 +14,7 @@ class Category {
 //Dynamic Categories, anything that fetches words real time
 //Request must be a function:
 //   -getting user data must be done in the request function 
-//   -must return an array of populated word for Category.words or -1 if fetch fails
+//   -must call the request_callback with the param of a array of populated word for Category.words or -1 if fetch failed
 // getWords() must be called when getting the words
 // Supports with or without a bootstrap modal
 //    -modal must have an id, and a save button name called name="save_btn"
@@ -25,34 +25,30 @@ class Dynamic_Category extends Category {
     super(p_id, p_words);
 
     var self = this;
-    this.id_modal = p_id_modal;
-    this.cat_name = p_name; // why is this needed?
-    this.isLoaded = false;    
-    this.request = pf_request;
+    self.id_modal = p_id_modal;
+    self.cat_name = p_name; // why is this needed?
+    self.isLoaded = false;    
+    self.request = pf_request;
 
     //User Submit Code
     if (pf_submit == null) {
-      this.user_submit = function() {
-        if (this.refresh(true) != -1) {
-          $('#' + this.id).bootstrapToggle('on', true);
-          this.state = true;
-          Setup_Shuffle_Words();
-        } else {
-          $('#' + this.id).bootstrapToggle('off', false);
+      self.user_submit = function() {
+        if(!self.isLoaded){
+          self.refresh(); 
         }
-        if(this.id_modal != null){
-          $('#' + this.id_modal).modal('hide');
-        }        
+        else{
+          self.request_callback(self.words);
+        }              
       }
     } else {
-      this.user_submit = pf_submit;
+      self.user_submit = pf_submit;
     }
 
     //Boot code
     $(document).ready(function() {
 
-      if(this.id_modal != null){
-        var save_btn = document.querySelector('#' + this.id_modal).querySelector('button[name="save_btn"]');
+      if(self.id_modal != null){
+        var save_btn = document.querySelector('#' + self.id_modal).querySelector('button[name="save_btn"]');
         save_btn.addEventListener('click', function() {
           self.user_submit();
         })
@@ -64,36 +60,52 @@ class Dynamic_Category extends Category {
     })
 
     //Do Data Request
-    this.refresh = function(forceRefresh = false) {
-      if (!this.isLoaded || forceRefresh == true) {
-        var returnValue = this.request();
-        if (returnValue != -1) {
-          this.words = returnValue;
-          this.isLoaded = true;
-        } else {
-          return returnValue;
-        }
+    self.refresh = function(forceRefresh = false) {
+      if (!self.isLoaded || forceRefresh == true) {
+        var returnValue = self.request(self.request_callback);
       }
-      return this.words;
+      return self.words;
+    }
+
+    //Call back when data request comes back
+    self.request_callback = function(words_return){
+
+      if (words_return != -1 && words_return != null) {
+        $('#' + self.id).bootstrapToggle('on', true);
+        self.state = true;
+        self.words = words_return;
+        self.isLoaded = true;
+        Setup_Shuffle_Words();
+      } else {
+        $('#' + self.id).bootstrapToggle('off', false);
+        self.isLoaded = false;
+        self.state = false;
+      }
+      if(self.id_modal != null){
+        $('#' + self.id_modal).modal('hide');
+      } 
     }
 
     //Get Words
-    this.getWords = function() {
-      return this.refresh();
+    self.getWords = function() {
+      return self.refresh();
     };
 
-    //Show bootstrap modal
-    this.show_modal = function() {
-      if(this.id_modal != null){
-        $('#' + this.id_modal).modal('show');
+    //Show bootstrap modal, if no modal run submit code
+    self.show_modal = function() {
+      if(self.id_modal != null){
+        $('#' + self.id_modal).modal('show');
+      }else{
+        self.user_submit();
       }     
     }
   }
 }
 
-//Dynamic Categotires Instantiates
+//Dynamic Categories Instantiates
 
-list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModal", "Custom Words", {}, function() {
+//Custom Words
+list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModal", "Custom Words", {}, function(request_callback) {
   var data = document.getElementById("customWords_textarea").value;
   var word_line = data.split("::");
   var processedWord = {};
@@ -136,9 +148,11 @@ list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModa
     }
   }
   if (Object.keys(processedWord).length === 0) {
-    return -1;
+    request_callback(-1);
   }
-  return processedWord;
+  else{
+    request_callback(processedWord);
+  }
 }, null, function() {
 
   var populate_textfield = function(e) {
@@ -159,6 +173,58 @@ list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModa
   $('#Cus_WordModal').on('show.bs.modal', populate_textfield);
 
 }));
+
+//TODO: maybe put the disable code in the initcode
+//TODO: you need a call back for the request
+list_of_categories.push(new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your BTTV Emotes", {}, function(request_callback){
+  console.log("trying request");
+
+  // XHR
+  let xhr = new XMLHttpRequest();
+  var channelName = connectedChannelName;
+  var channelID = connectedChannel_ID;
+
+  xhr.onreadystatechange = XHROnReadyStateChange;
+
+  xhr.open("GET", "https://api.betterttv.net/3/cached/users/twitch/" + channelID, true);
+  xhr.send(); // Sends when channelID is ready.
+
+
+  // Called whenever the readyState attribute in the XHR request changes.
+  function XHROnReadyStateChange(e) {
+    console.log("Called back XHR");
+    console.log(e);
+    console.log(e.target.readyState);
+
+    //TODO: what if we never got a 4
+    if (e.target.readyState == 4) {
+
+      // if successful
+      if (e.target.status == 200) {
+        var emotesData = JSON.parse(e.target.response);
+        //BTTV No Emotes Check
+        if (emotesData.channelEmotes && emotesData.sharedEmotes) {
+
+          if (emotesData.channelEmotes.length == 0 && emotesData.sharedEmotes.length == 0) {
+            Error_Notify("You has no emotes in BTTV", "Error: User has no emotes"); 
+            return;
+          }
+        }
+
+        let emotes = {};
+        emotesData.channelEmotes.forEach(function(data) { emotes[data.code] = "https://cdn.betterttv.net/emote/" + data.id + "/3x"; })
+        emotesData.sharedEmotes.forEach(function(data) { emotes[data.code] = "https://cdn.betterttv.net/emote/" + data.id + "/3x"; })
+        console.log(emotes);
+        request_callback(emotes);
+        Error_Notify(null, null, true);
+      }
+      else{
+        Error_Notify("Could not get BTTV Emotes ", "Error: could not get BTTV Emotes");
+        request_callback(-1);
+      }
+    }
+  }
+  }, null, null))
 
 //Static Categotires Instantiates
 
