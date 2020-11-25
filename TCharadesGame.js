@@ -55,8 +55,9 @@ $(document).ready(function() {
     this.src = 'images/blank.png';
   };
 
+  //Turn Off Web Request Categories Switches 
   document.getElementById("Dynamic_Categories_Switches").classList.add("opacity-40");
-  //TODO: added in swtich disable state here
+  list_of_web_categories.forEach((cat) => {  $('#' + cat.id).bootstrapToggle('disable') })
 
   Setup_Shuffle_Words();
 })
@@ -79,7 +80,8 @@ function Game_Started() {
   document.getElementById("main_btn").addEventListener("click", NextRound);
   //Turn on Dynamic Categories
   document.getElementById("Dynamic_Categories_Switches").classList.remove("opacity-40");
-  //TODO: added in swtich enable state here
+  list_of_web_categories.forEach((cat) => {  $('#' + cat.id).bootstrapToggle('enable') })
+
   NextRound();
 }
 

@@ -1,6 +1,6 @@
 //TODO: needs edge testing 
-//TODO: inifine loop when theres an error in the BTTV request function
 var list_of_categories = [];
+var list_of_web_categories = [];
 
 //Warpper Object for Statics Categories
 class Category {
@@ -77,7 +77,7 @@ class Dynamic_Category extends Category {
         self.isLoaded = true;
         Setup_Shuffle_Words();
       } else {
-        $('#' + self.id).bootstrapToggle('off', false);
+        $('#' + self.id).bootstrapToggle('off', true);
         self.isLoaded = false;
         self.state = false;
       }
@@ -174,11 +174,10 @@ list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModa
 
 }));
 
+//BTTV
 //TODO: maybe put the disable code in the initcode
-//TODO: you need a call back for the request
-list_of_categories.push(new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your BTTV Emotes", {}, function(request_callback){
-  console.log("trying request");
-
+var bttv_dyn_cat = new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your BTTV Emotes", {}, function(request_callback){
+  
   // XHR
   let xhr = new XMLHttpRequest();
   var channelName = connectedChannelName;
@@ -189,12 +188,10 @@ list_of_categories.push(new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Y
   xhr.open("GET", "https://api.betterttv.net/3/cached/users/twitch/" + channelID, true);
   xhr.send(); // Sends when channelID is ready.
 
-
   // Called whenever the readyState attribute in the XHR request changes.
   function XHROnReadyStateChange(e) {
     console.log("Called back XHR");
     console.log(e);
-    console.log(e.target.readyState);
 
     //TODO: what if we never got a 4
     if (e.target.readyState == 4) {
@@ -206,7 +203,7 @@ list_of_categories.push(new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Y
         if (emotesData.channelEmotes && emotesData.sharedEmotes) {
 
           if (emotesData.channelEmotes.length == 0 && emotesData.sharedEmotes.length == 0) {
-            Error_Notify("You has no emotes in BTTV", "Error: User has no emotes"); 
+            Error_Notify("You have no emotes in BTTV", "Error: User has no emotes"); 
             return;
           }
         }
@@ -224,7 +221,9 @@ list_of_categories.push(new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Y
       }
     }
   }
-  }, null, null))
+  }, null, null)
+list_of_web_categories.push(bttv_dyn_cat);
+list_of_categories.push(bttv_dyn_cat)
 
 //Static Categotires Instantiates
 
