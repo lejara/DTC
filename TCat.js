@@ -1,4 +1,8 @@
-//TODO: needs edge testing 
+//TODO: needs edge testing, test fetech errors, test win cons 
+//TODO: update patchnotes
+//TODO: bug when web server not reach for ffz it returns an empty emotes error, instead of 404
+//TODO: clean up console logs
+//TODO: maybe sanitize BTTV anf FFZ fetches
 var list_of_categories = [];
 var list_of_web_categories = [];
 
@@ -175,7 +179,6 @@ list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModa
 }));
 
 //BTTV
-//TODO: maybe put the disable code in the initcode
 var bttv_dyn_cat = new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your BTTV Emotes", {}, function(request_callback){
   
   // XHR
@@ -190,10 +193,9 @@ var bttv_dyn_cat = new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your B
 
   // Called whenever the readyState attribute in the XHR request changes.
   function XHROnReadyStateChange(e) {
-    console.log("Called back XHR");
+    console.log("Called back XHR BTTV");
     console.log(e);
 
-    //TODO: what if we never got a 4
     if (e.target.readyState == 4) {
 
       // if successful
@@ -203,7 +205,7 @@ var bttv_dyn_cat = new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your B
         if (emotesData.channelEmotes && emotesData.sharedEmotes) {
 
           if (emotesData.channelEmotes.length == 0 && emotesData.sharedEmotes.length == 0) {
-            Error_Notify("You have no emotes in BTTV", "Error: User has no emotes"); 
+            Error_Notify("You have no emotes in BTTV", "Error: User has no BBTV emotes"); 
             return;
           }
         }
@@ -224,6 +226,63 @@ var bttv_dyn_cat = new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your B
   }, null, null)
 list_of_web_categories.push(bttv_dyn_cat);
 list_of_categories.push(bttv_dyn_cat)
+
+//FFZ
+var ffz_dyn_cat = new Dynamic_Category("User_FFZ_Emotes_Switch", null, "Your FFZ Emotes", {}, function(request_callback){
+
+    // XHR
+    let xhr = new XMLHttpRequest();
+    var channelName = connectedChannelName;
+    var channelID = connectedChannel_ID;
+  
+    xhr.onreadystatechange = XHROnReadyStateChange;
+
+    xhr.open("GET", "https://api.betterttv.net/3/cached/frankerfacez/users/twitch/" + channelID, true);
+    xhr.send();
+
+    function XHROnReadyStateChange(e) {
+      console.log("Called back XHR FFZ");
+      console.log(e); 
+
+      if (e.target.readyState == 4) {
+
+        // if successful
+        if (e.target.status == 200) {
+          var emotesData = JSON.parse(e.target.response);
+          //FFZ No Emotes Check
+          if (emotesData.length == 0) {
+            Error_Notify("You have no emotes in FFZ", "Error: User has no FFZ emotes"); 
+            return;
+          }
+  
+          let emotes = {};
+          emotesData.forEach(function(data) { 
+            var image = "";
+            if (data.images["4x"] != null) {
+              image = data.images["4x"];
+            }
+            else if (data.images["2x"] != null) {
+              image = data.images["2x"];
+            }
+            else if (data.images["1x"] != null) {
+              image = data.images["1x"];
+            }
+            emotes[data.code] = image;
+          });
+
+          console.log(emotes);
+          request_callback(emotes);
+          Error_Notify(null, null, true);
+  
+        }else{
+          Error_Notify("Could not get FFZ Emotes ", "Error: could not get FFZ Emotes");
+          request_callback(-1);
+        }
+      }
+    }
+}, null, null)
+list_of_web_categories.push(ffz_dyn_cat);
+list_of_categories.push(ffz_dyn_cat)
 
 //Static Categotires Instantiates
 
