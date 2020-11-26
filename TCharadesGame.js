@@ -394,34 +394,3 @@ function openInNewTab(url) {
   var win = window.open(url, '_blank');
   win.focus();
 }
-
-
-// function Test_Emotes_get() {
-//   //Game client id: gcxxg3g0lghqxl0d4zhttv11sobtf8
-//   //Working------------------------------
-//   $.when(
-//     $.ajax("https://api.twitch.tv/helix/users?login=xqcow", {
-//       beforeSend: function(hrObj) {
-//         hrObj.setRequestHeader("Client-ID", "gcxxg3g0lghqxl0d4zhttv11sobtf8")
-//       }
-//     })
-//   ).done(function(res) {
-//     var channel_id = res.data[0].id;
-//     console.log("Got channel id");
-//     $.when(
-//       $.ajax("https://api.twitchemotes.com/api/v4/channels/" + channel_id)
-//     ).done(function(res) {
-//       console.log("got emotes")
-//       for (var ctr in res["emotes"]) {
-//         //res["emotes"][ctr].code
-//         console.log("https://static-cdn.jtvnw.net/emoticons/v1/" + res["emotes"][ctr].id + "/3.0")
-//         img_word.src = "https://static-cdn.jtvnw.net/emoticons/v1/" + res["emotes"][ctr].id + "/3.0";
-//       }
-//       // img_word.src
-
-//     })
-
-//   }).fail(function(err) {
-//     console.log(err);
-//   });
-// }

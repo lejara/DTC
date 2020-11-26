@@ -284,6 +284,32 @@ var ffz_dyn_cat = new Dynamic_Category("User_FFZ_Emotes_Switch", null, "Your FFZ
 list_of_web_categories.push(ffz_dyn_cat);
 list_of_categories.push(ffz_dyn_cat)
 
+//User Sub Emotes
+var sub_emotes_cat = new Dynamic_Category("User_Sub_Emotes_Switch", null, "User's Sub Emotes", {}, function(request_callback){
+
+  var channel_id = connectedChannel_ID;
+
+  $.when(
+    $.ajax("https://api.twitchemotes.com/api/v4/channels/" + channel_id)
+  ).done(function(res) {
+    let emotes = {};
+
+    for (var ctr in res["emotes"]) {
+      img_word.src = "https://static-cdn.jtvnw.net/emoticons/v1/" + res["emotes"][ctr].id + "/3.0";
+      emotes[res["emotes"][ctr].code] = img_word.src;
+    }
+    request_callback(emotes);
+
+  }).fail(function(err) {
+    Error_Notify("Could Not Get Sub Emotes", "Error On Sub Emotes")
+    request_callback(-1);
+  });
+
+},null, null)
+list_of_web_categories.push(sub_emotes_cat);
+list_of_categories.push(sub_emotes_cat)
+
+
 //Static Categotires Instantiates
 
 list_of_categories.push(new Category("Game_Switch", { "Pong": "", "Space Invaders": "", "Pac Man": "", "Donkey Kong": "", "Tetris": "", "Super Mario Bros": "", "Contra": "", "Punch Out": "", "Mega Man": "", "Prince of Persia": "", "SimCity": "", "Monkey Island": "", "Civilization": "", "Lemmings": "", "Sonic": "", "Street Fighter": "", "Mortal Kombat": "", "Wolfenstein": "", "Doom": "", "NBA Jam": "", "Star Fox": "", "Syndicate": "", "EarthBound": "", "Super Metroid": "", "Chrono Trigger": "", "Duke Nukem": "", "Final Fantasy": "", "Pokemon": "", "Quake": "", "Resident Evil": "", "Tomb Raider": "", "Castlevania": "", "GoldenEye 007": "", "Gran Turismo": "", "Tekken": "", "Fallout": "", "Half Life": "", "Metal Gear": "", "SoulCalibur": "", "StarCraft": "", "Age of Empires": "", "Homeworld": "", "Unreal Tournament": "", "Counter Strike": "", "Deus Ex": "", "Diablo": "", "The Sims": "", "Animal Crossing": "", "Grand Theft Auto": "", "Max Payne": "", "Silent Hill": "", "Super Smash Bros": "", "Kingdom Hearts": "", "Metroid Prime": "", "World of Warcraft": "", "God of War": "", "Guitar Hero": "", "Shadow of the Colossus": "", "The Elder Scrolls": "", "Gears of War": "", "Hitman": "", "Wii Sports": "", "BioShock": "", "Call of Duty": "", "Halo": "", "Portal": "", "Super Mario Galaxy": "", "Team Fortress 2": "", "Fortnite": "", "Dead Space": "", "Left 4 Dead": "", "Persona 4": "", "Assassin's Creed": "", "Uncharted": "", "Limbo": "", "Red Dead Redemption": "", "Rock Band": "", "StarCraft II": "", "Super Meat Boy": "", "Dark Souls": "", "Minecraft": "", "Portal 2": "", "The Walking Dead": "", "Dota 2": "", "The Last of Us": "", "Bloodborne": "", "The Witcher 3": "", "Inside": "", "Overwatch": "", "The Legend of Zelda": "", "League Of Legends": "", "Madden": "" }));
