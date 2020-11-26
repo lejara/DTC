@@ -1,4 +1,4 @@
-//TODO: needs edge testing, test fetech errors, test win cons 
+//TODO: needs edge testing, test fetech errors, test win cons, test on firefox
 //TODO: update patchnotes
 //TODO: bug when web server not reach for ffz it returns an empty emotes error, instead of 404
 //TODO: clean up console logs
@@ -178,7 +178,7 @@ list_of_categories.push(new Dynamic_Category("custom_word_Swtich", "Cus_WordModa
 
 }));
 
-//BTTV
+//BTTV Emotes
 var bttv_dyn_cat = new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your BTTV Emotes", {}, function(request_callback){
   
   // XHR
@@ -193,8 +193,8 @@ var bttv_dyn_cat = new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your B
 
   // Called whenever the readyState attribute in the XHR request changes.
   function XHROnReadyStateChange(e) {
-    console.log("Called back XHR BTTV");
-    console.log(e);
+    // console.log("Called back XHR BTTV");
+    // console.log(e);
 
     if (e.target.readyState == 4) {
 
@@ -213,7 +213,7 @@ var bttv_dyn_cat = new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your B
         let emotes = {};
         emotesData.channelEmotes.forEach(function(data) { emotes[data.code] = "https://cdn.betterttv.net/emote/" + data.id + "/3x"; })
         emotesData.sharedEmotes.forEach(function(data) { emotes[data.code] = "https://cdn.betterttv.net/emote/" + data.id + "/3x"; })
-        console.log(emotes);
+        //console.log(emotes);
         request_callback(emotes);
         Error_Notify(null, null, true);
       }
@@ -227,7 +227,7 @@ var bttv_dyn_cat = new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your B
 list_of_web_categories.push(bttv_dyn_cat);
 list_of_categories.push(bttv_dyn_cat)
 
-//FFZ
+//FFZ Emotes
 var ffz_dyn_cat = new Dynamic_Category("User_FFZ_Emotes_Switch", null, "Your FFZ Emotes", {}, function(request_callback){
 
     // XHR
@@ -241,8 +241,8 @@ var ffz_dyn_cat = new Dynamic_Category("User_FFZ_Emotes_Switch", null, "Your FFZ
     xhr.send();
 
     function XHROnReadyStateChange(e) {
-      console.log("Called back XHR FFZ");
-      console.log(e); 
+      // console.log("Called back XHR FFZ");
+      // console.log(e); 
 
       if (e.target.readyState == 4) {
 
@@ -270,7 +270,7 @@ var ffz_dyn_cat = new Dynamic_Category("User_FFZ_Emotes_Switch", null, "Your FFZ
             emotes[data.code] = image;
           });
 
-          console.log(emotes);
+          //console.log(emotes);
           request_callback(emotes);
           Error_Notify(null, null, true);
   

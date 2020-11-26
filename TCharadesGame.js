@@ -360,7 +360,8 @@ function HideAllTabs() {
     while (elements.length > 0) {
       elements[0].classList.remove("visible_tab");
     }
-    document.getElementById("note_notes").classList.add("hidden_tab");
+    document.getElementById("right_side").classList.add("hidden_tab");
+    document.getElementById("note_notes_in").classList.add("hidden_tab");
     document.getElementById("categories_settings").classList.add("hidden_tab");
     document.getElementById("hide_all_tabs_btn").value = "Show All";;
 
@@ -371,7 +372,8 @@ function HideAllTabs() {
       elements[0].classList.remove("hidden_tab");
     }
 
-    document.getElementById("note_notes").classList.add("visible_tab");
+    document.getElementById("right_side").classList.add("visible_tab");
+    document.getElementById("note_notes_in").classList.add("visible_tab");
     document.getElementById("categories_settings").classList.add("visible_tab");
     document.getElementById("hide_all_tabs_btn").value = "Hide All";
 
