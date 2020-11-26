@@ -121,7 +121,7 @@ function ConnectTwtichChat() {
         if (!gameFailed) {
           var clean_message = DOMPurify.sanitize(message.message, { ALLOWED_TAGS: ['b'] })
           document.getElementById("wb_output").innerHTML = ("<strong class=\"font_pop\" style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + clean_message);
-          if (clean_message.toLowerCase().search("^" + chosenWord) != -1) {
+          if (clean_message.toLowerCase().search("^\\b" + chosenWord + "\\b") != -1) {
             WordGuessed();
           }
 

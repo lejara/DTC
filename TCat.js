@@ -1,6 +1,4 @@
 //TODO: needs edge testing, test fetech errors, test win cons, test on firefox
-//TODO: bug when web server not reach for ffz it returns an empty emotes error, instead of 404
-//TODO: Fix output chat font size scaling problem
 //TODO: maybe sanitize BTTV anf FFZ fetches
 var list_of_categories = [];
 var list_of_web_categories = [];
@@ -36,8 +34,11 @@ class Dynamic_Category extends Category {
     //User Submit Code
     if (pf_submit == null) {
       self.user_submit = function() {
-        if(!self.isLoaded){
+        if(!self.isLoaded && self.id_modal == null){
           self.refresh(); 
+        }
+        else if(self.id_modal != null){
+          self.refresh(true); // force refresh on modals
         }
         else{
           self.request_callback(self.words);
@@ -192,8 +193,8 @@ var bttv_dyn_cat = new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your B
 
   // Called whenever the readyState attribute in the XHR request changes.
   function XHROnReadyStateChange(e) {
-    // console.log("Called back XHR BTTV");
-    // console.log(e);
+    console.log("Called back XHR BTTV");
+    console.log(e);
 
     if (e.target.readyState == 4) {
 
@@ -217,7 +218,7 @@ var bttv_dyn_cat = new Dynamic_Category("User_BTTV_Emotes_Switch", null, "Your B
         Error_Notify(null, null, true);
       }
       else{
-        Error_Notify("Could not get BTTV Emotes ", "Error: could not get BTTV Emotes");
+        Error_Notify("Could not get your BTTV emotes ", "Error: could not get BTTV Emotes");
         request_callback(-1);
       }
     }
@@ -240,8 +241,8 @@ var ffz_dyn_cat = new Dynamic_Category("User_FFZ_Emotes_Switch", null, "Your FFZ
     xhr.send();
 
     function XHROnReadyStateChange(e) {
-      // console.log("Called back XHR FFZ");
-      // console.log(e); 
+      console.log("Called back XHR FFZ");
+      console.log(e); 
 
       if (e.target.readyState == 4) {
 
@@ -274,7 +275,7 @@ var ffz_dyn_cat = new Dynamic_Category("User_FFZ_Emotes_Switch", null, "Your FFZ
           Error_Notify(null, null, true);
   
         }else{
-          Error_Notify("Could not get FFZ Emotes ", "Error: could not get FFZ Emotes");
+          Error_Notify("Could not get your FFZ emotes ", "Error: could not get FFZ Emotes");
           request_callback(-1);
         }
       }
@@ -300,7 +301,7 @@ var sub_emotes_cat = new Dynamic_Category("User_Sub_Emotes_Switch", null, "User'
     request_callback(emotes);
 
   }).fail(function(err) {
-    Error_Notify("Could Not Get Sub Emotes", "Error On Sub Emotes")
+    Error_Notify("Could not get your sub emotes", "Error On Sub Emotes")
     request_callback(-1);
   });
 
