@@ -1,7 +1,6 @@
 //TODO: needs edge testing, test fetech errors, test win cons, test on firefox
-//TODO: update patchnotes
 //TODO: bug when web server not reach for ffz it returns an empty emotes error, instead of 404
-//TODO: clean up console logs
+//TODO: Fix output chat font size scaling problem
 //TODO: maybe sanitize BTTV anf FFZ fetches
 var list_of_categories = [];
 var list_of_web_categories = [];
