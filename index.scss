@@ -15,7 +15,7 @@ $close-color: rgb(121, 120, 120);
 //Normal scss
 $max_image-size: 8rem;
 $footer-height: 7rem;
-$chat_font_size: 1.0rem;
+$chat_font_size: 1.6rem;
 // Debug: layout outline
 // .my-container {
 //     border: 1px solid green;
@@ -40,13 +40,6 @@ body {
     padding-bottom: $footer-height;
 }
 
-@mixin chat-output-scale {
-    @media only screen and (max-width: 890px) {
-        font-size: 0.70rem;
-        height: 20rem;
-    }
-}
-
 .font_pop {
     -webkit-animation: font_pop 0.05s ease-in both;
     animation: font_pop 0.05s ease-in both;
@@ -57,6 +50,9 @@ body {
         font-size: $chat_font_size;
     }
     25% {
+        font-size: calc(#{$chat_font_size} + 0.1rem);
+    }
+    50% {
         font-size: calc(#{$chat_font_size} + 0.3rem);
     }
     100% {
@@ -69,20 +65,41 @@ body {
         font-size: $chat_font_size;
     }
     25% {
-        font-size: calc(#{$chat_font_size} + 0.2rem);
+        font-size: calc(#{$chat_font_size} + 0.1rem);
+    }
+    50% {
+        font-size: calc(#{$chat_font_size} + 0.3rem);
     }
     100% {
         font-size: $chat_font_size;
     }
 }
 
+@mixin chat-output-scale {
+    @media only screen and (max-width: 890px) {
+        height: 20rem;
+    }
+}
+
+@mixin chat-font-scale {
+    @media only screen and (max-width: 890px) {
+        font-size: 0.70rem;
+    }
+}
+
 .chat_output {
     border: 1px solid rgba(255, 255, 255, 0.644);
     height: 26rem;
-    font-size: $chat_font_size;
     margin: 0.001rem;
-    overflow: auto;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;    
     @include chat-output-scale;
+}
+
+.chat_font {
+    font-size: $chat_font_size;
+    // @include chat-font-scale;
 }
 
 .margin_center {
@@ -106,7 +123,7 @@ body {
 }
 
 .custom_label_swtich {
-    font-size: 0.8rem;
+    font-size: 0.91rem;
 }
 
 .footer {
@@ -137,13 +154,26 @@ body {
 }
 
 .navbar {
-    background-color: rgba(59, 9, 88, 0.753);
+    background-color: $secondary;
+}
+
+#timer_ouput {
+    font-size: 3rem;
 }
 
 #categories_settings {
     background-color: $secondary;
     // box-shadow: 0 50px 2.2px rgba(0, 0, 0, 0.034), 0 50px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
     box-shadow: 0 1px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#right_side {
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 hr {
@@ -163,9 +193,6 @@ hr {
 }
 
 .note_tabs {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    // box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
     box-shadow: 0 1px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
@@ -210,4 +237,15 @@ nav {
 
 .my_textarea {
     text-align: left;
+}
+
+
+  
+.opacity-40 {
+    opacity: 0.4; 
+}
+  
+  
+.opacity-100 {
+    opacity: 1; 
 }

@@ -21,7 +21,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light">
-        <h1 class="ml-sm-5">Da Twitch Charades<sub class="text-muted version"> 1.5.1 </sub>
+        <h1 class="ml-sm-5">Da Twitch Charades<sub class="text-muted version"> 1.6.0 </sub>
             <sup><img class="img-fluid" src="images/icon.png" width="25" height="25"></sup>
         </h1>
     </nav>
@@ -39,7 +39,7 @@
                         <div class="row my-row justify-content-center font-weight-bold mt-4">
                             <h2 id="the_word">???</h2>
                         </div>
-                        <div id="chat_div_output" class="row chat_output text-center align-content-center justify-content-center text-break p-2">
+                        <div id="chat_div_output" class="row chat_output chat_font text-center text-break p-2">
                             <span id="wb_output">...</span>
                         </div>
                         <div class="row my-row justify-content-center mt-3 mb-3">
@@ -57,204 +57,9 @@
                             </div>
 
                         </div>
-                    </div>
 
-                    <div id="categories_settings" class="col-xl-5 my_col order-2 order-xl-3 mt-5 visible_tab">
-                        <div class="row my-row justify-content-center mb-2 mt-4">
-                            <h2>Categories
-                                <hr/>
-                            </h2>
-                        </div>
-
-                        <div class="row my-row ml-sm-2">
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Games
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="Game_Switch" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Twtich Emotes
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="Twitch_Emotes_Switch" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-                        </div>
-                        <div class="row my-row ml-sm-2">
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Movies
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="Movies_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Actions
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="Actions_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-                        </div>
-                        <div class="row my-row ml-sm-2">
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Actors / Signers
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="Actors_Sing_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                TV Shows
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="TV_Shows_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-                        </div>
-                        <div class="row my-row ml-sm-2">
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Live Streamers
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="Live_Streamers_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Youtube Channels
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="Youtube_Channels_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-                        </div>
-                        <div class="row my-row ml-sm-2">
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Pokémon
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="Pokemon_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Video Game Characters
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="V_G_C_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-                        </div>
-                        <div class="row my-row ml-sm-2">
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                BTTV / FFZ Emotes (Easy)
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="BTT_FFZ_Switch" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                BTTV / FFZ Emotes (Medium)
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="BTT_FFZ__Med_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-                        </div>
-                        <div class="row my-row ml-sm-2">
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Superheroes
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="Super_Hero_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Animals
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="Animals_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-                        </div>
-                        <div class="row my-row ml-sm-2">
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Classic Memes
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="Memes_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Emojis (Easy)
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="Emoji_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-                        </div>
-                        <div class="row my-row ml-sm-2">
-                            <div class="col-4 my_col custom_label_swtich align-self-center">
-                                Custom Words
-                                <button type="button" class="btn btn-secondary-outline" data-toggle="modal" data-target="#Cus_WordModal"><span class="fas fa-cog"></span></button>
-                            </div>
-                            <div class="col-2 my_col align-self-center">
-                                <input id="custom_word_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
-                            </div>
-
-                            <!-- Custom Words Modal -->
-                            <div class="modal fade" id="Cus_WordModal" tabindex="-1" role="dialog" aria-labelledby="CustomWordModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="CustomWordModalLabel">Custom Words</h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h6>Add in your own words separated by <kbd>::</kbd> and the image by <kbd>></kbd></h6>
-                                            <p class="text-muted">- You can mix in a word with, or without an image link <br> - Each word has a max character limit of 45 <br> - Image links must be the direct link of the image </p>
-                                            <textarea class="form-control my_textarea" id="customWords_textarea" spellcheck="false" placeholder="DansGame :: Kappa :: FrankerZ &#10;&#10; --OR-- &#10;&#10;DansGame > https://static-cdn.jtvnw.net/emoticons/v1/33/3.0 :: &#10;Kappa :: &#10;FrankerZ > https://static-cdn.jtvnw.net/emoticons/v1/65/3.0"
-                                                rows="15"></textarea>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" name="save_btn" class="btn btn-success">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row my-row justify-content-center mt-3">
-                            <h2>Settings
-                                <hr/>
-                            </h2>
-
-                        </div>
-
-                        <div class="row my-row justify-content-center">
-                            <h5>Time</h5>
-                        </div>
-                        <div class="row my-row justify-content-center margin_center w-75" id="div_spinner_time" data-toggle="tooltip" data-placement="left" title="0:50">
-                            <input type="range" class="custom-range my_slider" value="12.5" min="1" max="100‬" step="0.25" id="timer_Spinner" onchange="timer_slider_num_show();">
-                        </div>
-                        <div class="row my-row w-50 margin_center mt-4">
-                            <input type="text" id="channelName" class="form-control" placeholder="Channel Name" aria-label="Channel Name">
-                        </div>
-                        <div class="row my-row mt-4 justify-content-center">
-                            <input type="button" onclick="PopOutWord();" class="btn btn-outline-info" value="Open Word Window">
-                        </div>
-                        <div class="row my-row mt-2 justify-content-center">
-                            <input type="button" onclick="location.reload();" class="btn btn-outline-danger reveal_btn" value="Reset Game">
-                        </div>
-
-
-                        <div style="visibility: hidden;" id="wb_error_msg_box" class="alert alert-danger mt-4" role="alert">
-                            <strong>Uh...Error</strong> <span id="error_msg">Change a few things up and try submitting again.</span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div id="note_notes">
-
-
-                    <div class="row my-row">
-
-                        <div class="col-xl-8 my_col justify-content-center text-center">
-                            <hr class="mt-5 mb-5 w-75">
+                        <div id="note_notes_in" class="justify-content-center text-center mt-5">
+                            <hr class="mt-3 mb-4 w-75">
                             <h5>How To Play</h5>
                             <p>1. Make sure to allow pop ups, if prompted! </p>
                             <p>2. Enter your channel name, then press "Start Game"</p>
@@ -264,24 +69,246 @@
                             <p>- You don't have to reset the game if you change any of the settings, except the channel name.</p>
                             <p>- If your chat is just randomly guessing, putting your chat in slow mode can help.</p>
                             <p>- Officially supports Firefox and Google Chrome only!</p>
-                            <hr class="mt-5 mb-5 w-75">
+                            <hr class="mt-4 mb-3 w-75">
                         </div>
 
-                        <div class="col-xl-4 my_col justify-content-center text-center">
 
+                    </div>
 
-                            <button class="btn btn-secondary btn-block note_tabs margin_center" type="button" data-toggle="collapse" data-target="#collapseDono" aria-expanded="false">
+                    <div id="right_side" class="col-xl-5 my_col order-2 order-xl-3 mt-4 visible_tab">
+                        <div id="categories_settings">
+                            <div class="row my-row justify-content-center">
+                                <h1 class="mt-5">Categories</h1>
+                            </div>
+                            <hr class="w-50 pb-2"/>
+
+                            <div class="row my-row ml-sm-4 ml-1 mr-2">
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Games
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Game_Switch" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+    
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Twtich Emotes
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Twitch_Emotes_Switch" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+                            </div>
+                            <div class="row my-row ml-sm-4 ml-1 mr-2">
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Movies
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Movies_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+    
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Actions
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Actions_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+                            </div>
+                            <div class="row my-row ml-sm-4 ml-1 mr-2">
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Actors / Signers
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Actors_Sing_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+    
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    TV Shows
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="TV_Shows_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+                            </div>
+                            <div class="row my-row ml-sm-4 ml-1 mr-2">
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Live Streamers
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Live_Streamers_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+    
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Youtube Channels
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Youtube_Channels_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+                            </div>
+                            <div class="row my-row ml-sm-4 ml-1 mr-2">
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Pokémon
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Pokemon_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+    
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Video Game Characters
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="V_G_C_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+                            </div>
+                            <div class="row my-row ml-sm-4 ml-1 mr-2">
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    BTTV / FFZ Emotes (Easy)
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="BTT_FFZ_Switch" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+    
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    BTTV / FFZ Emotes (Medium)
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="BTT_FFZ__Med_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+                            </div>
+                            <div class="row my-row ml-sm-4 ml-1 mr-2">
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Superheroes
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Super_Hero_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+    
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Animals
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Animals_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+                            </div>
+                            <div class="row my-row ml-sm-4 ml-1 mr-2">
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Classic Memes
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Memes_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+    
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Emojis (Easy)
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Emoji_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+                            </div>
+                            <div class="row my-row ml-sm-4 ml-1 mr-2">
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Custom Words
+                                    <button type="button" class="btn btn-secondary-outline" data-toggle="modal" data-target="#Cus_WordModal"><span class="fas fa-cog"></span></button>
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="custom_word_Swtich" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+    
+                                <!-- Custom Words Modal -->
+                                <div class="modal fade" id="Cus_WordModal" tabindex="-1" role="dialog" aria-labelledby="CustomWordModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="CustomWordModalLabel">Custom Words</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>Add in your own words separated by <kbd>::</kbd> and the image by <kbd>></kbd></h6>
+                                                <p class="text-muted">- You can mix in a word with, or without an image link <br> - Each word has a max character limit of 45 <br> - Image links must be the direct link of the image </p>
+                                                <textarea class="form-control my_textarea" id="customWords_textarea" spellcheck="false" placeholder="DansGame :: Kappa :: FrankerZ &#10;&#10; --OR-- &#10;&#10;DansGame > https://static-cdn.jtvnw.net/emoticons/v1/33/3.0 :: &#10;Kappa :: &#10;FrankerZ > https://static-cdn.jtvnw.net/emoticons/v1/65/3.0"
+                                                    rows="15"></textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" name="save_btn" class="btn btn-success">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="row my-row justify-content-center mt-2">
+                                <h5>Channel Emotes <i href="#" data-toggle="tooltip" title="Use your own channel emotes! Enabled once you have entered your channel name."><i class="far fa-question-circle fa-sm text-muted"></i></i></h5>
+                            </div>
+    
+                            <div id="Dynamic_Categories_Switches">
+                                <div class="row my-row ml-sm-4 ml-1 mr-2">
+                                    <div class="col-4 my_col custom_label_swtich align-self-center">
+                                        Your FFZ Emotes
+                                    </div>
+                                    <div class="col-2 my_col align-self-center">
+                                        <input id="User_FFZ_Emotes_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                    </div>
+    
+                                    <div class="col-4 my_col custom_label_swtich align-self-center">
+                                        Your BTTV Emotes
+                                    </div>
+                                    <div class="col-2 my_col align-self-center">
+                                        <input id="User_BTTV_Emotes_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                    </div>
+                                </div>
+    
+                                <div class="row my-row ml-sm-4 ml-1 mr-2">
+                                    <div class="col-4 my_col custom_label_swtich align-self-center">
+                                        Your Sub Emotes
+                                    </div>
+                                    <div class="col-2 my_col align-self-center">
+                                        <input id="User_Sub_Emotes_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="row my-row justify-content-center mt-4">
+                                <h1>Settings</h1>
+                            </div>
+                            <hr class="w-50 pb-2"/>
+
+                            <div class="row my-row justify-content-center">
+                                <h5>Time</h5>
+                            </div>
+                            <div class="row my-row justify-content-center margin_center w-75" id="div_spinner_time" data-toggle="tooltip" data-placement="left" title="0:50">
+                                <input type="range" class="custom-range my_slider" value="12.5" min="1" max="100‬" step="0.25" id="timer_Spinner" onchange="timer_slider_num_show();">
+                            </div>
+                            <div class="row my-row w-50 margin_center mt-4">
+                                <input type="text" id="channelName" class="form-control" placeholder="Channel Name" aria-label="Channel Name">
+                            </div>
+                            <div class="row my-row mt-4 justify-content-center">
+                                <input type="button" onclick="PopOutWord();" class="btn btn-outline-info" value="Open Word Window">
+                            </div>
+                            <div class="row my-row mt-2 justify-content-center">
+                                <input type="button" onclick="location.reload();" class="btn btn-outline-danger reveal_btn" value="Reset Game">
+                            </div>
+    
+    
+                            <div style="visibility: hidden;" id="wb_error_msg_box" class="alert alert-danger mt-4" role="alert">
+                                <strong>Uh...Error</strong> <span id="error_msg">Change a few things up and try submitting again.</span>
+                            </div>
+    
+                        </div>
+                        <div id="note_notes" class="justify-content-center text-center">
+
+                            <div class="mt-3"></div>
+
+                            <button class="w-75 btn btn-secondary btn-block note_tabs margin_center" type="button" data-toggle="collapse" data-target="#collapseDono" aria-expanded="false">
                                 <h5>Donators</h5>
                               </button>
-                            <div class="collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapseDono">
+                            <div class="w-75 collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapseDono">
                                 <h5>Thank You</h5>
                                 <p> - Pokelawls<br/> - Rulba</p>
                             </div>
 
-                            <button class="btn btn-secondary btn-block note_tabs margin_center" type="button" data-toggle="collapse" data-target="#collapseWordCount" aria-expanded="false">
+                            <div class="mt-3"></div>
+
+                            <button class="w-75 btn btn-secondary btn-block note_tabs margin_center" type="button" data-toggle="collapse" data-target="#collapseWordCount" aria-expanded="false">
                                 <h5>Word Counts</h5>
                               </button>
-                            <div class="collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapseWordCount">
+                            <div class="w-75 collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapseWordCount">
                                 Games : 92</br>
                                 Twtich Emotes: 95</br>
                                 Movies: 134</br>
@@ -301,54 +328,46 @@
 
                             </div>
 
-                            <button class="btn btn-secondary btn-block note_tabs margin_center" type="button" data-toggle="collapse" data-target="#collapsePatchNotes" aria-expanded="false">
+                            <div class="mt-3"></div>
+
+                            <button class="w-75 btn btn-secondary btn-block note_tabs margin_center" type="button" data-toggle="collapse" data-target="#collapsePatchNotes" aria-expanded="false">
                                 <h5>Patch Notes</h5>
                               </button>
-                            <div class="collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapsePatchNotes">
+                            <div class="w-75 collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapsePatchNotes">
                                 </br>
-                                <p class="text-muted"><b>Dev Message</b>: Last feature update for a while. I need to get a job, and make money. If any bugs pop up I will try to fix. Thank you for playing ❤️</p>
-                                </br>
+                                <h5>Version 1.6.0 (2020-Nov-28)</h5>
+                                -Added Channel Emotes</br>
+                                -Small Stlye Changes</br>
+                                -Checking for right word is more accurate</br>
+                                </br>                    
                                 <h5>Version 1.5.1 (2020-Mar-21)</h5>
                                 -Added custom words feature. You can now add in your own words now!</br>
                                 -Bug fixes</br>
                                 </br>
                                 <h5>Version 1.5 (2020-Mar-12)</h5>
                                 -Website rewrite</br>
-                                </br>
-                                <h5>Before Version 1.5</h5>
-                                -Added Animals</br>
-                                -Added Classic Memes</br>
-                                -Added Emojis</br>
-                                -Added seen word indicator in word popout.</br>
-                                -Reworked word selection </br>
-                                -Added Pokémon</br>
-                                -Added Video Game Characters</br>
-                                -Added Superheroes</br>
-                                -Redid T.V Shows</br>
-                                -Added Youtube Channels</br>
-                                -Added BTTV / FFZ Emotes (Med)</br>
-                                -Adjusted Games, Actions</br>
-                                -17 More Words to B / F (Easy)</br>
-                                -Fixed Major Security Hole</br>
-                                -Added live Streamers</br>
-                                -Redid Movies</br>
-                                -Redid Actors, and Renamed to Actors / Singers</br>
                             </div>
 
-                            <button class="btn btn-secondary btn-block note_tabs margin_center" type="button" data-toggle="collapse" data-target="#collapseContr" aria-expanded="false">
+                            <div class="mt-3"></div>
+
+                            <button class="w-75 btn btn-secondary btn-block note_tabs margin_center" type="button" data-toggle="collapse" data-target="#collapseContr" aria-expanded="false">
                             <h5>Contributors / Credit</h5>
                           </button>
-                            <div class="collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapseContr">
-                                <h6>Small Code Fixes</h6>
-                                <p>- Sotif</p>
+                            <div class="w-75 collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapseContr">
+                                <h6>Code Contributors</h6>
+                                <p>- Sotif </br>- karl-police</p>
                                 <h6>Word Bank Help</h6>
                                 <p>- ThotProcess</br>- TheFinalSoul</p>
                                 <h6>Confetti Script</h6>
                                 <p>- mathusummut</p>
                             </div>
+
+                            <div class="mt-3"></div>
+
                         </div>
-                    </div>
+                    </div>                    
                 </div>
+                <div class="mt-5"></div>
             </div>
         </div>
     </div>
@@ -356,7 +375,7 @@
         <div class="container-fluid footer">
             <div class="row my-row mt-xl-3">
                 <div class="col-4 my_col text-muted align-self-center">
-                    <p>Bugs / Ideas: <a href="" class="text-muted" onclick="openInNewTab('https://github.com/lejara/Da-Twitch-Charades/issues');">Post Here</a></p>
+                    <p>Bugs / Ideas ?: <a href="https://github.com/lejara/Da-Twitch-Charades/issues" class="text-muted">Post Here</a></p>
 
 
                 </div>
@@ -366,7 +385,7 @@
                     <a href="https://www.twitch.tv/leption"><i class="mr-3 fab fa-twitch fa-2x"></i></a>
                 </div>
                 <div class="col-4 my_col text-right">
-                    <a href="" onclick="openInNewTab('https://www.paypal.com/paypalme2/lejara')"><img class="img-fluid dono_btn" src="images/paypal-logo-png-clip-art.png"></a>
+                    <a href="https://www.paypal.com/paypalme2/lejara"><img class="img-fluid dono_btn" src="images/paypal-logo-png-clip-art.png"></a>
                     <p class="donate_btn_text">Any donations will help support future growth</p>
 
                 </div>
@@ -375,20 +394,18 @@
 
     </footer>
 
-
-
     <script src="jquery-3.4.1.min.js"></script>
     <script src="popper.min.js"></script>
     <script src="bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6f4ae010e6.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js"></script>
+    <script src="dist/js/twitch.js"></script>
     <script src="bootstrap4-toggle.min.js"></script>
     <script src="dist/js/confetti.min.js"></script>
     <script src="dist/js/purify.min.js"></script>
     <script src="dist/js/TCat.min.js"></script>
     <script src="dist/js/TCharadesGame.min.js"></script>
-    <!-- <script src="TCat.js"></script> -->
-    <!-- <script src="TCharadesGame.js"></script> -->
+    <!-- <script src="TCat.js"></script> 
+    <script src="TCharadesGame.js"></script> -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158713868-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];

@@ -12,6 +12,7 @@
     "build:popout": "npm run sass:popout && npm run uglify:tpopout",
     "build:index": "npm run sass:index && npm run uglify:tcat && npm run uglify:tcg",
     "copy:purify": "copyfiles -f node_modules/dompurify/dist/purify.min.js dist/js",
+    "copy:twitchjs": "copyfiles -f node_modules/twitch-js/dist/twitch.js dist/js",
     "build": "npm run sass:index && npm run sass:popout && npm run uglify:tcat && npm run uglify:tcg && npm run uglify:tpopout && npm run copy:purify"
   },
   "repository": {
@@ -39,6 +40,7 @@
     "dompurify": "^2.2.2",
     "imagemin": "^7.0.1",
     "postcss-cli": "^7.1.2",
+    "twitch-js": "^2.0.0-beta.33",
     "uglify-es": "^3.3.9"
   }
 }
