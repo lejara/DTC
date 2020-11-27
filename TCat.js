@@ -1,5 +1,4 @@
 //TODO: needs edge testing, test fetech errors, test win cons, test on firefox
-//TODO: maybe sanitize BTTV anf FFZ fetches
 var list_of_categories = [];
 var list_of_web_categories = [];
 
