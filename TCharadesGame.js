@@ -1,6 +1,7 @@
 const MAX_WORD_CHAR_COUNT = 45;
 var isConnected = false;
-var connectedChannel = ""
+var connectedChannelName = ""
+var connectedChannel_ID;
 
 var time_Slider_Value = 1;
 var display_ChosenWord = "--Game Has Not Started--";
@@ -14,7 +15,6 @@ var word_obj_concat = {};
 var word_cur_index = 0;
 var canDoLocalStorage = true;
 var hasSeenWord = false;
-
 
 var clickSound;
 var winSound;
@@ -55,6 +55,10 @@ $(document).ready(function() {
     this.src = 'images/blank.png';
   };
 
+  //Turn Off Web Request Categories Switches 
+  document.getElementById("Dynamic_Categories_Switches").classList.add("opacity-40");
+  list_of_web_categories.forEach((cat) => {  $('#' + cat.id).bootstrapToggle('disable') })
+
   Setup_Shuffle_Words();
 })
 
@@ -74,6 +78,10 @@ function Game_Started() {
   document.getElementById("main_btn").value = "Next Word";
   document.getElementById("main_btn").removeEventListener("click", StartGame);
   document.getElementById("main_btn").addEventListener("click", NextRound);
+  //Turn on Dynamic Categories
+  document.getElementById("Dynamic_Categories_Switches").classList.remove("opacity-40");
+  list_of_web_categories.forEach((cat) => {  $('#' + cat.id).bootstrapToggle('enable') })
+
   NextRound();
 }
 
@@ -89,50 +97,42 @@ function NextRound() {
   clickSound.play();
 }
 
+// Connect To Twtich Channel
 function ConnectTwtichChat() {
   const channel = document.getElementById("channelName").value;
-
-  if (isConnected) {
-    chat.reconnect().then(() => {
-      chat.part(connectedChannel);
-      chat.join(channel);
-      connectedChannel = channel;
-    })
-  } else {
-
-    const handleMessage = message => {
-        if (message.event === "PRIVMSG") {
-          if (!wordFound && message.message != null) {
-            if (!gameFailed) {
-              var clean_message = DOMPurify.sanitize(message.message, { ALLOWED_TAGS: ['b'] })
-              document.getElementById("wb_output").innerHTML = ("<strong class=\"font_pop\" style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + clean_message);
-              if (clean_message.toLowerCase().search("^" + chosenWord) != -1) {
-                WordGuessed();
-              }
-
-            }
-          }
-        };
-
-      }
-      // Listen for all events.
-    chat.on(TwitchJs.Chat.Events.ALL, handleMessage);
-
-    // Connect ...
-    chat.connect().then(() => {
-      chat.join(channel).then(({ roomState }) => {
-        isConnected = true;
-        connectedChannel = channel;
-        Game_Started();
-      }).catch(function(err) {
-        Error_Notify("Make Sure Channel Name Is Filled Correctly.", err, false);
-      })
+  
+  chat.connect().then(() => {
+    chat.join(channel).then(({ roomState }) => {
+      isConnected = true;
+      connectedChannel_ID = roomState.roomId;
+      connectedChannelName = channel;
+      Game_Started();
     }).catch(function(err) {
-      Error_Notify("Could Not Connect To Twtich API.", err, false);
-    });
+      Error_Notify("Make Sure Channel Name Is Filled Correctly.", err, false);
+    })
+  }).catch(function(err) {
+    Error_Notify("Could Not Connect To Twtich API.", err, false);
+  });
+
+  //Assign Chat Message Handler
+  const handleMessage = message => {
+    if (message.event === "PRIVMSG") {
+      if (!wordFound && message.message != null) {
+        if (!gameFailed) {
+          var clean_message = DOMPurify.sanitize(message.message, { ALLOWED_TAGS: ['b'] })
+          document.getElementById("wb_output").innerHTML = ("<strong class=\"font_pop\" style=\"color:" + message.tags["color"] + "; \">" + message.username + "</strong>: " + clean_message);
+          //console.log( message.username + ": " + clean_message)
+          if (clean_message.toLowerCase().search("^\\b" + chosenWord + "\\b") != -1) {
+            WordGuessed();
+          }
+
+        }
+      }
+    };
 
   }
-};
+  chat.on(TwitchJs.Chat.Events.ALL, handleMessage);
+}
 
 function Error_Notify(err_msg, err, do_clear = false) {
   if (!do_clear) {
@@ -361,7 +361,8 @@ function HideAllTabs() {
     while (elements.length > 0) {
       elements[0].classList.remove("visible_tab");
     }
-    document.getElementById("note_notes").classList.add("hidden_tab");
+    document.getElementById("right_side").classList.add("hidden_tab");
+    document.getElementById("note_notes_in").classList.add("hidden_tab");
     document.getElementById("categories_settings").classList.add("hidden_tab");
     document.getElementById("hide_all_tabs_btn").value = "Show All";;
 
@@ -372,7 +373,8 @@ function HideAllTabs() {
       elements[0].classList.remove("hidden_tab");
     }
 
-    document.getElementById("note_notes").classList.add("visible_tab");
+    document.getElementById("right_side").classList.add("visible_tab");
+    document.getElementById("note_notes_in").classList.add("visible_tab");
     document.getElementById("categories_settings").classList.add("visible_tab");
     document.getElementById("hide_all_tabs_btn").value = "Hide All";
 
@@ -395,34 +397,3 @@ function openInNewTab(url) {
   var win = window.open(url, '_blank');
   win.focus();
 }
-
-
-// function Test_Emotes_get() {
-//   //Game client id: gcxxg3g0lghqxl0d4zhttv11sobtf8
-//   //Working------------------------------
-//   $.when(
-//     $.ajax("https://api.twitch.tv/helix/users?login=xqcow", {
-//       beforeSend: function(hrObj) {
-//         hrObj.setRequestHeader("Client-ID", "gcxxg3g0lghqxl0d4zhttv11sobtf8")
-//       }
-//     })
-//   ).done(function(res) {
-//     var channel_id = res.data[0].id;
-//     console.log("Got channel id");
-//     $.when(
-//       $.ajax("https://api.twitchemotes.com/api/v4/channels/" + channel_id)
-//     ).done(function(res) {
-//       console.log("got emotes")
-//       for (var ctr in res["emotes"]) {
-//         //res["emotes"][ctr].code
-//         console.log("https://static-cdn.jtvnw.net/emoticons/v1/" + res["emotes"][ctr].id + "/3.0")
-//         img_word.src = "https://static-cdn.jtvnw.net/emoticons/v1/" + res["emotes"][ctr].id + "/3.0";
-//       }
-//       // img_word.src
-
-//     })
-
-//   }).fail(function(err) {
-//     console.log(err);
-//   });
-// }
