@@ -21,7 +21,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light">
-        <h1 class="ml-sm-5">Da Twitch Charades<sub class="text-muted version"> 1.6.0 </sub>
+        <h1 class="ml-sm-5">Da Twitch Charades<sub class="text-muted version"> 1.6.3 </sub>
             <sup><img class="img-fluid" src="images/icon.png" width="25" height="25"></sup>
         </h1>
     </nav>
@@ -204,6 +204,31 @@
                             </div>
                             <div class="row my-row ml-sm-4 ml-1 mr-2">
                                 <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    League Of Legends
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="League_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+    
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Valorant
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Valorant_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>
+                            </div>
+                            <div class="row my-row ml-sm-4 ml-1 mr-2">
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
+                                    Overwatch
+                                </div>
+                                <div class="col-2 my_col align-self-center">
+                                    <input id="Overwatch_Switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="dark" onchange="p.call(this);" data-size="sm">
+                                </div>                                
+                            </div>
+                            
+
+                            <div class="row my-row ml-sm-4 ml-1 mr-2 mt-3">
+                                <div class="col-4 my_col custom_label_swtich align-self-center">
                                     Custom Words
                                     <button type="button" class="btn btn-secondary-outline" data-toggle="modal" data-target="#Cus_WordModal"><span class="fas fa-cog"></span></button>
                                 </div>
@@ -325,6 +350,9 @@
                                 Animals: 87</br>
                                 Classic Memes: 70</br>
                                 Emojis (Easy): 105</br>
+                                League Of Legends: 156</br>
+                                Overwatch: 38</br>
+                                Valorant: 39</br>
 
                             </div>
 
@@ -334,6 +362,10 @@
                                 <h5>Patch Notes</h5>
                               </button>
                             <div class="w-75 collapse collapse_tabs text-center p-3 note_tabs margin_center" id="collapsePatchNotes">
+                                </br>
+                                <h5>Version 1.6.1 (2021-Jan-25)</h5>
+                                -Added Valorant, Overwatch, and League Of Legends</br>
+                                -Changed Next Button Sound</br>
                                 </br>
                                 <h5>Version 1.6.0 (2020-Nov-28)</h5>
                                 -Added Channel Emotes</br>
